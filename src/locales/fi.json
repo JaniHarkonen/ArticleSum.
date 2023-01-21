@@ -1,0 +1,14 @@
+{
+  "locale": "fi",
+  "forms": {
+    "filter-form": {
+      "caption": "Suodattimet",
+      "applied": "käytössä",
+      "results": "tulosta",
+      "apply": "Käytä",
+      "clear": "Tyhjennä",
+      "save": "Tallenna",
+      "applied-filters": "Aktiiviset suodattimet"
+    }
+  }
+}
