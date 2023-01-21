@@ -1,0 +1,14 @@
+{
+  "locale": "eng",
+  "forms": {
+    "filter-form": {
+      "caption": "Filters",
+      "applied": "applied",
+      "results": "results",
+      "apply": "Apply",
+      "clear": "Clear",
+      "save": "Save",
+      "applied-filters": "Applied filters"
+    }
+  }
+}
