@@ -1,5 +1,9 @@
 {
-  "locale": "fi",
+  "locale": "FI",
+  "language": "Suomi",
+  "list-view": {
+    "listings-caption": "Artikkelit"
+  },
   "forms": {
     "filter-form": {
       "caption": "Suodattimet",
