@@ -1,5 +1,9 @@
 {
-  "locale": "eng",
+  "locale": "ENG",
+  "language": "English",
+  "list-view": {
+    "listings-caption": "Articles"
+  },
   "forms": {
     "filter-form": {
       "caption": "Filters",
