@@ -1,28 +1,35 @@
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import { workspaceTabs } from "./workspaceTabs";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { GlobalContext } from "../../context/GlobalContext";
+import { mapElements } from "../../utils/mapElements";
 
 
 export default function Workspace() {
   const defaultTab = workspaceTabs[0];
   const [activeTab, setActiveTab] = useState(defaultTab);
+  const { languageManager: lm } = useContext(GlobalContext);
 
   const renderTabs = (tabs) => {
-    return tabs.map((t) => {
-      const { id, title, jsx } = t;
-      const TabElement = jsx;
+    return mapElements(
+      tabs,
+      (key, tab) => {
+        const { id, jsx } = tab;
+        const TabElement = jsx;
 
-      return (
-        <Tab
-          key={id}
-          eventKey={id}
-          title={title}
-        >
-          <TabElement />
-        </Tab>
-      );
-    });
+        return (
+          <Tab
+            key={key}
+            eventKey={id}
+            title={lm.translate("navigation." + id)}
+          >
+            <TabElement />
+          </Tab>
+        );
+      },
+      "workspace-tab-"
+    );
   };
 
   return (

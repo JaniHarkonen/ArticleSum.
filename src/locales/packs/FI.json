@@ -1,0 +1,41 @@
+{
+  "abbreviation": "FI",
+  "language": "Suomi",
+  "app-name": "ArticleSum.",
+  "list-view": {
+    "listings-caption": "Artikkelit"
+  },
+  "navigation": {
+    "timeline": "Aikajana",
+    "word-cloud": "Sanapilvi",
+    "list": "Artikkelit",
+    "tags": "Tagit"
+  },
+  "forms": {
+    "filter-form": {
+      "caption": "Suodattimet",
+      "applied": "käytössä",
+      "results": "tulosta",
+      "apply": "Käytä",
+      "clear": "Tyhjennä",
+      "save": "Tallenna",
+      "applied-filters": "Aktiiviset suodattimet"
+    },
+    "article-filter-form": {
+      "id": "Artikkelin ID",
+      "title": "Otsikko",
+      "publish-date": "Julkaisupäivämäärä",
+      "read-date": "Lukupäivämäärä",
+      "source": "Lähde",
+      "tag": "Tagi",
+      "note": "Muistiinpanot"
+    },
+    "article-form": {
+      "publish-date": "Julkaistu",
+      "read-date": "Luettu",
+      "source": "Lähde",
+      "tags": "Tagit",
+      "notes": "Muistiinpanot"
+    }
+  }
+}

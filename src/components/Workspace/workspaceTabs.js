@@ -1,20 +1,19 @@
 import TimelineView from "../../views/TimelineView/TimelineView";
-import WordInventoryView from "../../views/WordInventoryView/WordInventoryView";
+import WordCloudView from "../../views/WordCloudView/WordCloudView";
 import ListView from "../../views/ListView/ListView";
 import TagsView from "../../views/TagsView/TagsView";
 
 
-const Tab = (id, title, jsx) => {
+const Tab = (id, jsx) => {
   return {
     id: id,
-    title: title,
     jsx: jsx
   };
 };
 
 export const workspaceTabs = [
-  Tab("timeline", "Timeline", TimelineView),
-  Tab("word-inv", "Word inventory", WordInventoryView),
-  Tab("list", "List", ListView),
-  Tab("tags", "Tags", TagsView),
+  Tab("timeline", TimelineView),
+  Tab("word-cloud", WordCloudView),
+  Tab("list", ListView),
+  Tab("tags", TagsView)
 ];

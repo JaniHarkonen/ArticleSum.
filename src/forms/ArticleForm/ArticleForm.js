@@ -1,8 +1,11 @@
 import Form from "react-bootstrap/Form";
-import Badge from "react-bootstrap/Badge";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Styles } from "./ArticleForm.styles"
+import { mapElements } from "../../utils/mapElements";
+import ArticleTag from "../../components/ArticleTag/ArticleTag";
+import { useContext } from "react";
+import { GlobalContext } from "../../context/GlobalContext";
 
 
 const TEST_DEFAULT_ARTICLE = {
@@ -11,12 +14,14 @@ const TEST_DEFAULT_ARTICLE = {
   articleSource: "pornhubdot.net",
   publishDate: "",
   readDate: "",
-  articleTags: [],
+  articleTags: ["coronavaaaarus"],
   articleNotes: ""
 };
 
 export default function ArticleForm(props) {
   const article = props.article || TEST_DEFAULT_ARTICLE;
+  const lpCategory = "forms.article-form.";
+  const { languageManager: lm } = useContext(GlobalContext);
   const {
     articleId,
     articleTitle,
@@ -28,18 +33,17 @@ export default function ArticleForm(props) {
   } = article;
 
   const renderTags = (tags) => {
-    return tags.map((t, i) => {
-      return (
-        <Badge
-          key={t + i}
-          className="m-1 p-1"
-          bg="secondary"
-          role="button"
-        >
-          {t}
-        </Badge>
-      );
-    });
+    return mapElements(
+      tags, (key, tag) => {
+        return (
+          <ArticleTag
+            key={key}
+            tag={tag}
+          />
+        );
+      },
+      "article-form-tags-"
+    );
   };
 
   return (
@@ -49,7 +53,7 @@ export default function ArticleForm(props) {
       <Form.Group
         as={Row}
       >
-        <Form.Label column><b>Published: </b></Form.Label>
+        <Form.Label column><b>{lm.translate(lpCategory + "publish-date")}: </b></Form.Label>
         <Col>
           <Form.Control
             value={publishDate}
@@ -59,10 +63,14 @@ export default function ArticleForm(props) {
       <Form.Group
         as={Row}
       >
-        <Form.Label column><b>Read: </b></Form.Label>
+        <Form.Label column><b>{lm.translate(lpCategory + "read-date")}: </b></Form.Label>
+        <Col lg="1">
+          <Form.Check/>
+        </Col>
         <Col>
           <Form.Control
             value={readDate}
+            inline
           />
         </Col>
       </Form.Group>
@@ -73,13 +81,12 @@ export default function ArticleForm(props) {
         height="100%"
       />
       <br/>
-      <b>Source:</b> <a href={"https://" + articleSource}>{articleSource}</a>
+      <b>{lm.translate(lpCategory + "source")}:</b> <a href={"https://" + articleSource}>{articleSource}</a>
       <Form.Group>
-        <Form.Label><b>Tags: </b></Form.Label> {renderTags(articleTags)}
+        <Form.Label><b>{lm.translate(lpCategory + "tags")}: </b></Form.Label> {renderTags(articleTags)}
       </Form.Group>
-      <br/>
       <Form.Group>
-        <Form.Label><b>Notes</b></Form.Label>
+        <Form.Label><b>{lm.translate(lpCategory + "notes")}</b></Form.Label>
         <Form.Control
           as="textarea"
           value={articleNotes}

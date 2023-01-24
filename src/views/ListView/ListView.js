@@ -1,9 +1,10 @@
 import FilterForm from "../../forms/FilterForm/FilterForm";
 import Accordion from "react-bootstrap/Accordion";
 import ArticleListing from "../../components/ArticleListing.js/ArticleListing";
-import { getTranslation } from "../../locales/locales";
 import { useContext } from "react";
 import { GlobalContext } from "../../context/GlobalContext";
+import ArticleFilters from "../../forms/FilterForm/ArticleFilterForm/ArticleFilters";
+import { mapElements } from "../../utils/mapElements";
 
 const test_article = {
   articleId: 1,
@@ -22,30 +23,35 @@ const TEST_ARTICLES = [
 
 
 export default function ListView() {
-  const { locale } = useContext(GlobalContext);
-  const activeLocale = locale.activeLocale;
+  const { languageManager: lm } = useContext(GlobalContext);
 
   const renderArticleListings = (articles) => {
-    return articles.map((a, i) => {
-      a.articleId = i;
+    return mapElements(
+      articles,
+      (key, a, i) => {
+        a.articleId = i;
 
-      return (
-        <ArticleListing
-          key={a.articleId}
-          eventKey={"" + a.articleId}
-          article={a}
-        />
-      );
-    });
+        return (
+          <ArticleListing
+            key={key}
+            eventKey={"" + a.articleId}
+            article={a}
+          />
+        );
+      },
+      "list-view-article-listing-"
+    );
   }
 
   return (
     <div>
       <Accordion defaultActiveKey="-1">
-        <FilterForm />
+        <FilterForm>
+          <ArticleFilters />
+        </FilterForm>
       </Accordion>
       <br />
-      <h2>{getTranslation(activeLocale, "list-view.listings-caption")}</h2>
+      <h2>{lm.translate("list-view.listings-caption")}</h2>
       <Accordion defaultActiveKey="-1">
         {renderArticleListings(TEST_ARTICLES)}
       </Accordion>
