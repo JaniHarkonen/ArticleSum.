@@ -1,0 +1,41 @@
+{
+  "abbreviation": "ENG",
+  "language": "English",
+  "app-name": "ArticleSum.",
+  "list-view": {
+    "listings-caption": "Articles"
+  },
+  "navigation": {
+    "timeline": "Timeline",
+    "word-cloud": "Word cloud",
+    "list": "Articles",
+    "tags": "Tags"
+  },
+  "forms": {
+    "filter-form": {
+      "caption": "Filters",
+      "applied": "applied",
+      "results": "results",
+      "apply": "Apply",
+      "clear": "Clear",
+      "save": "Save",
+      "applied-filters": "Applied filters"
+    },
+    "article-filter-form": {
+      "id": "Item ID",
+      "title": "Title",
+      "publish-date": "Publish date",
+      "read-date": "Read date",
+      "source": "Source",
+      "tag": "Tag",
+      "note": "Note"
+    },
+    "article-form": {
+      "publish-date": "Published",
+      "read-date": "Read",
+      "source": "Source",
+      "tags": "Tags",
+      "notes": "Notes"
+    }
+  }
+}
