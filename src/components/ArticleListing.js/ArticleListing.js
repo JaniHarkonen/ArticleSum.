@@ -4,8 +4,8 @@ import Accordion from "react-bootstrap/Accordion";
 export default function ArticleListing(props) {
   const article = props.article;
   const eventKey = props.eventKey;
-  const articleTitle = article.articleTitle;
-  const articleSource = article.articleSource;
+  const articleTitle = article.title;
+  const articleSource = article.source;
 
   return (
     <Accordion.Item eventKey={eventKey}>

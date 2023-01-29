@@ -1,3 +1,5 @@
+import createComponentFromSchema from "./createComponentFromSchema";
+
 export const articleSchema = {
   id: { defaultValue: "" },
   title: { defaultValue: "" },
@@ -8,17 +10,5 @@ export const articleSchema = {
   notes: { defaultValue: "" }
 };
 
-export const Article = (settings) => {
-  return {
-    id: "",
-    title: "",
-    "publish-date": "",
-    "read-date": "",
-    source: "",
-    tags: [],
-    notes: "",
-    ...settings
-  };
-};
-
-export const articleFields = Object.keys(articleSchema);
+const component = createComponentFromSchema(articleSchema);
+export const { constructor: Article, schemaKeys: articleFields } = component;

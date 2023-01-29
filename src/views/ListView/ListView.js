@@ -16,32 +16,21 @@ const test_article = {
   notes: "hmm, what an interesting article\n->indeed, indubitably it was\nchange my mind"
 };
 
-const TEST_ARTICLES = [
-  test_article,
-  test_article
-];
-
 
 export default function ListView() {
-  const { languageManager: lm } = useContext(GlobalContext);
+  const { languageManager: lm, workspaceManager: wm } = useContext(GlobalContext);
 
-  const renderArticleListings = (articles) => {
-    return mapElements(
-      articles,
-      (key, a, i) => {
-        a.articleId = i;
-
-        return (
-          <ArticleListing
-            key={key}
-            eventKey={"" + a.articleId}
-            article={a}
-          />
-        );
-      },
-      "list-view-article-listing-"
-    );
-  }
+  const renderArticleListings = () => {
+    return wm.getArticleContainer().mapItems((item) => {
+      return (
+        <ArticleListing
+          key={"list-view-article-listing" + item.id}
+          eventKey={"" + item.id}
+          article={item}
+        />
+      );
+    });
+  };
 
   return (
     <div>
@@ -53,7 +42,7 @@ export default function ListView() {
       <br />
       <h2>{lm.translate("list-view.listings-caption")}</h2>
       <Accordion defaultActiveKey="-1">
-        {renderArticleListings(TEST_ARTICLES)}
+        {renderArticleListings()}
       </Accordion>
     </div>
   );
