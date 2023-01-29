@@ -37,5 +37,10 @@
       "tags": "Tags",
       "notes": "Notes"
     }
+  },
+  "modals": {
+    "form-modal": {
+      "header": "Edit article information"
+    }
   }
 }

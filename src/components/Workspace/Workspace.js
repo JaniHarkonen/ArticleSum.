@@ -37,6 +37,7 @@ export default function Workspace() {
       activeKey={activeTab}
       defaultActiveKey={defaultTab}
       onSelect={setActiveTab}
+      unmountOnExit={true}
     >
       {renderTabs(workspaceTabs)}
     </Tabs>

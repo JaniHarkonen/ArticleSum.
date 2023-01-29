@@ -1,8 +1,11 @@
+import { useContext } from "react";
 import Modal from "react-bootstrap/Modal";
+import { GlobalContext } from "../../context/GlobalContext";
 
 
 export default function FormModal(props) {
   const children = props.children;
+  const { languageManager: lm } = useContext(GlobalContext);
 
   return (
     <Modal
@@ -13,7 +16,7 @@ export default function FormModal(props) {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Edit article information
+          {lm.translate("modals.form-modal.header")}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
