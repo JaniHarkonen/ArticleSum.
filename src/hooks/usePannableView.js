@@ -2,12 +2,13 @@ import { useEffect, useState } from "react";
 import addEventListenerTo from "../utils/addEventListenerTo";
 
 export default function usePannableView(props) {
-  const defaultPosition = props?.position || { width: 0, height: 0 };
-  const defaultDimensions = props?.dimensions || { x: 200, y: 200 };
+  const defaultPosition = props?.position || { xOffset: 0, yOffset: 0 };
+  const defaultZoom = props?.defaultZoom || 1;
+  const zoomIncrement = props?.zoomIncrement || 1;
 
   const [viewPosition, setViewPosition] = useState(defaultPosition);
-  const [viewDimensions, setViewDimensions] = useState(defaultDimensions);
-  const [isDragging, setDragging] = useState(false);
+  const [zoomLevel, setZoomLevel] = useState(defaultZoom);
+  const [dragStatus, setDragStatus] = useState({ isDragging: false, dragStartX: 0, dragStartY: 0 });
 
   useEffect(() => {
     return addEventListenerTo(document, [
@@ -16,29 +17,48 @@ export default function usePannableView(props) {
       { type: "mouseup", listener: stopDragging },
       { type: "wheel", listener: zoom }
     ]);
-  }, [viewPosition, viewDimensions, isDragging]);
+  }, [viewPosition, zoomLevel, dragStatus]);
 
   
-  const startDragging = () => {
-    setDragging(true);
-  };
-
-  const drag = (e) => {
-    if( isDragging )
-    setViewPosition({ x: e.pageX, y: e.pageY });
+  const startDragging = (e) => {
+    setDragStatus({
+      isDragging: true,
+      dragStartX: e.pageX,
+      dragStartY: e.pageY
+    });
   };
 
   const stopDragging = () => {
-    setDragging(false);
+    setDragStatus({
+      ...dragStatus,
+      isDragging: false
+    });
+  };
+
+  const drag = (e) => {
+    if( dragStatus.isDragging === false )
+    return;
+
+    setViewPosition({
+      xOffset: viewPosition.xOffset + (e.pageX - dragStatus.dragStartX),
+      yOffset: viewPosition.yOffset + (e.pageY - dragStatus.dragStartY)
+    });
+
+    setDragStatus({
+      ...dragStatus,
+      dragStartX: e.pageX,
+      dragStartY: e.pageY
+    });
   };
 
   const zoom = (e) => {
-    
+    const delta = -Math.sign(e.deltaY) * zoomIncrement;
+    setZoomLevel(zoomLevel + delta);
   };
 
   return {
     viewPosition,
-    viewDimensions,
-    isDragging
+    zoomLevel,
+    dragStatus
   };
 }
