@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import App from './App';
 import LanguageManager from "./locales/LanguageManager";
 import Languages from './locales/Languages';
 import WorkspaceManager from './model/WorkspaceManager/WorkspaceManager';
 
+import './index.css';
 import "../node_modules/bootstrap/dist/css/bootstrap.css";
 
 
