@@ -7,7 +7,7 @@ import drawTimeline from "./drawTimeline";
 export default function Timeline(props) {
   const cursors = {
     default: "crosshair",
-    dragging: "grab"
+    dragging: "grabbing"
   };
 
   const articles = props.articles || [""];
@@ -19,17 +19,15 @@ export default function Timeline(props) {
 
       // Set dimensions and position based on the pannableView-hook
     c.style.width = "100%";
-    c.style.height = "100%";
-    c.style.left = viewPosition.xOffset + "px";
-    c.style.top = viewPosition.yOffset + "px";
+    c.style.height = "64px";
     c.width = c.offsetWidth;
     c.height = c.offsetHeight;
 
       // Render the timeline view
     const ctx = c.getContext("2d");
     ctx.scale(zoomLevel, zoomLevel);
-    renderArticles(ctx, articles);
     renderTimeline(ctx);
+    renderArticles(ctx, articles);
 
       // Toggle mouse cursor when dragging
     if( dragStatus.isDragging === true )
@@ -46,7 +44,7 @@ export default function Timeline(props) {
   };
 
   const renderTimeline = (ctx) => {
-    drawTimeline(ctx, 16, 1800, 16, 8);
+    drawTimeline(ctx, viewPosition.xOffset, 16, 1800, 18, 10);
   };
 
   return (
@@ -60,7 +58,6 @@ const DIV = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
-  overflow: hidden;
 `;
 
 const CAN = styled.canvas`

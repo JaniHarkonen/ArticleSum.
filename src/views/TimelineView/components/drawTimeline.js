@@ -1,25 +1,40 @@
-export default function drawTimeline(ctx, y, length, interval, subdivision) {
+export default function drawTimeline(ctx, xOffset, y, length, interval, subdivision, textSettings) {
+  const intervalFontSize = textSettings?.font.size || 8;
+  const intervalFontFamily = textSettings?.font.family || "Arial";
+  const intervalTextAlign = textSettings?.textAlign || "center";
+
   ctx.beginPath();
   ctx.moveTo(0, y);
   ctx.lineTo(length, y);
-  ctx.stroke();
 
     // Draw ticks
-  const realSubdivision = interval / subdivision;
-  for( let i = 0; i < length; i += realSubdivision )
+  let intervalCounter = 0;  // Determines when to draw the major intervals
+  const realSubdivision = interval / subdivision; // Length of a subdivision in pixels
+  
+  const s = length / interval * subdivision;  // Total number of divisions to draw
+  for( let i = 0; i < s; i++ )
   {
-    let offset = 4;
-    ctx.lineWidth = 2;
+    let subdOffset = 2;
+    ctx.lineWidth = 1;
 
-    if( i % interval !== 0 )
+    const x = (i * realSubdivision) + (xOffset % interval);
+    if( intervalCounter === subdivision )
     {
-      ctx.lineWidth = 1;
-      offset = 2;
-    }
+      subdOffset = 4;
+      ctx.lineWidth = 2;
 
-    ctx.beginPath();
-    ctx.moveTo(i, y - offset);
-    ctx.lineTo(i, y + offset);
-    ctx.stroke();
+      ctx.font = intervalFontSize + "px " + intervalFontFamily;
+      ctx.textAlign = intervalTextAlign;
+      ctx.fillText(""+i, x, y + 16);
+
+      intervalCounter = 0;
+    }
+    
+    ctx.moveTo(x, y - subdOffset);
+    ctx.lineTo(x, y + subdOffset);
+
+    intervalCounter++;
   }
+
+  ctx.stroke();
 }
