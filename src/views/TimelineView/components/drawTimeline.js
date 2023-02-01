@@ -1,7 +1,9 @@
 export default function drawTimeline(ctx, xOffset, y, length, interval, subdivision, textSettings) {
-  const intervalFontSize = textSettings?.font.size || 8;
-  const intervalFontFamily = textSettings?.font.family || "Arial";
+  const intervalFontSize = textSettings?.font?.size || 8;
+  const intervalFontFamily = textSettings?.font?.family || "Arial";
   const intervalTextAlign = textSettings?.textAlign || "center";
+  const intervalValueStart = textSettings?.value?.start || 0;
+  const intervalValueType = textSettings?.value?.type || "number"
 
   ctx.beginPath();
   ctx.moveTo(0, y);
@@ -25,8 +27,15 @@ export default function drawTimeline(ctx, xOffset, y, length, interval, subdivis
 
       ctx.font = intervalFontSize + "px " + intervalFontFamily;
       ctx.textAlign = intervalTextAlign;
-      ctx.fillText(""+i, x, y + 16);
 
+      let text = "";
+      switch( intervalValueType )
+      {
+        case "number": text = (intervalValueStart + i / subdivision); break;
+        case "year": text = intervalValueStart + i; break;
+      }
+
+      ctx.fillText(text, x, y + 16);
       intervalCounter = 0;
     }
     

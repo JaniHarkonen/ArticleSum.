@@ -1,8 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import usePannableView from "../../../hooks/usePannableView";
+import addEventListenerTo from "../../../utils/addEventListenerTo";
+import ArticlePreview from "./ArticlePreview/ArticlePreview";
 import drawMarker from "./drawMarker";
 import drawTimeline from "./drawTimeline";
+
 
 export default function Timeline(props) {
   const cursors = {
@@ -12,14 +15,17 @@ export default function Timeline(props) {
 
   const articles = props.articles || [""];
   const canvasId = "timeline-view-timeline-canvas";
+
+  const [articlePreview, openArticlePreview] = useState({title: "lol", "publish-date": "1/1/2000"});
   const {viewPosition, zoomLevel, dragStatus} = usePannableView({ zoomIncrement: 0.1 });
+
 
   useEffect(() => {
     const c = document.getElementById(canvasId);
 
       // Set dimensions and position based on the pannableView-hook
     c.style.width = "100%";
-    c.style.height = "64px";
+    c.style.height = "100%";
     c.width = c.offsetWidth;
     c.height = c.offsetHeight;
 
@@ -40,16 +46,35 @@ export default function Timeline(props) {
 
   const renderArticles = (ctx, arrArticles) => {
     for( let article of arrArticles )
-    drawMarker(ctx, 16, 16, 8 / zoomLevel);
+    {
+      const x = viewPosition.xOffset + 18 * (parseInt(article["publish-date"].split("/")[2]) - 2000);
+
+      if( x >= 0 )
+      drawMarker(ctx, x, 16, 8 / zoomLevel);
+    }
   };
 
   const renderTimeline = (ctx) => {
-    drawTimeline(ctx, viewPosition.xOffset, 16, 1800, 18, 10);
+    drawTimeline(ctx, viewPosition.xOffset, 16, 1800, 18, 2, 
+    {
+      font: { size: 8 / zoomLevel },
+      value: {
+        type: "year",
+        start: 2000 + Math.floor(Math.abs(viewPosition.xOffset / 18))
+      }
+    });
   };
 
   return (
     <DIV>
       <CAN id={canvasId} />
+      {/*
+        articlePreview &&
+        <ArticlePreview
+          article={articlePreview}
+          onClick={() => openArticlePreview(null)}
+        />
+  */}
     </DIV>
   );
 }

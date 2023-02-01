@@ -254,6 +254,19 @@ export default class Container {
     return this.items[itemId];
   }
 
+
+  filterItems(filterFunction = () => true) {
+    const result = [];
+    
+    for( let item in this.items )
+    {
+      if( filterFunction(this.items[item]) )
+      result.push(this.items[item]);
+    }
+
+    return result;
+  }
+
   /**
    * @returns Returns the underlying JSON that the Container 
    * provides interface to.
