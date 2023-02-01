@@ -4,11 +4,12 @@ import Timeline from "./components/Timeline";
 
 export default function TimelineView() {
   const { workspaceManager: wm } = useContext(GlobalContext);
+  const articles = wm.getArticleContainer();
 
   return (
     <Timeline
       origin="1/1/2000"
-      articles={wm.getArticleContainer().filterItems()}
+      getArticles={articles.filterItems.bind(articles)}
     />
   );
 }

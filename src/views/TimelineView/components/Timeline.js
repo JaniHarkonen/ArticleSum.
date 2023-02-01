@@ -13,7 +13,8 @@ export default function Timeline(props) {
     dragging: "grabbing"
   };
 
-  const articles = props.articles || [""];
+  const getArticles = props.getArticles;
+  const articles = getArticles() || [""];
   const canvasId = "timeline-view-timeline-canvas";
 
   const [articlePreview, openArticlePreview] = useState({title: "lol", "publish-date": "1/1/2000"});
