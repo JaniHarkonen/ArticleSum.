@@ -1,3 +1,5 @@
+import { addPoints, Dimension, Point, subtractPoints } from "../../utils/geometry";
+
 const combineJsons = (json1, json2) => {
   return { ...json1, ...json2 };
 };
@@ -5,10 +7,9 @@ const combineJsons = (json1, json2) => {
 export default class DragBox {
   constructor() {
     this.isDragging = false;
-    this.dragOffset = { x: 0, y: 0 };
-    this.positionStart = { x: 0, y: 0 };
-    this.position = { x: 0, y: 0 };
-    this.dimensions = { width: 0, height: 0 };
+    this.position = Point();
+    this.dimensions = Dimension();
+    this.lastMousePosition = Point();
   }
 
   grab(mousePosition) {
@@ -20,13 +21,18 @@ export default class DragBox {
     return false;
 
     this.isDragging = true;
-    this.dragOffset = { x: tp.x - mp.x, y: tp.y - mp.y };
+    this.lastMousePosition = mp;
 
     return true;
   }
 
   drag(mousePosition) {
-    this.setPosition(this.dragOffset + mousePosition);
+    if( !this.isDragging )
+    return;
+
+    const delta = subtractPoints(mousePosition, this.lastMousePosition);
+    this.setPosition(addPoints(this.position + delta));
+    this.setLastMousePosition(mousePosition);
   }
 
   drop() {
@@ -39,6 +45,10 @@ export default class DragBox {
 
   setDimensions(dimensions) {
     this.dimensions = combineJsons(this.dimensions, dimensions);
+  }
+
+  setLastMousePosition(mousePosition) {
+    this.lastMousePosition = mousePosition;
   }
 
   getPosition() {
