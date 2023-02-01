@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
+import DragBox from "../model/components/DragBox";
 import addEventListenerTo from "../utils/addEventListenerTo";
-import useDrag from "./useDrag";
+import { Dimension, Point } from "../utils/geometry";
+import useDraggables from "./useDraggables";
+
+const dragBox = new DragBox(Point(-2500, -2500), Dimension(5000, 5000));
 
 export default function usePannableView(props) {
   const defaultPosition = props?.position || { xOffset: 0, yOffset: 0 };
@@ -10,23 +14,21 @@ export default function usePannableView(props) {
   const [viewPosition, setViewPosition] = useState(defaultPosition);
   const [zoomLevel, setZoomLevel] = useState(defaultZoom);
 
-  
-  const onDrag = (ctx) => {
-    const { event: e } = ctx;
-    const { mouseX, mouseY } = ctx.previousState;
+  const [isDragging] = useDraggables({ dragBoxes: [dragBox] });
 
+
+  const onDrag = (ctx) => {
     setViewPosition({
-      xOffset: viewPosition.xOffset + (e.pageX - mouseX),
-      yOffset: viewPosition.yOffset + (e.pageY - mouseY)
+      xOffset: viewPosition.xOffset + ctx.mouseDelta.x,
+      yOffset: viewPosition.yOffset + ctx.mouseDelta.y
     });
   };
 
-  const { dragStatus } = useDrag({ onDrag: onDrag });
-
-
   useEffect(() => {
+    dragBox.addListener(DragBox.EVENT_DRAG, "drag", onDrag);
+
     return addEventListenerTo(document, { type: "wheel", listener: zoom });
-  }, [viewPosition, zoomLevel, dragStatus]);
+  }, [viewPosition, zoomLevel]);
 
   const zoom = (e) => {
     const delta = -Math.sign(e.deltaY) * zoomIncrement;
@@ -36,6 +38,6 @@ export default function usePannableView(props) {
   return {
     viewPosition,
     zoomLevel,
-    dragStatus
+    isDragging
   };
 }

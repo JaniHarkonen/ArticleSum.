@@ -18,7 +18,7 @@ export default function Timeline(props) {
   const canvasId = "timeline-view-timeline-canvas";
 
   const [articlePreview, openArticlePreview] = useState({title: "lol", "publish-date": "1/1/2000"});
-  const {viewPosition, zoomLevel, dragStatus} = usePannableView({ zoomIncrement: 0.1 });
+  const {viewPosition, zoomLevel, isDragging} = usePannableView({ zoomIncrement: 0.1 });
 
 
   useEffect(() => {
@@ -37,12 +37,12 @@ export default function Timeline(props) {
     renderArticles(ctx, articles);
 
       // Toggle mouse cursor when dragging
-    if( dragStatus.isDragging === true )
+    if( isDragging === true )
     document.body.style.cursor = cursors.dragging;
     else
     document.body.style.cursor = cursors.default;
 
-  }, [viewPosition, zoomLevel, dragStatus]);
+  }, [viewPosition, zoomLevel, isDragging]);
 
 
   const renderArticles = (ctx, arrArticles) => {
