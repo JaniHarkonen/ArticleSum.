@@ -4,7 +4,7 @@ import { Point } from "../utils/geometry";
 
 export default function useDraggables(props) {
   const dragBoxes = props.dragBoxes || [];
-  const [isDragging, setDragging] = useState(false);
+  const [draggedItems, setDraggedItems] = useState([]);
 
 
   useEffect(() => {
@@ -18,8 +18,7 @@ export default function useDraggables(props) {
   
   const grab = (e) => {
     const mousePosition = Point(e.pageX, e.pageY);
-    dragBoxes.forEach(db => db.grab(mousePosition));
-    setDragging(true);
+    setDraggedItems(dragBoxes.filter(db => db.grab(mousePosition)));
   };
 
   const drag = (e) => {
@@ -29,8 +28,8 @@ export default function useDraggables(props) {
 
   const drop = () => {
     dragBoxes.forEach(db => db.drop());
-    setDragging(false);
+    setDraggedItems([]);
   };
 
-  return [isDragging];
+  return [draggedItems];
 }

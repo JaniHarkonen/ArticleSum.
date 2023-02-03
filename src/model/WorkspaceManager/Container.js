@@ -219,7 +219,8 @@ export default class Container {
    * If a `notify`-option is passed inside the optional `options`-JSON, 
    * the triggering of the modification notification function can be 
    * controlled. By default, the notification triggered.
-   * @param {Function} selectorFunction 
+   * @param {Function} selectorFunction Function that determines whether an 
+   * item should be removed.
    * @param {JSON} options *Optional*, post settings that determine 
    * whether the modifications should be notified.
    * 
@@ -254,8 +255,20 @@ export default class Container {
     return this.items[itemId];
   }
 
-
-  filterItems(filterFunction = () => true) {
+  /**
+   * Returns an array of all the items in the Container that satisfy the 
+   * given filter function.
+   * 
+   * The filter function should take the item currently being iterated 
+   * over as input and return either `true`, if the item is to be included, 
+   * or `false`, if the item is to be excluded. By default, all items will 
+   * be included.
+   * @param {Function} filterFunction Function that determines whether an 
+   * item should be returned.
+   * 
+   * @returns An array of all items that satisfy the filter function.
+   */
+  filterItems(filterFunction = (item) => true) {
     const result = [];
     
     for( let item in this.items )

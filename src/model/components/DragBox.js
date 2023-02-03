@@ -9,11 +9,12 @@ export default class DragBox {
   static EVENT_DRAG = "drag";
   static EVENT_DROP = "drop";
 
-  constructor(startingPosition = Point(), dimensions = Dimension()) {
+  constructor(startingPosition = Point(), dimensions = Point()) {
     this.isDragging = false;
     this.position = startingPosition;
     this.dimensions = dimensions;
     this.lastMousePosition = Point();
+    this.anchorPoint = Point();
 
     this.listeners = {
       grab: [],
@@ -24,10 +25,10 @@ export default class DragBox {
 
   grab(mousePosition) {
     const mp = mousePosition;
-    const tp = this.position;
-    const td = this.dimensions;
+    const topLeft = subtractPoints(this.position, this.anchorPoint);
+    const bottomRight = addPoints(topLeft, this.dimensions);
 
-    if( mp.x < tp.x || mp.y < tp.y || mp.x > tp.x + td.width || mp.y > tp.y + td.height )
+    if( mp.x < topLeft.x || mp.y < topLeft.y || mp.x > bottomRight.x || mp.y > bottomRight.y )
     return false;
 
     this.isDragging = true;
@@ -70,6 +71,9 @@ export default class DragBox {
   }
 
   drop() {
+    if( !this.isDragging )
+    return;
+    
     this.isDragging = false;
 
       // Notify DROP-listeners
@@ -100,7 +104,11 @@ export default class DragBox {
   }
 
   setLastMousePosition(mousePosition) {
-    this.lastMousePosition = mousePosition;
+    this.lastMousePosition = combineJsons(this.lastMousePosition, mousePosition);
+  }
+
+  setAnchorPoint(anchorPoint) {
+    this.anchorPoint = combineJsons(this.anchorPoint, anchorPoint);
   }
 
   getPosition() {

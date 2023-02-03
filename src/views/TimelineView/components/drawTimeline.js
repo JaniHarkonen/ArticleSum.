@@ -1,3 +1,5 @@
+import nmod from "../../../utils/nmod";
+
 export default function drawTimeline(ctx, xOffset, y, length, interval, subdivision, textSettings) {
   const intervalFontSize = textSettings?.font?.size || 8;
   const intervalFontFamily = textSettings?.font?.family || "Arial";
@@ -5,6 +7,7 @@ export default function drawTimeline(ctx, xOffset, y, length, interval, subdivis
   const intervalValueStart = textSettings?.value?.start || 0;
   const intervalValueType = textSettings?.value?.type || "number"
 
+    // Draw the baseline
   ctx.beginPath();
   ctx.moveTo(0, y);
   ctx.lineTo(length, y);
@@ -19,7 +22,7 @@ export default function drawTimeline(ctx, xOffset, y, length, interval, subdivis
     let subdOffset = 2;
     ctx.lineWidth = 1;
 
-    const x = (i * realSubdivision) + (xOffset % interval);
+    const x = (i * realSubdivision) + nmod(xOffset, interval);
     if( intervalCounter === subdivision )
     {
       subdOffset = 4;
@@ -32,7 +35,7 @@ export default function drawTimeline(ctx, xOffset, y, length, interval, subdivis
       switch( intervalValueType )
       {
         case "number": text = (intervalValueStart + i / subdivision); break;
-        case "year": text = intervalValueStart + i; break;
+        case "year": text = intervalValueStart + i / subdivision; break;
       }
 
       ctx.fillText(text, x, y + 16);

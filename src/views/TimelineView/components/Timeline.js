@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import usePannableView from "../../../hooks/usePannableView";
+import createComponentFromSchema from "../../../model/components/createComponentFromSchema";
 import addEventListenerTo from "../../../utils/addEventListenerTo";
 import ArticlePreview from "./ArticlePreview/ArticlePreview";
 import drawMarker from "./drawMarker";
@@ -13,18 +14,30 @@ export default function Timeline(props) {
     dragging: "grabbing"
   };
 
-  const getArticles = props.getArticles;
-  const articles = getArticles() || [""];
+  const articles = props.articles;
+  const timelineOrigin = (new Date(props.origin)).getFullYear() || 0;
   const canvasId = "timeline-view-timeline-canvas";
 
   const [articlePreview, openArticlePreview] = useState({title: "lol", "publish-date": "1/1/2000"});
-  const {viewPosition, zoomLevel, isDragging} = usePannableView({ zoomIncrement: 0.1 });
+  const {viewPosition, zoomLevel, draggedItems}
+  = usePannableView({
+    zoomIncrement: 0.01
+  });
 
 
   useEffect(() => {
-    const c = document.getElementById(canvasId);
+    let visibleArticles = articles.filter((a) => {
+      const publishYear = (new Date(a["publish-date"])).getFullYear();
+      const startYear = timelineOrigin - Math.floor(viewPosition.x / 18);
+
+      return(
+        publishYear >= startYear &&
+        publishYear <= startYear + (1800 / 18)
+      );
+    });
 
       // Set dimensions and position based on the pannableView-hook
+    const c = document.getElementById(canvasId);
     c.style.width = "100%";
     c.style.height = "100%";
     c.width = c.offsetWidth;
@@ -34,36 +47,35 @@ export default function Timeline(props) {
     const ctx = c.getContext("2d");
     ctx.scale(zoomLevel, zoomLevel);
     renderTimeline(ctx);
-    renderArticles(ctx, articles);
+    renderArticles(ctx, visibleArticles);
 
       // Toggle mouse cursor when dragging
-    if( isDragging === true )
+    if( draggedItems.length > 0 )
     document.body.style.cursor = cursors.dragging;
     else
     document.body.style.cursor = cursors.default;
 
-  }, [viewPosition, zoomLevel, isDragging]);
+  }, [viewPosition, zoomLevel, draggedItems]);
 
 
   const renderArticles = (ctx, arrArticles) => {
     for( let article of arrArticles )
     {
-      const x = viewPosition.xOffset + 18 * (parseInt(article["publish-date"].split("/")[2]) - 2000);
-
-      if( x >= 0 )
+      const x = viewPosition.x + 18 * ((new Date(article["publish-date"])).getFullYear() - timelineOrigin);
       drawMarker(ctx, x, 16, 8 / zoomLevel);
     }
   };
 
   const renderTimeline = (ctx) => {
-    drawTimeline(ctx, viewPosition.xOffset, 16, 1800, 18, 2, 
-    {
-      font: { size: 8 / zoomLevel },
-      value: {
-        type: "year",
-        start: 2000 + Math.floor(Math.abs(viewPosition.xOffset / 18))
+    drawTimeline(ctx, viewPosition.x, 16, 1800, 18, 2, 
+      {
+        font: { size: 8 / zoomLevel },
+        value: {
+          type: "year",
+          start: timelineOrigin - Math.floor(viewPosition.x / 18)
+        }
       }
-    });
+    );
   };
 
   return (
