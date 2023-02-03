@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import useMouseTracker from "../../../hooks/useMouseTracker";
 import usePannableView from "../../../hooks/usePannableView";
 import createComponentFromSchema from "../../../model/components/createComponentFromSchema";
 import addEventListenerTo from "../../../utils/addEventListenerTo";
 import ArticlePreview from "./ArticlePreview/ArticlePreview";
+import drawCursor from "./drawCursor";
 import drawMarker from "./drawMarker";
 import drawTimeline from "./drawTimeline";
 
@@ -19,6 +21,7 @@ export default function Timeline(props) {
   const canvasId = "timeline-view-timeline-canvas";
 
   const [articlePreview, openArticlePreview] = useState({title: "lol", "publish-date": "1/1/2000"});
+  const [mousePosition] = useMouseTracker();
   const {viewPosition, zoomLevel, draggedItems}
   = usePannableView({
     zoomIncrement: 0.01
@@ -48,6 +51,7 @@ export default function Timeline(props) {
     ctx.scale(zoomLevel, zoomLevel);
     renderTimeline(ctx);
     renderArticles(ctx, visibleArticles);
+    renderCursor(ctx);
 
       // Toggle mouse cursor when dragging
     if( draggedItems.length > 0 )
@@ -55,7 +59,7 @@ export default function Timeline(props) {
     else
     document.body.style.cursor = cursors.default;
 
-  }, [viewPosition, zoomLevel, draggedItems]);
+  }, [viewPosition, zoomLevel, draggedItems, mousePosition]);
 
 
   const renderArticles = (ctx, arrArticles) => {
@@ -76,6 +80,10 @@ export default function Timeline(props) {
         }
       }
     );
+  };
+
+  const renderCursor = (ctx) => {
+    drawCursor(ctx, mousePosition.x, 0, 128);
   };
 
   return (
