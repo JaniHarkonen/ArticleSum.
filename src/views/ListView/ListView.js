@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { GlobalContext } from "../../context/GlobalContext";
 import ArticleFilters from "../../forms/FilterForm/ArticleFilterForm/ArticleFilters";
 import { mapElements } from "../../utils/mapElements";
+import ArticleControlPanel from "../../components/ArticleControlPanel/ArticleControlPanel";
 
 const test_article = {
   articleId: 1,
@@ -39,6 +40,7 @@ export default function ListView() {
           <ArticleFilters />
         </FilterForm>
       </Accordion>
+      <ArticleControlPanel />
       <br />
       <h2>{lm.translate("list-view.listings-caption")}</h2>
       <Accordion defaultActiveKey="-1">

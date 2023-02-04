@@ -3,7 +3,6 @@ import Header from './components/Header/Header';
 import Workspace from './components/Workspace/Workspace';
 import { GlobalContext } from './context/GlobalContext';
 import { useState } from 'react';
-import ArticleForm from './forms/ArticleForm/ArticleForm';
 import FormModal from './modal/FormModal/FormModal';
 
 
@@ -19,14 +18,11 @@ function App(props) {
   languageManager.updateLanguageSetter(setLanguage);
 
   const renderFormModal = () => {
-    if( displayedForm )
-    {
-      return (
-        <FormModal>
-          {displayedForm}
-        </FormModal>
-      );
-    }
+    return (
+      <FormModal show={displayedForm != null}>
+        {displayedForm}
+      </FormModal>
+    );
   };
 
   return (

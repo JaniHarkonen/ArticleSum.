@@ -1,18 +1,20 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import { GlobalContext } from "../../context/GlobalContext";
 
 
 export default function FormModal(props) {
   const children = props.children;
-  const { languageManager: lm } = useContext(GlobalContext);
+  const { languageManager: lm, popupForm } = useContext(GlobalContext);
+  const show = props.show;
 
   return (
     <Modal
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered
-      show={true}
+      show={show}
+      onHide={() => popupForm(null)}
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">

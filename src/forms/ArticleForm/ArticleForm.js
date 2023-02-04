@@ -23,13 +23,13 @@ export default function ArticleForm(props) {
   const lpCategory = "forms.article-form.";
   const { languageManager: lm } = useContext(GlobalContext);
   const {
-    articleId,
-    articleTitle,
-    articleSource,
-    publishDate,
-    readDate,
-    articleTags,
-    articleNotes
+    id: articleId,
+    title: articleTitle,
+    "publish-date": publishDate,
+    "read-date": readDate,
+    source: articleSource,
+    tags: articleTags,
+    notes: articleNotes
   } = article;
 
   const renderTags = (tags) => {
