@@ -1,6 +1,6 @@
 import FilterForm from "../../forms/FilterForm/FilterForm";
 import Accordion from "react-bootstrap/Accordion";
-import ArticleListing from "../../components/ArticleListing.js/ArticleListing";
+import ArticleListing from "../../components/ArticleListing/ArticleListing";
 import { useContext } from "react";
 import { GlobalContext } from "../../context/GlobalContext";
 import ArticleFilters from "../../forms/FilterForm/ArticleFilterForm/ArticleFilters";
