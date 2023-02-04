@@ -8,6 +8,7 @@ import ArticlePreview from "./ArticlePreview/ArticlePreview";
 import drawCursor from "./drawCursor";
 import drawMarker from "./drawMarker";
 import drawTimeline from "./drawTimeline";
+import Marker from "./Marker";
 
 
 export default function Timeline(props) {
@@ -20,15 +21,17 @@ export default function Timeline(props) {
   const timelineOrigin = (new Date(props.origin)).getFullYear() || 0;
   const canvasId = "timeline-view-timeline-canvas";
 
-  const [articlePreview, openArticlePreview] = useState({title: "lol", "publish-date": "1/1/2000"});
+  const [articlePreview, openArticlePreview] = useState({ article: {title: "lol", "publish-date": "date"}, marker: new Marker(), isMouseOver: false });
+  const [visibleMarkers, setVisibleMarkers] = useState([]);
   const [mousePosition] = useMouseTracker();
   const {viewPosition, zoomLevel, draggedItems}
   = usePannableView({
     zoomIncrement: 0.01
   });
 
-
   useEffect(() => {
+      // Determine which articles are visible by comparing their timestamp
+      // to the edges of the viewport
     let visibleArticles = articles.filter((a) => {
       const publishYear = (new Date(a["publish-date"])).getFullYear();
       const startYear = timelineOrigin - Math.floor(viewPosition.x / 18);
@@ -53,6 +56,21 @@ export default function Timeline(props) {
     renderArticles(ctx, visibleArticles);
     renderCursor(ctx);
 
+      // Show article preview if the cursor is howering a marker
+    let collidedWithMouse = false;
+    const cursorPosition = { ...mousePosition, y: 16 };
+    for( let marker of visibleMarkers )
+    {
+      if( marker.checkCollision(cursorPosition) )
+      {
+        collidedWithMouse = true;
+        break;
+      }
+    }
+
+    if( articlePreview && !articlePreview.isMouseOver && !collidedWithMouse )
+    openArticlePreview(null);
+
       // Toggle mouse cursor when dragging
     if( draggedItems.length > 0 )
     document.body.style.cursor = cursors.dragging;
@@ -63,11 +81,23 @@ export default function Timeline(props) {
 
 
   const renderArticles = (ctx, arrArticles) => {
+    const markers = [];
     for( let article of arrArticles )
     {
       const x = viewPosition.x + 18 * ((new Date(article["publish-date"])).getFullYear() - timelineOrigin);
-      drawMarker(ctx, x, 16, 8 / zoomLevel);
+
+      let marker = new Marker(x, 16);
+      marker.setRadius(8 / zoomLevel);
+      marker.draw(ctx);
+      marker.setCollisionEvent(() => openArticlePreview({
+        ...articlePreview,
+        article: article,
+        marker: marker
+      }));
+      markers.push(marker);
     }
+
+    setVisibleMarkers(markers);
   };
 
   const renderTimeline = (ctx) => {
@@ -89,13 +119,16 @@ export default function Timeline(props) {
   return (
     <DIV>
       <CAN id={canvasId} />
-      {/*
+      {
         articlePreview &&
         <ArticlePreview
-          article={articlePreview}
+          arrowX={articlePreview.marker.getPosition().x}
+          article={articlePreview.article}
           onClick={() => openArticlePreview(null)}
+          onMouseOver={() => {openArticlePreview({ ...articlePreview, isMouseOver: true }); console.log("over")}}
+          onMouseLeave={() => openArticlePreview({ ...articlePreview, isMouseOver: false })}
         />
-  */}
+      }
     </DIV>
   );
 }
