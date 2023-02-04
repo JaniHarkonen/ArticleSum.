@@ -5,6 +5,23 @@ articles in useful ways.
 
 ## Development log
 
+### 4.1.2023
+TimelineView has been developed to encompass nearly all of its functionalities. The timeline 
+properly renders article Markers as well as the timeline itself. The timeline can be panned as well 
+as zoomed in and out of with mouse. Moving the mouse over a marker will pop up a preview of the 
+article. Pannable view controls can now be included in other components too using the 
+`usePannableView`-hook.
+<br/>
+Pannable views utilize instances of the `DragBox`-class to keep track of the position of the view 
+as well as to handle the dragging itself. `DragBox`-instances are handled by the `useDraggables`-
+hook which attaches the required mouse event listeners to `document` and determines which elements 
+to *grab*, *drag* and *drop*. Event listeners can also be attached `DragBoxes` that trigger whenever 
+the `DragBox` is acted upon. The `useDraggables`-hook also returns an array of all the `DragBoxes`
+being dragged which can then be used by the implementing React-component.
+<br />
+Next, the development will focus on the addition, editing and deletion of articles. In the future, 
+the `TODO.md` will be used to jot down improvement suggestions to components.
+
 ### 30.1.2023
 `WorkspaceManager` has now been implemented to hold the model of the currently open workspace in 
 memory. Currently the workspace only consists of Articles and Tags, however, a general `Container`
