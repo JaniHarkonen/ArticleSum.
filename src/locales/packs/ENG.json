@@ -40,7 +40,14 @@
   },
   "modals": {
     "form-modal": {
-      "header": "Edit article information"
+      "article": {
+        "add": {
+          "title": "Create new article"
+        },
+        "edit": {
+          "title": "Edit article information"
+        }
+      }
     }
   }
 }

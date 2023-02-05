@@ -40,7 +40,14 @@
   },
   "modals": {
     "form-modal": {
-      "header": "Muokkaa artikkelin tietoja"
+      "article": {
+        "add": {
+          "title": "Lisää uusi artikkeli"
+        },
+        "edit": {
+          "title": "Muokkaa artikkelin tietoja"
+        }
+      }
     }
   }
 }

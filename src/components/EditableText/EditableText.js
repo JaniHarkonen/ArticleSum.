@@ -19,6 +19,14 @@ export default function EditableText(props) {
     setEditing(false);
   };
 
+  const handleDoubleClick = (e) => {
+    if( e.detail == 2 )
+    {
+      setEditing(true);
+      setMouseOver(false);
+    }
+  };
+
   return (
       isEditing ?
       <FormControl
@@ -30,7 +38,7 @@ export default function EditableText(props) {
       :
       <div
         style={isMouseOver ? Styles.textContainerHighlight : {}}
-        onClick={() => setEditing(true)}
+        onClick={handleDoubleClick}
         onMouseOver={() => setMouseOver(true)}
         onMouseLeave={() => setMouseOver(false)}
       >

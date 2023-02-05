@@ -1,12 +1,14 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import Modal from "react-bootstrap/Modal";
 import { GlobalContext } from "../../context/GlobalContext";
 
 
 export default function FormModal(props) {
   const children = props.children;
-  const { languageManager: lm, popupForm } = useContext(GlobalContext);
   const show = props.show;
+  const title = props.title || "";
+  const footer = props.footer || <></>;
+  const { popupForm } = useContext(GlobalContext);
 
   return (
     <Modal
@@ -18,14 +20,14 @@ export default function FormModal(props) {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          {lm.translate("modals.form-modal.header")}
+          {title}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         {children}
       </Modal.Body>
       <Modal.Footer>
-        lol
+        {footer}
       </Modal.Footer>
     </Modal>
   );

@@ -93,4 +93,32 @@ export default class LanguageManager {
   
     return ls;
   }
+
+  /**
+   * Returns a translation in the currently active language given 
+   * its key inside the language pack. The keys may be  nested in 
+   * order to form categories and subcategories within the language 
+   * pack. Categories can be separated using a dot (.), for example: 
+   * "forms.filter-form.caption".
+   * @param {String} key Keyd of the translation inside the language 
+   * pack.
+   * @returns The translation associated with the key.
+   */
+  /**
+   * Same as translate, however as the method is static, a 
+   * LanguageManager that is to be used must be provided. For more 
+   * information see `LanguageManager.translate`.
+   * 
+   * This method is useful when translations need to be provided to 
+   * non-React-functions. An empty string will be returned if the 
+   * LanguageManager is null.
+   * @param {LanguageManager} languageManager 
+   * @param {String} key 
+   */
+  static getTranslation(languageManager, key) {
+    if( !languageManager )
+    return "";
+
+    return languageManager.translate(key);
+  }
 }

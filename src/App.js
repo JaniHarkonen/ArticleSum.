@@ -18,9 +18,16 @@ function App(props) {
   languageManager.updateLanguageSetter(setLanguage);
 
   const renderFormModal = () => {
+    if( !displayedForm )
+    return <></>;
+    
     return (
-      <FormModal show={displayedForm != null}>
-        {displayedForm}
+      <FormModal
+        title={displayedForm.title}
+        footer={displayedForm.footer}
+        show={displayedForm != null}
+      >
+        {displayedForm.form}
       </FormModal>
     );
   };
