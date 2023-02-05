@@ -6,6 +6,7 @@ import { mapElements } from "../../utils/mapElements";
 import ArticleTag from "../../components/ArticleTag/ArticleTag";
 import { useContext } from "react";
 import { GlobalContext } from "../../context/GlobalContext";
+import EditableText from "../../components/EditableText/EditableText";
 
 
 const TEST_DEFAULT_ARTICLE = {
@@ -49,7 +50,7 @@ export default function ArticleForm(props) {
   return (
     <Form>
       <Styles.ItemIdContainer>#{articleId}</Styles.ItemIdContainer>
-      <h2><b>{articleTitle}</b></h2>
+      <h2><b><EditableText>{articleTitle}</EditableText></b></h2>
       <Form.Group
         as={Row}
       >
