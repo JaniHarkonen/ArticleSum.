@@ -9,28 +9,10 @@ import { GlobalContext } from "../../context/GlobalContext";
 import EditableText from "../../components/EditableText/EditableText";
 
 
-const TEST_DEFAULT_ARTICLE = {
-  articleId: 1,
-  articleTitle: "what the fuck",
-  articleSource: "pornhubdot.net",
-  publishDate: "",
-  readDate: "",
-  articleTags: ["coronavaaaarus"],
-  articleNotes: ""
-};
-
 export default function ArticleForm(props) {
-  const article = props.article || TEST_DEFAULT_ARTICLE;
   const lpCategory = "forms.article-form.";
   const { languageManager: lm } = useContext(GlobalContext);
   const {
-    /*id: articleId,
-    title: articleTitle,
-    "publish-date": publishDate,
-    "read-date": readDate,
-    source: articleSource,
-    tags: articleTags,
-    notes: articleNotes*/
     articleId,
     articleTitle,
     articlePublishDate: publishDate,
@@ -38,7 +20,7 @@ export default function ArticleForm(props) {
     articleSource,
     articleTags,
     articleNotes
-  } = props.data;//article;
+  } = props.data;
   const {
     setArticleId,
     setArticleTitle,
@@ -107,6 +89,7 @@ export default function ArticleForm(props) {
         <Form.Control
           as="textarea"
           value={articleNotes}
+          onChange={(e) => setArticleNotes(e.target.value)}
         />
       </Form.Group>
     </Form>

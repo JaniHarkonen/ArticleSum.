@@ -10,7 +10,11 @@ export default function createArticleForm(article, languageManager = null) {
   const ArticleFormControls = (props) => {
     const {actionSaveChanges} = props.actions;
 
-    return <Button onClick={actionSaveChanges}>{LanguageManager.getTranslation(languageManager, lmKey + "controls.create")}</Button>;
+    return (
+      <Button onClick={actionSaveChanges}>
+        {LanguageManager.getTranslation(languageManager, lmKey + "controls.save")}
+      </Button>
+    );
   };
 
   return {

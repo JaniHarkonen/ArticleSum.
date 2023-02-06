@@ -22,7 +22,7 @@ export default class WorkspaceManager {
       tags: this.tags.getItemArrayReference()
     };
 
-    fs.writeFileSync(this.workspacePath, JSON.stringify(ws));
+    fs.writeFileSync(this.workspacePath, JSON.stringify(ws, null, 2));
   }
 
   openWorkspace(path) {
