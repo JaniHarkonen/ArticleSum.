@@ -42,10 +42,16 @@
     "form-modal": {
       "article": {
         "add": {
-          "title": "Lisää uusi artikkeli"
+          "title": "Lisää uusi artikkeli",
+          "controls": {
+            "create": "Luo"
+          }
         },
         "edit": {
-          "title": "Muokkaa artikkelin tietoja"
+          "title": "Muokkaa artikkelin tietoja",
+          "controls": {
+            "save": "Tallenna"
+          }
         }
       }
     }

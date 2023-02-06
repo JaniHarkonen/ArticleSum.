@@ -42,10 +42,16 @@
     "form-modal": {
       "article": {
         "add": {
-          "title": "Create new article"
+          "title": "Create new article",
+          "controls": {
+            "create": "Create"
+          }
         },
         "edit": {
-          "title": "Edit article information"
+          "title": "Edit article information",
+          "controls": {
+            "save": "Save"
+          }
         }
       }
     }

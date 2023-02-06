@@ -1,9 +1,10 @@
+import ArticleForm from "../forms/ArticleForm/ArticleForm";
 import LanguageManager from "../locales/LanguageManager";
 import Button from "react-bootstrap/Button";
 
 
-export default function applyAdd(props, languageManager = null) {
-  const lmKey = "modals.form-modal.article.add.";
+export default function createArticleForm(article, languageManager = null) {
+  const lmKey = "modals.form-modal.article.edit.";
   const title = <>{LanguageManager.getTranslation(languageManager, lmKey + "title")}</>;
 
   const ArticleFormControls = (props) => {
@@ -13,8 +14,8 @@ export default function applyAdd(props, languageManager = null) {
   };
 
   return {
-    ...props,
     title: title,
+    form: <ArticleForm article={article} />,
     footer: <ArticleFormControls />
   };
 }

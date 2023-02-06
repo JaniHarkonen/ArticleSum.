@@ -2,7 +2,7 @@ import createComponentFromSchema from "./createComponentFromSchema";
 
 
 export const articleSchema = {
-  id: { defaultValue: "" },
+  id: { defaultValue: "55" },
   title: { defaultValue: "DICK" },
   "publish-date": { defaultValue: "" },
   "read-date": { defaultValue: "" },

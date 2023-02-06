@@ -33,7 +33,7 @@ export default function EditableText(props) {
         autoFocus={true}
         value={text}
         onBlur={() => setEditing(false)}
-        onChange={onChange}
+        onChange={(e) => onChange(e.target.value)}
       />
       :
       <div

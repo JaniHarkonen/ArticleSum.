@@ -24,14 +24,30 @@ export default function ArticleForm(props) {
   const lpCategory = "forms.article-form.";
   const { languageManager: lm } = useContext(GlobalContext);
   const {
-    id: articleId,
+    /*id: articleId,
     title: articleTitle,
     "publish-date": publishDate,
     "read-date": readDate,
     source: articleSource,
     tags: articleTags,
-    notes: articleNotes
-  } = article;
+    notes: articleNotes*/
+    articleId,
+    articleTitle,
+    articlePublishDate: publishDate,
+    articleReadDate: readDate,
+    articleSource,
+    articleTags,
+    articleNotes
+  } = props.data;//article;
+  const {
+    setArticleId,
+    setArticleTitle,
+    setArticlePublishDate,
+    setArticleReadDate,
+    setArticleSource,
+    setArticleTags,
+    setArticleNotes
+  } = props.setters;
 
   const renderTags = (tags) => {
     return mapElements(
@@ -50,7 +66,7 @@ export default function ArticleForm(props) {
   return (
     <Form>
       <Styles.ItemIdContainer>#{articleId}</Styles.ItemIdContainer>
-      <h2><b><EditableText>{articleTitle}</EditableText></b></h2>
+      <h2><b><EditableText onChange={setArticleTitle}>{articleTitle}</EditableText></b></h2>
       <Form.Group
         as={Row}
       >
@@ -84,7 +100,7 @@ export default function ArticleForm(props) {
       <br/>
       <b>{lm.translate(lpCategory + "source")}:</b> <a href={"https://" + articleSource}>{articleSource}</a>
       <Form.Group>
-        <Form.Label><b>{lm.translate(lpCategory + "tags")}: </b></Form.Label> {renderTags(articleTags)}
+        <Form.Label><b>{lm.translate(lpCategory + "tags")}: </b></Form.Label> {/*renderTags(articleTags)*/}
       </Form.Group>
       <Form.Group>
         <Form.Label><b>{lm.translate(lpCategory + "notes")}</b></Form.Label>

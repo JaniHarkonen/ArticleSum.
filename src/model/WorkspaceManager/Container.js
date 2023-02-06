@@ -105,6 +105,8 @@ export default class Container {
    * @returns The result of the action (see Result() for more information).
    */
   postItem(item, options = { notify: true }) {
+    console.log("posting");
+    console.log(item);
     const itemId = this.resolveId(item);
     let action = Container.ACTION_ADDED;
 

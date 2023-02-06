@@ -4,5 +4,5 @@ export const GlobalContext = createContext({
   languageManager: null,
   workspaceManager: null,
   theme: { activeTheme: null, setTheme: (theme) => {} },
-  popupForm: () => {}
+  popupModal: () => {}
 });
