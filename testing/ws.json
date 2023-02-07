@@ -1,4 +1,5 @@
 {
+  "id-counter": 7,
   "articles": {
     "1": {
       "id": "1",
@@ -6,38 +7,65 @@
       "publish-date": "2001-09-11T00:00Z",
       "read-date": "1999-09-09T00:00Z",
       "source": "www.google.com",
-      "tags": ["coronavirus", "STUPED"],
+      "tags": [
+        "coronavirus",
+        "STUPED"
+      ],
       "notes": "took a boxcutter, morphine, cus u do not, u fucking YAAANKEEEE"
-    },
-    "10": {
-      "id": "10",
-      "title": "jaaaaaaaauuuuuuu",
-      "publish-date": "2002-09-11T00:00Z",
-      "read-date": "2000-09-09T00:00Z",
-      "source": "www.google.com",
-      "tags": ["fake"],
-      "notes": "he didn't DO IT xD"
     },
     "2": {
       "id": "2",
-      "title": "FAKENEWS",
+      "title": "NAAAH LIL BRO X_X",
       "publish-date": "2005-09-11T00:00Z",
       "read-date": "2000-09-09T00:00Z",
       "source": "www.google.com",
-      "tags": ["fake", "news"],
+      "tags": [
+        "fake",
+        "news"
+      ],
       "notes": "he didn't do it xD"
     },
     "3": {
       "id": "3",
-      "title": "FAKENEWS",
+      "title": "bruh ;_;",
       "publish-date": "2180-09-11T00:00Z",
       "read-date": "2000-09-09T00:00Z",
       "source": "www.google.com",
-      "tags": ["fake", "news"],
+      "tags": [
+        "fake",
+        "news"
+      ],
       "notes": "he didn't do it xD"
+    },
+    "4": {
+      "id": "4",
+      "title": "jaaaaaaaauuuuuuu",
+      "publish-date": "2002-09-11T00:00Z",
+      "read-date": "2000-09-09T00:00Z",
+      "source": "www.google.com",
+      "tags": [
+        "fake"
+      ],
+      "notes": "he didn't DO IT xD"
+    },
+    "5": {
+      "id": 5,
+      "title": "changes brb",
+      "publish-date": "",
+      "read-date": "",
+      "source": "",
+      "tags": [],
+      "notes": "lololollolo trolololo"
+    },
+    "6": {
+      "id": 6,
+      "title": "yet another art dw",
+      "publish-date": "",
+      "read-date": "",
+      "source": "",
+      "tags": [],
+      "notes": "dwdwdwdwdw"
     }
   },
-  "tags": {
-    
-  }
+  "tags": {}
 }

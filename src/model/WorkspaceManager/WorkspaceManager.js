@@ -8,6 +8,7 @@ export default class WorkspaceManager {
   constructor() {
     this.articles = null;
     this.tags = null;
+    this.idCounter = -1;
 
     this.workspacePath = "";
   }
@@ -18,11 +19,12 @@ export default class WorkspaceManager {
 
   saveWorkspace() {
     const ws = {
+      "id-counter": this.idCounter,
       articles: this.articles.getItemArrayReference(),
       tags: this.tags.getItemArrayReference()
     };
 
-    fs.writeFileSync(this.workspacePath, JSON.stringify(ws));
+    fs.writeFileSync(this.workspacePath, JSON.stringify(ws, null, 2));
   }
 
   openWorkspace(path) {
@@ -33,8 +35,11 @@ export default class WorkspaceManager {
     this.workspacePath = path;
 
     const notify = (changes) => this.workspaceModified(changes);
+    this.idCounter = ws["id-counter"];
     this.articles = new ArticleContainer(ws.articles, notify);
+    this.articles.setIdRetriever(this.getUniqueId.bind(this));
     this.tags = new TagContainer(ws.tags, notify);
+    this.tags.setIdRetriever(this.getUniqueId.bind(this));
   }
 
   closeWorkspace() {
@@ -45,11 +50,10 @@ export default class WorkspaceManager {
   }
 
   workspaceModified(changes) {
-    if( changes.affectedItems.length === 0 )
+    if( changes.affectedItems.length <= 0 )
     return;
     
     this.saveWorkspace();
-    console.log(this.articles.getItemArrayReference());
   }
 
   getArticleContainer() {
@@ -62,5 +66,9 @@ export default class WorkspaceManager {
 
   getWorkspacePath() {
     return this.workspacePath;
+  }
+
+  getUniqueId() {
+    return this.idCounter++;
   }
 }

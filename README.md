@@ -5,6 +5,34 @@ articles in useful ways.
 
 ## Development log
 
+### 7.2.2023
+For this update, the functionality to create new articles and edit existing ones has been added.
+The architecture for the modal window has been revamped so that `App.js` now renders modals that 
+have been passed onto it via the setState found in `GlobalContext`. Previously `App.js`'s state 
+accepted forms that it then rendered whenever the form passed onto it wasn't null. This change 
+allows more flexibility as other types of modals can be popped up as well. 
+<br />
+`EditableText`-component was created. Text enclosed within this component can be edited by the 
+user by double-clicking on it. If the user howers their mouse over editable text, its borders 
+will be highlighted. The text inside `EditableText`-tags is still suseptible to styles set by 
+HTML-tags making the component very versatile.
+<br />
+`FormModal.js` now utilizes custom hooks in a dynamic manner. The components that wish to 
+popup a `FormModal` must now specify which custom hook the modal is to use to pass data and 
+hooks to the different components of the modal. This means that the state of `FormModal` is 
+completely dynamic allowing the modal to display various forms without a need for new React-
+components. The custom hook used by `FormModal` should keep track of the information inside 
+the form as well as provide setters to change the information and hooks to submit information.
+The custom hook must therefore return `data`, `setters` and `actions` objects to the `FormModal`
+that are then subsequently passed onto the appropriate child components (form and footer). This 
+change was rather experimental to see if dynamic custom hooks could be utilized by React-
+components.
+<br />
+Finally, a small change was made to the workspace JSON-file. The workspace now keeps track of 
+the last unique ID that was generated.
+<br />
+For the next update, the tag system will be further developed.
+
 ### 4.1.2023
 TimelineView has been developed to encompass nearly all of its functionalities. The timeline 
 properly renders article Markers as well as the timeline itself. The timeline can be panned as well 

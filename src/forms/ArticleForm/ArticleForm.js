@@ -6,31 +6,30 @@ import { mapElements } from "../../utils/mapElements";
 import ArticleTag from "../../components/ArticleTag/ArticleTag";
 import { useContext } from "react";
 import { GlobalContext } from "../../context/GlobalContext";
+import EditableText from "../../components/EditableText/EditableText";
 
-
-const TEST_DEFAULT_ARTICLE = {
-  articleId: 1,
-  articleTitle: "what the fuck",
-  articleSource: "pornhubdot.net",
-  publishDate: "",
-  readDate: "",
-  articleTags: ["coronavaaaarus"],
-  articleNotes: ""
-};
 
 export default function ArticleForm(props) {
-  const article = props.article || TEST_DEFAULT_ARTICLE;
   const lpCategory = "forms.article-form.";
   const { languageManager: lm } = useContext(GlobalContext);
   const {
     articleId,
     articleTitle,
+    articlePublishDate: publishDate,
+    articleReadDate: readDate,
     articleSource,
-    publishDate,
-    readDate,
     articleTags,
     articleNotes
-  } = article;
+  } = props.data;
+  const {
+    setArticleId,
+    setArticleTitle,
+    setArticlePublishDate,
+    setArticleReadDate,
+    setArticleSource,
+    setArticleTags,
+    setArticleNotes
+  } = props.setters;
 
   const renderTags = (tags) => {
     return mapElements(
@@ -49,7 +48,7 @@ export default function ArticleForm(props) {
   return (
     <Form>
       <Styles.ItemIdContainer>#{articleId}</Styles.ItemIdContainer>
-      <h2><b>{articleTitle}</b></h2>
+      <h2><b><EditableText onChange={setArticleTitle}>{articleTitle}</EditableText></b></h2>
       <Form.Group
         as={Row}
       >
@@ -83,13 +82,14 @@ export default function ArticleForm(props) {
       <br/>
       <b>{lm.translate(lpCategory + "source")}:</b> <a href={"https://" + articleSource}>{articleSource}</a>
       <Form.Group>
-        <Form.Label><b>{lm.translate(lpCategory + "tags")}: </b></Form.Label> {renderTags(articleTags)}
+        <Form.Label><b>{lm.translate(lpCategory + "tags")}: </b></Form.Label> {/*renderTags(articleTags)*/}
       </Form.Group>
       <Form.Group>
         <Form.Label><b>{lm.translate(lpCategory + "notes")}</b></Form.Label>
         <Form.Control
           as="textarea"
           value={articleNotes}
+          onChange={(e) => setArticleNotes(e.target.value)}
         />
       </Form.Group>
     </Form>

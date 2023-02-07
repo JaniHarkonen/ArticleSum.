@@ -17,7 +17,7 @@ export default function createComponentFromSchema(schema) {
 
   const constructor = (settings) => {
     return {
-      ...schema,
+      ...component,
       ...settings
     };
   };

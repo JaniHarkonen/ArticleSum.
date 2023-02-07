@@ -40,7 +40,20 @@
   },
   "modals": {
     "form-modal": {
-      "header": "Muokkaa artikkelin tietoja"
+      "article": {
+        "add": {
+          "title": "Lisää uusi artikkeli",
+          "controls": {
+            "create": "Luo"
+          }
+        },
+        "edit": {
+          "title": "Muokkaa artikkelin tietoja",
+          "controls": {
+            "save": "Tallenna"
+          }
+        }
+      }
     }
   }
 }
