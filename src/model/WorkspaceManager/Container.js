@@ -72,6 +72,14 @@ export default class Container {
      * underlying JSON.
      */
     this.modificationNotifier = modificationNotifier;
+
+    /**
+     * Function that is used to retrieve a new, unique identifier 
+     * when adding a new item to the Container. Typically this 
+     * function is provided by the owner of the Container. By 
+     * default, returns null.
+     */
+    this.retrieveNewId = () => null;
   }
 
   /**
@@ -90,6 +98,27 @@ export default class Container {
   }
 
   /**
+   * *TO BE OVERRIDDEN BY CHILD-CLASSES*
+   * 
+   * Sets the identifier of an item to a given one. When an item with 
+   * no identifier is posted via `postItem` a new, unique identifier 
+   * is generated and subsequently set using this method.Classes 
+   * extending Container should implement their own `setId`-method as 
+   * a means of setting the identifier of new items that are to be 
+   * added to the Container.
+   * 
+   * By default, this method returns `null`.
+   * @param {JSON} item Item whose identifier should be set.
+   * @param {String} id Identifier to set to.
+   * 
+   * @returns Returns the item if the identifier was set successfully 
+   * or `null` if the identifier could not be set.
+   */
+  setId(item, id) {
+    return null;
+  }
+
+  /**
    * Posts an item into the Container by either adding it to the 
    * underlying JSON, if it doesn't already exist, or by replacing the 
    * already existing item with the same identifier (ID).
@@ -105,13 +134,18 @@ export default class Container {
    * @returns The result of the action (see Result() for more information).
    */
   postItem(item, options = { notify: true }) {
-    const itemId = this.resolveId(item);
     let action = Container.ACTION_ADDED;
+    let itemId = this.resolveId(item);
 
-      // Item exists -> the action will be modification
-    if( this.items[itemId] )
+      // If the item has no ID, retrieve a new, unique ID
+      // Otherwise, check an item with the ID already exist and, if so, 
+      // modify it
+    if( !itemId )
+    itemId = this.retrieveNewId();
+    else if( this.items[itemId] )
     action = Container.ACTION_MODIFIED;
 
+    this.setId(item, itemId);
     this.items[itemId] = item;
 
     const result = Result(action, [item]);
@@ -310,5 +344,18 @@ export default class Container {
     mapping.push(mapFunction(this.items[item]));
 
     return mapping;
+  }
+
+  /**
+   * Sets the function that will be used to retrieve a new, 
+   * unique identifier for new items that are to be added to 
+   * the Container. 
+   * 
+   * The function should return a unique identifier.
+   * @param {Function} retriever Function that will be called 
+   * to get a unique identifier.
+   */
+  setIdRetriever(retriever) {
+    this.retrieveNewId = retriever;
   }
 }
