@@ -9,7 +9,7 @@ export default function TagForm() {
     <Form>
       <h2>Create tag</h2>
       <Row>
-        <Col>Tag: </Col>
+        <Col><b>Tag: </b></Col>
         <Col>
           <Form.Control />
         </Col>

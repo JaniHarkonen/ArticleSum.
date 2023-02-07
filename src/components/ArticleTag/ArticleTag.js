@@ -2,15 +2,18 @@ import Badge from "react-bootstrap/Badge";
 
 
 export default function ArticleTag(props) {
-  const { tag } = props;
+  const tagName = props.name;
+  const tagColor = props.color;
+  const { r: red, g: green, b: blue } = tagColor;
 
   return (
     <Badge
       className="m-1 p-1"
-      bg="secondary"
+      bg="default"
       role="button"
+      style={{ background: `rgb(${red}, ${green}, ${blue})` }}
     >
-      {tag}
+      {tagName}
     </Badge>
   );
 }
