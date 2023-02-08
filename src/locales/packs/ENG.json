@@ -42,13 +42,27 @@
     "form-modal": {
       "article": {
         "add": {
-          "title": "Create new article",
+          "title": "Create a new article",
           "controls": {
             "create": "Create"
           }
         },
         "edit": {
           "title": "Edit article information",
+          "controls": {
+            "save": "Save"
+          }
+        }
+      },
+      "tag": {
+        "add": {
+          "title": "Create a new tag",
+          "controls": {
+            "create": "Create"
+          }
+        },
+        "edit": {
+          "title": "Edit tag",
           "controls": {
             "save": "Save"
           }

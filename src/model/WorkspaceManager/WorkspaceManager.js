@@ -35,11 +35,13 @@ export default class WorkspaceManager {
     this.workspacePath = path;
 
     const notify = (changes) => this.workspaceModified(changes);
+    const idRetriever = this.getUniqueId.bind(this);
+
     this.idCounter = ws["id-counter"];
     this.articles = new ArticleContainer(ws.articles, notify);
-    this.articles.setIdRetriever(this.getUniqueId.bind(this));
+    this.articles.setIdRetriever(idRetriever);
     this.tags = new TagContainer(ws.tags, notify);
-    this.tags.setIdRetriever(this.getUniqueId.bind(this));
+    this.tags.setIdRetriever(idRetriever);
   }
 
   closeWorkspace() {

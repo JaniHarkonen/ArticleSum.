@@ -1,21 +1,21 @@
 import ArticleFilters from "../../forms/FilterForm/ArticleFilterForm/ArticleFilters";
 import FilterForm from "../../forms/FilterForm/FilterForm"
 import Accordion from "react-bootstrap/Accordion"
-import TagForm from "../../forms/TagForm/TagForm";
 import TagList from "../../components/TagList/TagList";
+import TagControlPanel from "../../components/TagControlPanel/TagControlPanel";
 
 
 export default function TagsView() {
   return (
     <>
-      <TagForm />
-      <Accordion>
+      <Accordion defaultActiveKey={-1}>
         <FilterForm>
           <ArticleFilters />
         </FilterForm>
       </Accordion>
-      <h2>Tag list</h2>
+      <TagControlPanel />
       <br />
+      <h2>Tag list</h2>
       <TagList />
     </>
   );

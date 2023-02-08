@@ -1,3 +1,5 @@
+import { useContext, Fragment } from "react";
+import { GlobalContext } from "../../context/GlobalContext";
 import ArticleTag from "../ArticleTag/ArticleTag";
 
 
@@ -25,24 +27,25 @@ const TEST_TAGS = [
 ];
 
 export default function TagList() {
+  const { workspaceManager: ws } = useContext(GlobalContext);
 
-  const renderTagListings = (tags) => {
-    return tags.map((tag) => {
+  const renderTagListings = () => {
+    return ws.getTagContainer().mapItems((tag) => {
       return (
-        <>
-          <ArticleTag 
+        <Fragment key={"tag-list-article-tag" + tag.tagId}>
+          <ArticleTag
             name={tag.name}
             color={tag.color}
           />
           <br />
-        </>
+        </Fragment>
       );
     });
   };
 
   return (
     <>
-    {renderTagListings(TEST_TAGS)}
+      {renderTagListings()}
     </>
   );
 }

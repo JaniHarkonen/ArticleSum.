@@ -53,6 +53,20 @@
             "save": "Tallenna"
           }
         }
+      },
+      "tag": {
+        "add": {
+          "title": "Luo uusi tagi",
+          "controls": {
+            "create": "Luo"
+          }
+        },
+        "edit": {
+          "title": "Muokkaa tagia",
+          "controls": {
+            "save": "Tallenna"
+          }
+        }
       }
     }
   }
