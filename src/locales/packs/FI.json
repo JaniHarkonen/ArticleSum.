@@ -2,14 +2,14 @@
   "abbreviation": "FI",
   "language": "Suomi",
   "app-name": "ArticleSum.",
-  "list-view": {
-    "listings-caption": "Artikkelit"
-  },
   "navigation": {
     "timeline": "Aikajana",
     "word-cloud": "Sanapilvi",
     "list": "Artikkelit",
     "tags": "Tagit"
+  },
+  "list-view": {
+    "listings-caption": "Artikkelit"
   },
   "forms": {
     "filter-form": {
@@ -36,36 +36,28 @@
       "source": "Lähde",
       "tags": "Tagit",
       "notes": "Muistiinpanot"
+    },
+    "tag-form": {
+      
     }
   },
   "modals": {
     "form-modal": {
+      "controls": {
+        "cancel": "Peruuta",
+        "create": "Luo",
+        "save": "Tallenna"
+      },
       "article": {
-        "add": {
-          "title": "Lisää uusi artikkeli",
-          "controls": {
-            "create": "Luo"
-          }
-        },
-        "edit": {
-          "title": "Muokkaa artikkelin tietoja",
-          "controls": {
-            "save": "Tallenna"
-          }
+        "title": {
+          "add": "Lisää uusi artikkeli",
+          "edit": "Muokkaa artikkelin tietoja"
         }
       },
       "tag": {
-        "add": {
-          "title": "Luo uusi tagi",
-          "controls": {
-            "create": "Luo"
-          }
-        },
-        "edit": {
-          "title": "Muokkaa tagia",
-          "controls": {
-            "save": "Tallenna"
-          }
+        "title": {
+          "add": "Luo tagi",
+          "edit": "Muokkaa tagia"
         }
       }
     }

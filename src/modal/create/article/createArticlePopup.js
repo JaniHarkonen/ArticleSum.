@@ -5,13 +5,13 @@ import useArticleForm from "../../../hooks/useArticleForm";
 export default function createArticlePopup(baseArticle = null) {
   const controls = {
     buttons: {
-      submit: FormControlButton({ titleKey: "modals.form-modal.article.edit.controls.save", onClick: "" })
+      submit: FormControlButton({ titleKey: "modals.form-modal.controls.save", onClick: "" })
     },
     order: ["submit"]
   };
 
   return {
-    titleKey: "modals.form-modal.article.edit.title",
+    titleKey: "modals.form-modal.article.title.edit",
     FormElement: ArticleForm,
     controls: controls,
     useHook: useArticleForm,

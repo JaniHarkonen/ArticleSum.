@@ -1,31 +1,16 @@
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { useContext } from "react";
-import { GlobalContext } from "../../context/GlobalContext";
-import { Article } from "../../model/components/Article";
-import createTagForm from "../../modal/createTagForm";
-import applyAdd from "../../modal/applyAdd";
-import FormModal from "../../modal/FormModal/FormModal";
-import useTagForm from "../../hooks/useTagForm";
 import { Tag } from "../../model/components/Tag";
+import useFormPopup from "../../hooks/useFormPopup";
+import applyTagAdd from "../../modal/create/tag/applyTagAdd";
+import createTagPopup from "../../modal/create/tag/createTagPopup";
 
 
 export default function TagControlPanel() {
-  const {languageManager: lm, popupModal} = useContext(GlobalContext);
+  const { popup } = useFormPopup();
 
   const handleArticleAdd = () => {
-    const newTag = Tag();
-    const form = createTagForm(newTag, lm);
-    
-    popupModal(
-      <FormModal
-        title={form.title}
-        form={form.form}
-        footer={form.footer}
-        useForm={useTagForm}
-        baseInstance={newTag}
-      />
-    );
+    popup(applyTagAdd(createTagPopup(Tag())));
   };
 
   return (
