@@ -1,30 +1,41 @@
-import { cloneElement } from "react";
+//import { cloneElement } from "react";
 import Modal from "react-bootstrap/Modal";
+import FormControlButtons from "../../components/FormControlButtons/FormControlButtons";
 
 
 export default function FormModal(props) {
-  const title = props.title || "";
-  const form = props.form;
-  const footer = props.footer || <></>;
-  const useForm = props.useForm;
+  const header = props.header || "";//props.title || "";
+  //const form = props.form;
+  const FormElement = props.FormElement || function() {};
+  //const footer = props.footer || <></>;
+  const controls = props.controls || {};
+  const useForm = props.useForm || function() {};
   const baseInstance = props.baseInstance;
   const {data, setters, actions} = useForm(baseInstance);
 
-  const customizedForm = cloneElement(form, { data, setters });
-  const customizedFooter = cloneElement(footer, { data, actions });
+  console.log(FormElement);
+
+  //const customizedForm = cloneElement(form, { data, setters });
+  //const customizedFooter = cloneElement(footer, { data, actions });
 
   return (
     <>
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          {title}
+          {header}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        {customizedForm}
+        <FormElement
+          data={data}
+          setters={setters}
+        />
       </Modal.Body>
       <Modal.Footer>
-        {customizedFooter}
+        <FormControlButtons
+          controls={controls}
+          actions={actions}
+        />
       </Modal.Footer>
     </>
   );
