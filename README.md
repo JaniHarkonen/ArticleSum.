@@ -5,6 +5,27 @@ articles in useful ways.
 
 ## Development log
 
+### 11.2.2023
+Tags-view has been sketched out and tags can now be both created and edited. A tag form modal has 
+been implemented to facilitate this. `useFormPopup`-hook has been created to display the FormModal 
+for a given `baseInstance` using the exported `popup`-method. The method takes takes in a JSON of 
+the popup that is to be displayed by the `Modal`-component found in `App.js`. A `create`-folder 
+was added under `modal` (src\modal\create) to store the "creation"-methods for the popup JSONs. 
+Additional attributes can be "applied" to the created JSONs via "applier"-methods that have the 
+prefix "apply".
+<br />
+As of now, the `useFormPopup`-hook takes in the key of the title's translation and generates a JSX-
+element based on it using the corresponding translation. This way the `LanguageManager` doesn't have 
+to be passed onto the creation or applier methods, however, this makes the hook less flexible and 
+introduces an inconsistency given that all other elements are passed onto the hook in their function
+form (for example `ArticleForm`).
+<br />
+Finally, the locale packs were slightly restructured, and the `closeModal`-method was added to 
+`GlobalContext` to avoid having components call `popup(null)`.
+<br />
+At the end of this update, a lot of repition remains in the codebase. Next, more focus will be put 
+into architecture to resolve similarities between components listed in `TODO.md`.
+
 ### 7.2.2023
 For this update, the functionality to create new articles and edit existing ones has been added.
 The architecture for the modal window has been revamped so that `App.js` now renders modals that 

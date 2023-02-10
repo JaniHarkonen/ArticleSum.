@@ -31,12 +31,4 @@
 - investigate weird `aria-labelledby="contained-modal-title-vcenter"`; also present in FormModal.js
 
 ### UNIMPLEMENTED
-- add a utility method to create order jsons
-- create FormControlButtons that generates buttons based on the "controls" in following schema
-title: "",
-Form: <></>,
-controls: [
-  props: {},
-  inner: <></>,
-  onClick: () => {}
-]
+- add a utility method to create ordered jsons
