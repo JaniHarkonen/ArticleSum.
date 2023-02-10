@@ -2,14 +2,14 @@
   "abbreviation": "ENG",
   "language": "English",
   "app-name": "ArticleSum.",
-  "list-view": {
-    "listings-caption": "Articles"
-  },
   "navigation": {
     "timeline": "Timeline",
     "word-cloud": "Word cloud",
     "list": "Articles",
     "tags": "Tags"
+  },
+  "list-view": {
+    "listings-caption": "Articles"
   },
   "forms": {
     "filter-form": {
@@ -36,22 +36,28 @@
       "source": "Source",
       "tags": "Tags",
       "notes": "Notes"
+    },
+    "tag-form": {
+
     }
   },
   "modals": {
     "form-modal": {
+      "controls": {
+        "cancel": "Cancel",
+        "create": "Create",
+        "save": "Save"
+      },
       "article": {
-        "add": {
-          "title": "Create new article",
-          "controls": {
-            "create": "Create"
-          }
-        },
-        "edit": {
-          "title": "Edit article information",
-          "controls": {
-            "save": "Save"
-          }
+        "title": {
+          "add": "Create a new article",
+          "edit": "Edit article information"
+        }
+      },
+      "tag": {
+        "title": {
+          "add": "Create a new tag",
+          "edit": "Edit tag"
         }
       }
     }

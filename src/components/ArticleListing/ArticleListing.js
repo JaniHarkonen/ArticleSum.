@@ -1,11 +1,7 @@
-import { useContext } from "react";
 import Accordion from "react-bootstrap/Accordion";
 import Button from "react-bootstrap/Button";
-import { GlobalContext } from "../../context/GlobalContext";
-import useArticleForm from "../../hooks/useArticleForm";
-import createArticleForm from "../../modal/createArticleForm";
-import FormModal from "../../modal/FormModal/FormModal";
-import { Article } from "../../model/components/Article";
+import useFormPopup from "../../hooks/useFormPopup";
+import createArticlePopup from "../../modal/create/article/createArticlePopup";
 
 
 export default function ArticleListing(props) {
@@ -13,20 +9,11 @@ export default function ArticleListing(props) {
   const eventKey = props.eventKey;
   const articleTitle = article.title;
   const articleSource = article.source;
-  const { popupModal, languageManager: lm } = useContext(GlobalContext);
+  
+  const { popup } = useFormPopup();
 
   const handleArticleEdit = (editedArticle) => {
-    const form = createArticleForm(editedArticle, lm);
-    
-    popupModal(
-      <FormModal
-        title={form.title}
-        form={form.form}
-        footer={form.footer}
-        useForm={useArticleForm}
-        baseInstance={editedArticle}
-      />
-    );
+    popup(createArticlePopup(editedArticle));
   };
 
   return (

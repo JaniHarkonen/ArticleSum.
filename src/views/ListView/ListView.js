@@ -4,18 +4,7 @@ import ArticleListing from "../../components/ArticleListing/ArticleListing";
 import { useContext } from "react";
 import { GlobalContext } from "../../context/GlobalContext";
 import ArticleFilters from "../../forms/FilterForm/ArticleFilterForm/ArticleFilters";
-import { mapElements } from "../../utils/mapElements";
 import ArticleControlPanel from "../../components/ArticleControlPanel/ArticleControlPanel";
-
-const test_article = {
-  articleId: 1,
-  articleTitle: "FINNAIR DID 9/11 - stock soars 911%",
-  articleSource: "www.pornhub.com",
-  publishDate: "11/09/2001",
-  readDate: "12/12/2012",
-  tags: [],
-  notes: "hmm, what an interesting article\n->indeed, indubitably it was\nchange my mind"
-};
 
 
 export default function ListView() {

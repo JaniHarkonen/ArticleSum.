@@ -125,7 +125,7 @@ export default function Timeline(props) {
           arrowX={articlePreview.marker.getPosition().x}
           article={articlePreview.article}
           onClick={() => openArticlePreview(null)}
-          onMouseOver={() => {openArticlePreview({ ...articlePreview, isMouseOver: true }); console.log("over")}}
+          onMouseOver={() => openArticlePreview({ ...articlePreview, isMouseOver: true })}
           onMouseLeave={() => openArticlePreview({ ...articlePreview, isMouseOver: false })}
         />
       }

@@ -1,30 +1,16 @@
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { useContext } from "react";
-import { GlobalContext } from "../../context/GlobalContext";
 import { Article } from "../../model/components/Article";
-import createArticleForm from "../../modal/createArticleForm";
-import applyAdd from "../../modal/applyAdd";
-import FormModal from "../../modal/FormModal/FormModal";
-import useArticleForm from "../../hooks/useArticleForm";
+import useFormPopup from "../../hooks/useFormPopup";
+import createArticlePopup from "../../modal/create/article/createArticlePopup";
+import applyArticleAdd from "../../modal/create/article/applyArticleAdd";
 
 
 export default function ArticleControlPanel() {
-  const {languageManager: lm, popupModal} = useContext(GlobalContext);
+  const { popup } = useFormPopup();
 
   const handleArticleAdd = () => {
-    const newArticle = Article();
-    const form = applyAdd(createArticleForm(newArticle), lm);
-    
-    popupModal(
-      <FormModal
-        title={form.title}
-        form={form.form}
-        footer={form.footer}
-        useForm={useArticleForm}
-        baseInstance={newArticle}
-      />
-    );
+    popup(applyArticleAdd(createArticlePopup(Article())));
   };
 
   return (
