@@ -3,7 +3,7 @@ import { GlobalContext } from "../context/GlobalContext";
 import { Article } from "../model/components/Article";
 
 export default function useArticleForm(baseInstance) {
-  const {workspaceManager: wm} = useContext(GlobalContext);
+  const {workspaceManager: wm, closeModal} = useContext(GlobalContext);
   const [articleId, setArticleId] = useState(baseInstance.id);
   const [articleTitle, setArticleTitle] = useState(baseInstance.title);
   const [articlePublishDate, setArticlePublishDate] = useState(baseInstance["publish-date"]);
@@ -47,7 +47,8 @@ export default function useArticleForm(baseInstance) {
   };
 
   const actions = {
-    actionSaveChanges
+    actionSaveChanges,
+    actionCancel: closeModal  // closeModal is provided by the above context
   };
 
   return {data, setters, actions};

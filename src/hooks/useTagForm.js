@@ -3,7 +3,7 @@ import { GlobalContext } from "../context/GlobalContext";
 import { Tag } from "../model/components/Tag";
 
 export default function useArticleForm(baseInstance) {
-  const {workspaceManager: wm} = useContext(GlobalContext);
+  const {workspaceManager: wm, closeModal} = useContext(GlobalContext);
   const [tagId, setTagId] = useState(baseInstance.tagId);
   const [tagName, setTagName] = useState(baseInstance.name);
   const [tagColor, setTagColor] = useState(baseInstance.color);
@@ -31,7 +31,8 @@ export default function useArticleForm(baseInstance) {
   };
 
   const actions = {
-    actionSaveChanges
+    actionSaveChanges,
+    actionCancel: closeModal  // closeModal is provided by the above context
   };
 
   return {data, setters, actions};

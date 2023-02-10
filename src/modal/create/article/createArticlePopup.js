@@ -2,12 +2,21 @@ import { FormControlButton } from "../../../components/FormControlButtons/FormCo
 import ArticleForm from "../../../forms/ArticleForm/ArticleForm";
 import useArticleForm from "../../../hooks/useArticleForm";
 
+
 export default function createArticlePopup(baseArticle = null) {
   const controls = {
     buttons: {
-      submit: FormControlButton({ titleKey: "modals.form-modal.controls.save", onClick: "" })
+      submit: FormControlButton({
+        titleKey: "modals.form-modal.controls.save",
+        onClick: "actionSaveChanges"
+      }),
+      cancel: FormControlButton({
+        titleKey: "modals.form-modal.controls.cancel",
+        onClick: "actionCancel",
+        props: { variant: "danger" }
+      })
     },
-    order: ["submit"]
+    order: ["cancel", "submit"]
   };
 
   return {

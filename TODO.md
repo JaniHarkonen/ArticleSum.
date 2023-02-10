@@ -8,16 +8,14 @@
 ### TagControlPanel.js
 - consider refactoring due to similarities with ArticleControlPanel
 
-### createArticleForm.js
-- remove reference to Article
-- change ArticleForm to function (current JSX)
+### createArticlePopup.js
+- consider refactoring due to similarities with createTagPopup
 
-### createTagForm.js
-- consider refactoring due to similarities with craeteArticleForm.js
+### applyArticleAdd.js
+- consider refactoring due to similarities with applyTagAdd.js
 
 ### ArticleControlPanel.js
-- consider refactoring due to similarities with ArticleListing.js with regards to 
-popping up the modal
+- consider refactoring due to similarities with TagControlPanel.js
 
 ### ArticleListing.js
 - should not be dependent on Article
@@ -26,10 +24,10 @@ popping up the modal
 - improve encapsulation by paying attention to dependencies, such as between component and Article
 - look to utilize React-fragmens as often as possible
 - update `locales`
-- restructure `locales`
 - pay attention to folder structure
 
 ### App.js
+- consider creating a useModal-hook for modal controls
 - investigate weird `aria-labelledby="contained-modal-title-vcenter"`; also present in FormModal.js
 
 ### UNIMPLEMENTED

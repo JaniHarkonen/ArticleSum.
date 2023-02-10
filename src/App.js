@@ -17,9 +17,8 @@ function App(props) {
     // components under this one
   languageManager.updateLanguageSetter(setLanguage);
 
-  const isModalOpen = () => {
-    return (displayedModal != null);
-  };
+  const isModalOpen = () => displayedModal != null;
+  const closeModal = () => popupModal(null);
 
   return (
     <GlobalContext.Provider
@@ -28,6 +27,7 @@ function App(props) {
         workspaceManager: workspaceManager,
         theme: { activeTheme: activeTheme, setTheme: setTheme },
         popupModal: popupModal,
+        closeModal: closeModal
       }}
     >
       <div className="App">
@@ -37,7 +37,7 @@ function App(props) {
           aria-labelledby="contained-modal-title-vcenter"
           centered
           show={isModalOpen()}
-          onHide={() => popupModal(null)}
+          onHide={() => closeModal()}
         >
           {displayedModal}
         </Modal>

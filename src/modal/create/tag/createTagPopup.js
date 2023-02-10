@@ -2,12 +2,21 @@ import { FormControlButton } from "../../../components/FormControlButtons/FormCo
 import TagForm from "../../../forms/TagForm/TagForm";
 import useTagForm from "../../../hooks/useTagForm";
 
+
 export default function createArticlePopup(baseTag = null) {
   const controls = {
     buttons: {
-      submit: FormControlButton({ titleKey: "modals.form-modal.controls.save", onClick: "" })
+      submit: FormControlButton({
+        titleKey: "modals.form-modal.controls.save",
+        onClick: "actionSaveChanges"
+      }),
+      cancel: FormControlButton({
+        titleKey: "modals.form-modal.controls.cancel",
+        onClick: "actionCancel",
+        props: { variant: "danger" }
+      })
     },
-    order: ["submit"]
+    order: ["cancel", "submit"]
   };
 
   return {
