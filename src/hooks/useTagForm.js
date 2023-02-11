@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { GlobalContext } from "../context/GlobalContext";
 import { Tag } from "../model/components/Tag";
 
+
 export default function useArticleForm(baseInstance) {
   const {workspaceManager: wm, closeModal} = useContext(GlobalContext);
   const [tagId, setTagId] = useState(baseInstance.tagId);
