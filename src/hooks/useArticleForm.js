@@ -32,7 +32,7 @@ export default function useArticleForm(baseInstance) {
     setArticleNotes
   };
 
-  const actionSaveChanges = () =>  {
+  const actionSaveChanges = () => {
     const postArticle = Article({
       id: articleId,
       title: articleTitle,

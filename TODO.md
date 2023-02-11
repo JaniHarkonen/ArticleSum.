@@ -27,7 +27,6 @@
 - pay attention to folder structure
 
 ### App.js
-- consider creating a useModal-hook for modal controls
 - investigate weird `aria-labelledby="contained-modal-title-vcenter"`; also present in FormModal.js
 
 ### UNIMPLEMENTED

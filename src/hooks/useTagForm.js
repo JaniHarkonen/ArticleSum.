@@ -20,7 +20,7 @@ export default function useArticleForm(baseInstance) {
     setTagColor
   };
 
-  const actionSaveChanges = () =>  {
+  const actionSaveChanges = () => {
     const postTag = Tag({
       tagId: tagId,
       name: tagName,
