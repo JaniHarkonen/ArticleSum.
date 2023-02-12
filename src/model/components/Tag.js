@@ -4,14 +4,14 @@ import createComponentFromSchema from "./createComponentFromSchema";
 export const Color = (settings) => {
   return {
     r: settings?.r || 0,
-    g: settings?.g || 255,
+    g: settings?.g || 0,
     b: settings?.b || 0
   };
 };
 
 export const tagSchema = {
   tagId: { defaultValue: null },
-  name: { defaultValue: "anecdotal" },
+  name: { defaultValue: "" },
   color: { defaultValue: Color() }
 };
 

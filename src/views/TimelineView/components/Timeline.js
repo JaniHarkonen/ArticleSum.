@@ -3,8 +3,8 @@ import styled from "styled-components";
 import useMouseTracker from "../../../hooks/mouse/useMouseTracker";
 import usePannableView from "../../../hooks/mouse/usePannableView";
 import ArticlePreview from "./ArticlePreview/ArticlePreview";
-import drawCursor from "./drawCursor";
-import drawTimeline from "./drawTimeline";
+import drawCursor from "./draw/drawCursor";
+import drawTimeline from "./draw/drawTimeline";
 import Marker from "./Marker";
 
 
