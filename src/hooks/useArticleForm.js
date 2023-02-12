@@ -33,7 +33,7 @@ export default function useArticleForm(baseInstance) {
     setArticleNotes
   };
 
-  const actionSaveChanges = () => {
+  const actionSubmitChanges = () => {
     const postArticle = Article({
       id: articleId,
       title: articleTitle,
@@ -48,7 +48,7 @@ export default function useArticleForm(baseInstance) {
   };
 
   const actions = {
-    actionSaveChanges,
+    actionSubmitChanges,
     actionCancel: closeModal  // closeModal is provided by the above context
   };
 

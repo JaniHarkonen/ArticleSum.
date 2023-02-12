@@ -1,13 +1,13 @@
 import { useContext, Fragment } from "react";
 import { GlobalContext } from "../../context/GlobalContext";
 import ArticleTag from "../ArticleTag/ArticleTag";
-import useFormPopup from "../../hooks/useFormPopup";
+import useFormModal from "../../hooks/useFormModal";
 import createTagPopup from "../../modal/create/tag/createTagPopup"
 
 
 export default function TagList() {
   const { workspaceManager: ws } = useContext(GlobalContext);
-  const { popup } = useFormPopup();
+  const { popup } = useFormModal();
 
   const handleTagEdit = (tag) => {
     popup(createTagPopup(tag));

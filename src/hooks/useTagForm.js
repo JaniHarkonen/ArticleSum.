@@ -21,7 +21,7 @@ export default function useArticleForm(baseInstance) {
     setTagColor
   };
 
-  const actionSaveChanges = () => {
+  const actionSubmitChanges = () => {
     const postTag = Tag({
       tagId: tagId,
       name: tagName,
@@ -32,7 +32,7 @@ export default function useArticleForm(baseInstance) {
   };
 
   const actions = {
-    actionSaveChanges,
+    actionSubmitChanges,
     actionCancel: closeModal  // closeModal is provided by the above context
   };
 

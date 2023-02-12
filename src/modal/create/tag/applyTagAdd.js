@@ -1,9 +1,9 @@
-export default function applyTagAdd(articlePopup) {
-  const newPopup = {
-    ...articlePopup,
-    titleKey: "modals.form-modal.tag.title.add"
-  };
+import applyTitle from "../../../components/FormControlButtons/json/applyTitle";
 
-  newPopup.controls.buttons.submit.titleKey = "modals.form-modal.controls.create";
-  return newPopup;
+
+export default function applyTagAdd(tagPopup) {
+  tagPopup = applyTitle(tagPopup, "modals.form-modal.tag.title.add");
+  tagPopup.controls.buttons.submit = applyTitle(tagPopup.controls.buttons.submit, "modals.form-modal.controls.create");
+
+  return tagPopup;
 }
