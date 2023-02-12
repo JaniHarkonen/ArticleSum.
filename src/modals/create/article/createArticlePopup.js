@@ -1,5 +1,5 @@
 import ArticleForm from "../../../forms/ArticleForm/ArticleForm";
-import useArticleForm from "../../../hooks/useArticleForm";
+import useArticleForm from "../../../hooks/form/useArticleForm";
 import createFormPopup from "../createFormPopup";
 import applySimpleFormControls from "../applySimpleFormControls";
 

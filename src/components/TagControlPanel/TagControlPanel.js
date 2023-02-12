@@ -1,7 +1,7 @@
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { Tag } from "../../model/components/Tag";
-import useFormPopup from "../../hooks/useFormModal";
+import useFormPopup from "../../hooks/modal/useFormModal";
 import applyTagAdd from "../../modals/create/tag/applyTagAdd";
 import createTagPopup from "../../modals/create/tag/createTagPopup";
 

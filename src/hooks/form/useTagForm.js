@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
-import { GlobalContext } from "../context/GlobalContext";
-import { Tag } from "../model/components/Tag";
+import { GlobalContext } from "../../context/GlobalContext";
+import { Tag } from "../../model/components/Tag";
 
 
 export default function useArticleForm(baseInstance) {

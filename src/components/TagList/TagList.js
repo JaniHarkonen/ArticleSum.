@@ -1,7 +1,7 @@
 import { useContext, Fragment } from "react";
 import { GlobalContext } from "../../context/GlobalContext";
 import ArticleTag from "../ArticleTag/ArticleTag";
-import useFormModal from "../../hooks/useFormModal";
+import useFormModal from "../../hooks/modal/useFormModal";
 import createTagPopup from "../../modals/create/tag/createTagPopup"
 
 

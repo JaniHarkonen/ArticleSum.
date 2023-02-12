@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { GlobalContext } from "../context/GlobalContext";
-import FormModal from "../modals/FormModal/FormModal";
+import { GlobalContext } from "../../context/GlobalContext";
+import FormModal from "../../modals/FormModal/FormModal";
 
 
 export default function useFormModal() {

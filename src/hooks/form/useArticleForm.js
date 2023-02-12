@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
-import { GlobalContext } from "../context/GlobalContext";
-import { Article } from "../model/components/Article";
+import { GlobalContext } from "../../context/GlobalContext";
+import { Article } from "../../model/components/Article";
 
 
 export default function useArticleForm(baseInstance) {

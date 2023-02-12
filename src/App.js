@@ -4,7 +4,7 @@ import Workspace from './components/Workspace/Workspace';
 import { GlobalContext } from './context/GlobalContext';
 import { useState } from 'react';
 import Modal from "react-bootstrap/Modal";
-import useModal from './hooks/useModal';
+import useModal from './hooks/modal/useModal';
 
 
 function App(props) {

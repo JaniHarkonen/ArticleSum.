@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import DragBox from "../model/components/DragBox";
-import addEventListenerTo from "../utils/addEventListenerTo";
-import { Point, dividePoint } from "../utils/geometry";
+import DragBox from "../../model/components/DragBox";
+import addEventListenerTo from "../../utils/addEventListenerTo";
+import { Point, dividePoint } from "../../utils/geometry";
 import useDraggables from "./useDraggables";
 
 

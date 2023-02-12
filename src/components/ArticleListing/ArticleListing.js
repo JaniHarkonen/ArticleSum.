@@ -1,6 +1,6 @@
 import Accordion from "react-bootstrap/Accordion";
 import Button from "react-bootstrap/Button";
-import useFormModal from "../../hooks/useFormModal";
+import useFormModal from "../../hooks/modal/useFormModal";
 import createArticlePopup from "../../modals/create/article/createArticlePopup";
 
 
