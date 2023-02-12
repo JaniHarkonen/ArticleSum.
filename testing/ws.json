@@ -1,5 +1,5 @@
 {
-  "id-counter": 9,
+  "id-counter": 11,
   "articles": {
     "1": {
       "id": "1",
@@ -11,7 +11,7 @@
         "coronavirus",
         "STUPED"
       ],
-      "notes": "took a boxcutter, morphine, cus u do not, u fucking YAAANKEEEE"
+      "notes": "took a boxcutter, morphine, cus u do not, u fucking YAAANKEEEE!!!"
     },
     "2": {
       "id": "2",
@@ -65,6 +65,15 @@
       "source": "",
       "tags": [],
       "notes": "dwdwdwdwdw"
+    },
+    "9": {
+      "id": 9,
+      "title": "tested again",
+      "publish-date": "",
+      "read-date": "",
+      "source": "",
+      "tags": [],
+      "notes": "test artic"
     }
   },
   "tags": {
@@ -84,6 +93,15 @@
         "r": 255,
         "g": 0,
         "b": 255
+      }
+    },
+    "10": {
+      "tagId": 10,
+      "name": "taggalicious",
+      "color": {
+        "r": 255,
+        "g": 0,
+        "b": 0
       }
     }
   }

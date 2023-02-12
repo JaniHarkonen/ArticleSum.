@@ -2,8 +2,8 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { Article } from "../../model/components/Article";
 import useFormPopup from "../../hooks/useFormModal";
-import createArticlePopup from "../../modal/create/article/createArticlePopup";
-import applyArticleAdd from "../../modal/create/article/applyArticleAdd";
+import createArticlePopup from "../../modals/create/article/createArticlePopup";
+import applyArticleAdd from "../../modals/create/article/applyArticleAdd";
 
 
 export default function ArticleControlPanel() {

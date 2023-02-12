@@ -2,8 +2,8 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { Tag } from "../../model/components/Tag";
 import useFormPopup from "../../hooks/useFormModal";
-import applyTagAdd from "../../modal/create/tag/applyTagAdd";
-import createTagPopup from "../../modal/create/tag/createTagPopup";
+import applyTagAdd from "../../modals/create/tag/applyTagAdd";
+import createTagPopup from "../../modals/create/tag/createTagPopup";
 
 
 export default function TagControlPanel() {

@@ -2,7 +2,7 @@ import { useContext, Fragment } from "react";
 import { GlobalContext } from "../../context/GlobalContext";
 import ArticleTag from "../ArticleTag/ArticleTag";
 import useFormModal from "../../hooks/useFormModal";
-import createTagPopup from "../../modal/create/tag/createTagPopup"
+import createTagPopup from "../../modals/create/tag/createTagPopup"
 
 
 export default function TagList() {
