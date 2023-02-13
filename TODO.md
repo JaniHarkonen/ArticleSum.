@@ -18,6 +18,3 @@
 
 ### App.js
 - investigate weird `aria-labelledby="contained-modal-title-vcenter"`; also present in FormModal.js
-
-### UNIMPLEMENTED
-- add a utility method to create ordered jsons
