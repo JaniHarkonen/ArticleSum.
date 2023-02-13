@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import useMouseTracker from "../../../hooks/mouse/useMouseTracker";
 import usePannableView from "../../../hooks/mouse/usePannableView";
-import ArticlePreview from "./ArticlePreview/ArticlePreview";
+import ArticlePreview from "../../../components/ArticlePreview/ArticlePreview";
 import drawCursor from "./draw/drawCursor";
 import drawTimeline from "./draw/drawTimeline";
 import Marker from "./Marker";
