@@ -5,10 +5,13 @@ import { useContext } from "react";
 import { GlobalContext } from "../../context/GlobalContext";
 import ArticleFilters from "../../forms/FilterForm/ArticleFilterForm/ArticleFilters";
 import ArticleControlPanel from "../../components/ArticleControlPanel/ArticleControlPanel";
+import useFormModal from "../../hooks/modal/useFormModal";
+import createArticlePopup from "../../modals/create/article/createArticlePopup";
 
 
 export default function ListView() {
   const { languageManager: lm, workspaceManager: wm } = useContext(GlobalContext);
+  const { popup } = useFormModal();
 
   const renderArticleListings = () => {
     return wm.getArticleContainer().mapItems((item) => {
@@ -16,7 +19,11 @@ export default function ListView() {
         <ArticleListing
           key={"list-view-article-listing" + item.id}
           eventKey={"" + item.id}
-          article={item}
+          articleTitle={item.title}
+          articleSource={item.source}
+          actions={{
+            onEdit: () => popup(createArticlePopup(item))
+          }}
         />
       );
     });

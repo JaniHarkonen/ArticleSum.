@@ -9,7 +9,10 @@
     "tags": "Tags"
   },
   "list-view": {
-    "listings-caption": "Articles"
+    "listings-caption": "Articles",
+    "listing": {
+      "open": "Open"
+    }
   },
   "forms": {
     "filter-form": {

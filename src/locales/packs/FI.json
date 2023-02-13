@@ -9,7 +9,10 @@
     "tags": "Tagit"
   },
   "list-view": {
-    "listings-caption": "Artikkelit"
+    "listings-caption": "Artikkelit",
+    "listing": {
+      "open": "Avaa"
+    }
   },
   "forms": {
     "filter-form": {

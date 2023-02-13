@@ -5,6 +5,9 @@ articles in useful ways.
 
 ## Development log
 
+### 13.2.2023
+
+
 ### 11.2.2023
 Tags-view has been sketched out and tags can now be both created and edited. A tag form modal has 
 been implemented to facilitate this. `useFormPopup`-hook has been created to display the FormModal 
