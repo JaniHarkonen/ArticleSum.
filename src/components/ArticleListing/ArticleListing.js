@@ -1,6 +1,7 @@
+import { useContext } from "react";
 import Accordion from "react-bootstrap/Accordion";
 import Button from "react-bootstrap/Button";
-import useLanguageManager from "../../hooks/useLanguageManager";
+import { GlobalContext } from "../../context/GlobalContext";
 
 
 export default function ArticleListing(props) {
@@ -8,23 +9,16 @@ export default function ArticleListing(props) {
   const articleTitle = props.articleTitle;
   const articleSource = props.articleSource;
   const actions = props.actions;
-
-  const LMButton = () => {
-    return useLanguageManager({
-      titleKey: "list-view.listing.open",
-      Element: Button,
-      props: {
-        onClick: () => actions.onEdit()
-      }
-    });
-  };
+  const { languageManager: lm } = useContext(GlobalContext);
 
   return (
     <Accordion.Item eventKey={eventKey}>
       <Accordion.Header>{articleTitle}</Accordion.Header>
       <Accordion.Body>
         {articleSource}
-        <LMButton />
+        <Button onClick={() => actions.onEdit()}>
+          {lm.translate("list-view.listing.open")}
+        </Button>
       </Accordion.Body>
     </Accordion.Item>
   );
