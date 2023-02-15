@@ -1,13 +1,14 @@
 import { useContext, useState } from "react";
-import { GlobalContext } from "../context/GlobalContext";
-import { Article } from "../model/components/Article";
+import { GlobalContext } from "../../context/GlobalContext";
+import { Article } from "../../model/components/Article";
+
 
 export default function useArticleForm(baseInstance) {
   const {workspaceManager: wm, closeModal} = useContext(GlobalContext);
   const [articleId, setArticleId] = useState(baseInstance.id);
   const [articleTitle, setArticleTitle] = useState(baseInstance.title);
   const [articlePublishDate, setArticlePublishDate] = useState(baseInstance["publish-date"]);
-  const [articleReadhDate, setArticleReadDate] = useState(baseInstance["read-date"]);
+  const [articleReadDate, setArticleReadDate] = useState(baseInstance["read-date"]);
   const [articleSource, setArticleSource] = useState(baseInstance.source);
   const [articleTags, setArticleTags] = useState(baseInstance.tags);
   const [articleNotes, setArticleNotes] = useState(baseInstance.notes);
@@ -16,7 +17,7 @@ export default function useArticleForm(baseInstance) {
     articleId,
     articleTitle,
     articlePublishDate,
-    articleReadhDate,
+    articleReadDate,
     articleSource,
     articleTags,
     articleNotes
@@ -32,12 +33,12 @@ export default function useArticleForm(baseInstance) {
     setArticleNotes
   };
 
-  const actionSaveChanges = () =>  {
+  const actionSubmitChanges = () => {
     const postArticle = Article({
       id: articleId,
       title: articleTitle,
       "publish-date": articlePublishDate,
-      "read-date": articleReadhDate,
+      "read-date": articleReadDate,
       source: articleSource,
       tags: articleTags,
       notes: articleNotes
@@ -47,7 +48,7 @@ export default function useArticleForm(baseInstance) {
   };
 
   const actions = {
-    actionSaveChanges,
+    actionSubmitChanges,
     actionCancel: closeModal  // closeModal is provided by the above context
   };
 

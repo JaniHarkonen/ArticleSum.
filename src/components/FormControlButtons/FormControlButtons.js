@@ -3,16 +3,6 @@ import Button from "react-bootstrap/Button";
 import { GlobalContext } from "../../context/GlobalContext";
 
 
-export const FormControlButton = (settings) => {
-  return {
-    titleKey: null,
-    onClick: () => {},
-    props: {},
-
-    ...settings
-  };
-};
-
 export default function FormControlButtons(props) {
   const controls = props.controls || { order: [] };
   const actions = props.actions;

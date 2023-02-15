@@ -9,7 +9,24 @@
     "tags": "Tags"
   },
   "list-view": {
-    "listings-caption": "Articles"
+    "listings-caption": "Articles",
+    "listing": {
+      "open": "Open"
+    }
+  },
+  "tags-view": {
+    "listings-caption": "Tag list"
+  },
+  "control-panels": {
+    "controls": {
+      "add": "Add"
+    },
+    "article": {
+      "description": "Add an article"
+    },
+    "tag": {
+      "description": "Add a tag"
+    }
   },
   "forms": {
     "filter-form": {
@@ -38,7 +55,7 @@
       "notes": "Notes"
     },
     "tag-form": {
-
+      "name": "Tag"
     }
   },
   "modals": {

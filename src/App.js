@@ -4,21 +4,19 @@ import Workspace from './components/Workspace/Workspace';
 import { GlobalContext } from './context/GlobalContext';
 import { useState } from 'react';
 import Modal from "react-bootstrap/Modal";
+import useModal from './hooks/modal/useModal';
 
 
 function App(props) {
   const {workspaceManager, languageManager} = props;
   const [activeLanguage, setLanguage] = useState(languageManager.getActiveLanguage());
   const [activeTheme, setTheme] = useState(null);
-  const [displayedModal, popupModal] = useState(null);
+  const {displayedModal, popupModal, closeModal, isModalOpen} = useModal();
 
     // Pass the language setter function to LanguageManager allowing
     // the LanguageManager.changeLanguage-method to update the React-
     // components under this one
   languageManager.updateLanguageSetter(setLanguage);
-
-  const isModalOpen = () => displayedModal != null;
-  const closeModal = () => popupModal(null);
 
   return (
     <GlobalContext.Provider

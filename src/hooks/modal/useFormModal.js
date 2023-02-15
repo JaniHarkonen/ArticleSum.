@@ -1,9 +1,9 @@
 import { useContext } from "react";
-import { GlobalContext } from "../context/GlobalContext";
-import FormModal from "../modal/FormModal/FormModal";
+import { GlobalContext } from "../../context/GlobalContext";
+import FormModal from "../../modals/FormModal/FormModal";
 
 
-export default function useFormPopup() {
+export default function useFormModal() {
   const { popupModal, languageManager: lm } = useContext(GlobalContext);
 
   const popup = (props) => {

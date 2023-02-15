@@ -1,13 +1,10 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import useMouseTracker from "../../../hooks/useMouseTracker";
-import usePannableView from "../../../hooks/usePannableView";
-import createComponentFromSchema from "../../../model/components/createComponentFromSchema";
-import addEventListenerTo from "../../../utils/addEventListenerTo";
-import ArticlePreview from "./ArticlePreview/ArticlePreview";
-import drawCursor from "./drawCursor";
-import drawMarker from "./drawMarker";
-import drawTimeline from "./drawTimeline";
+import useMouseTracker from "../../../hooks/mouse/useMouseTracker";
+import usePannableView from "../../../hooks/mouse/usePannableView";
+import ArticlePreview from "../../../components/ArticlePreview/ArticlePreview";
+import drawCursor from "./draw/drawCursor";
+import drawTimeline from "./draw/drawTimeline";
 import Marker from "./Marker";
 
 

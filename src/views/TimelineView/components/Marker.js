@@ -1,5 +1,5 @@
 import { distanceBetweenPoints, Point } from "../../../utils/geometry";
-import drawMarker from "./drawMarker";
+import drawMarker from "./draw/drawMarker";
 
 
 export default class Marker {

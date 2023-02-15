@@ -1,4 +1,4 @@
-import nmod from "../../../utils/nmod";
+import nmod from "../../../../utils/nmod";
 
 export default function drawTimeline(ctx, xOffset, y, length, interval, subdivision, textSettings) {
   const intervalFontSize = textSettings?.font?.size || 8;

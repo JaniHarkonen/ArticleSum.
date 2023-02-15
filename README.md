@@ -5,6 +5,21 @@ articles in useful ways.
 
 ## Development log
 
+### 15.2.2023
+The architecture of components previously listed in `TODO.md` has been somewhat improved to cut 
+redundancy. This has been done mostly with the inclusion of JSON-components (functions that only 
+return a JSON, de facto creators) that represent the React-component that is to be rendered. 
+Various appliers can be used to imbue the JSONs with additional or modified attributes.
+<br />
+<br />
+The modal functionalities of `App.js` were separated into a `useModal`-hook, although it is 
+unlikely that other components will utilize it. Finally, the folder structure has been improved 
+and organized and language packs have been updated, restructured and LanguageManager has been 
+further integrated.
+<br />
+<br />
+Next, filter forms will developed to have their designed functionalities.
+
 ### 11.2.2023
 Tags-view has been sketched out and tags can now be both created and edited. A tag form modal has 
 been implemented to facilitate this. `useFormPopup`-hook has been created to display the FormModal 
@@ -14,14 +29,17 @@ was added under `modal` (src\modal\create) to store the "creation"-methods for t
 Additional attributes can be "applied" to the created JSONs via "applier"-methods that have the 
 prefix "apply".
 <br />
+<br />
 As of now, the `useFormPopup`-hook takes in the key of the title's translation and generates a JSX-
 element based on it using the corresponding translation. This way the `LanguageManager` doesn't have 
 to be passed onto the creation or applier methods, however, this makes the hook less flexible and 
 introduces an inconsistency given that all other elements are passed onto the hook in their function
 form (for example `ArticleForm`).
 <br />
+<br />
 Finally, the locale packs were slightly restructured, and the `closeModal`-method was added to 
 `GlobalContext` to avoid having components call `popup(null)`.
+<br />
 <br />
 At the end of this update, a lot of repition remains in the codebase. Next, more focus will be put 
 into architecture to resolve similarities between components listed in `TODO.md`.
@@ -33,10 +51,12 @@ have been passed onto it via the setState found in `GlobalContext`. Previously `
 accepted forms that it then rendered whenever the form passed onto it wasn't null. This change 
 allows more flexibility as other types of modals can be popped up as well. 
 <br />
+<br />
 `EditableText`-component was created. Text enclosed within this component can be edited by the 
 user by double-clicking on it. If the user howers their mouse over editable text, its borders 
 will be highlighted. The text inside `EditableText`-tags is still suseptible to styles set by 
 HTML-tags making the component very versatile.
+<br />
 <br />
 `FormModal.js` now utilizes custom hooks in a dynamic manner. The components that wish to 
 popup a `FormModal` must now specify which custom hook the modal is to use to pass data and 
@@ -49,8 +69,10 @@ that are then subsequently passed onto the appropriate child components (form an
 change was rather experimental to see if dynamic custom hooks could be utilized by React-
 components.
 <br />
+<br />
 Finally, a small change was made to the workspace JSON-file. The workspace now keeps track of 
 the last unique ID that was generated.
+<br />
 <br />
 For the next update, the tag system will be further developed.
 
@@ -61,12 +83,14 @@ as zoomed in and out of with mouse. Moving the mouse over a marker will pop up a
 article. Pannable view controls can now be included in other components too using the 
 `usePannableView`-hook.
 <br/>
+<br />
 Pannable views utilize instances of the `DragBox`-class to keep track of the position of the view 
 as well as to handle the dragging itself. `DragBox`-instances are handled by the `useDraggables`-
 hook which attaches the required mouse event listeners to `document` and determines which elements 
 to *grab*, *drag* and *drop*. Event listeners can also be attached `DragBoxes` that trigger whenever 
 the `DragBox` is acted upon. The `useDraggables`-hook also returns an array of all the `DragBoxes`
 being dragged which can then be used by the implementing React-component.
+<br />
 <br />
 Next, the development will focus on the addition, editing and deletion of articles. In the future, 
 the `TODO.md` will be used to jot down improvement suggestions to components.
@@ -80,6 +104,7 @@ addition, modification and removal of items from the wrapped JSON in a way that 
 required parties – for example, the workspace that the items are a part of. This makes it to track 
 changes to workspace components, and allows the external workspace JSON-file to be updated.
 <br />
+<br />
 After careful consideration, a decision has been made to simply load the workspace JSON from an 
 external file and store a copy of it in RAM. The JSON is then modified and re-written onto disk 
 whenever changes are made. Initially, the idea was to read and write workspaces in a manner that 
@@ -90,6 +115,7 @@ likely be much slower for smaller files, as the items would have to be shifted t
 system and parsed on the fly. Simple reading and writing of JSONs with `fs.readFile`- and 
 `fs.writeFile`-methods should suffice, however, the current architecture of the model should allow 
 the use of other approaches as well.
+<br />
 <br />
 Next, the model will further be integrated with the React-components and missing views will be 
 developed further.
@@ -102,6 +128,7 @@ manage the currently selected language as well as to handle translations and cha
 language. A new `Languages.js` file has also been created. This file is to store the declarations 
 of all language packs making it easy to add and remove them. Article schema has also been created, 
 however, further thought needs to be put in the final form.
+<br />
 <br />
 In the next update the model of ArticleSum. will be developed along with the interplay between the
 application and the file system.
@@ -116,6 +143,7 @@ locale in React-components that wish to use translations. So far, the applicatio
 only support English and Finnish languages, though the current language solution should – in theory
 – support any language. Finally, the view that plainly lists all stored articles has been sketched
 out.
+<br />
 <br />
 For the next update, the JSON-model for articles will be fleshed out and the existing components 
 will be split further.

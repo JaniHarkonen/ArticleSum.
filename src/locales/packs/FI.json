@@ -9,7 +9,24 @@
     "tags": "Tagit"
   },
   "list-view": {
-    "listings-caption": "Artikkelit"
+    "listings-caption": "Artikkelit",
+    "listing": {
+      "open": "Avaa"
+    }
+  },
+  "tags-view": {
+    "listings-caption": "Tagi lista"
+  },
+  "control-panels": {
+    "controls": {
+      "add": "Lisää"
+    },
+    "article": {
+      "description": "Lisää artikkeli"
+    },
+    "tag": {
+      "description": "Lisää tagi"
+    }
   },
   "forms": {
     "filter-form": {
@@ -38,7 +55,7 @@
       "notes": "Muistiinpanot"
     },
     "tag-form": {
-      
+      "name": "Tagi"
     }
   },
   "modals": {
