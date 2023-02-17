@@ -13,22 +13,22 @@ export default function ArticleForm(props) {
   const lpCategory = "forms.article-form.";
   const { languageManager: lm } = useContext(GlobalContext);
   const {
-    articleId,
-    articleTitle,
-    articlePublishDate: publishDate,
-    articleReadDate: readDate,
-    articleSource,
-    articleTags,
-    articleNotes
+    id,
+    title,
+    publishDate: publishDate,
+    readDate: readDate,
+    source,
+    tags,
+    notes
   } = props.data;
   const {
-    setArticleId,
-    setArticleTitle,
-    setArticlePublishDate,
-    setArticleReadDate,
-    setArticleSource,
-    setArticleTags,
-    setArticleNotes
+    setId,
+    setTitle,
+    setPublishDate,
+    setReadDate,
+    setSource,
+    setTags,
+    setNotes
   } = props.setters;
 
   const renderTags = (tags) => {
@@ -47,8 +47,8 @@ export default function ArticleForm(props) {
 
   return (
     <Form>
-      <Styles.ItemIdContainer>#{articleId}</Styles.ItemIdContainer>
-      <h2><b><EditableText onChange={setArticleTitle}>{articleTitle}</EditableText></b></h2>
+      <Styles.ItemIdContainer>#{id}</Styles.ItemIdContainer>
+      <h2><b><EditableText onChange={setTitle}>{title}</EditableText></b></h2>
       <Form.Group
         as={Row}
       >
@@ -80,7 +80,7 @@ export default function ArticleForm(props) {
         height="100%"
       />
       <br/>
-      <b>{lm.translate(lpCategory + "source")}:</b> <a href={"https://" + articleSource}>{articleSource}</a>
+      <b>{lm.translate(lpCategory + "source")}:</b> <a href={"https://" + source}>{source}</a>
       <Form.Group>
         <Form.Label><b>{lm.translate(lpCategory + "tags")}: </b></Form.Label> {/*renderTags(articleTags)*/}
       </Form.Group>
@@ -88,8 +88,8 @@ export default function ArticleForm(props) {
         <Form.Label><b>{lm.translate(lpCategory + "notes")}</b></Form.Label>
         <Form.Control
           as="textarea"
-          value={articleNotes}
-          onChange={(e) => setArticleNotes(e.target.value)}
+          value={notes}
+          onChange={(e) => setNotes(e.target.value)}
         />
       </Form.Group>
     </Form>

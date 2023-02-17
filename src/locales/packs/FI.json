@@ -47,6 +47,11 @@
       "tag": "Tagi",
       "note": "Muistiinpanot"
     },
+    "tag-filter-form": {
+      "tag-id": "Tagin ID",
+      "name": "Tagin nimi",
+      "color": "Väri"
+    },
     "article-form": {
       "publish-date": "Julkaistu",
       "read-date": "Luettu",

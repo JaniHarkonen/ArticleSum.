@@ -1,10 +1,11 @@
-import { articleFields, ArticleUtils } from "../../../model/components/Article";
+import { articleFields } from "../../../model/components/Article";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useContext } from "react";
 import { GlobalContext } from "../../../context/GlobalContext";
 import { mapElements } from "../../../utils/mapElements";
+import { capitalizeFirstLetter } from "../../../utils/stringUtils";
 
 
 export const articleFieldToLocaleField = (articleField) => {
@@ -25,6 +26,8 @@ export const articleFieldToLocaleField = (articleField) => {
 };
 
 export default function ArticleFilters(props) {
+  const data = props.data;
+  const setters = props.setters;
   const disabledFilters = props.disabledFilters;
   const { languageManager: lm } = useContext(GlobalContext);
 
@@ -42,7 +45,10 @@ export default function ArticleFilters(props) {
             <b>{lm.translate(articleFieldToLocaleField(filter))}:</b>
           </Form.Label>
           <Col sm="10">
-            <Form.Control />
+            <Form.Control
+              value={data[filter]}
+              onChange={(e) => setters["set" + capitalizeFirstLetter(filter)](e.target.value)}
+            />
           </Col>
         </Form.Group>
       );

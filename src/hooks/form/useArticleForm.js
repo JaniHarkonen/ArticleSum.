@@ -5,43 +5,43 @@ import { Article } from "../../model/components/Article";
 
 export default function useArticleForm(baseInstance) {
   const {workspaceManager: wm, closeModal} = useContext(GlobalContext);
-  const [articleId, setArticleId] = useState(baseInstance.id);
-  const [articleTitle, setArticleTitle] = useState(baseInstance.title);
-  const [articlePublishDate, setArticlePublishDate] = useState(baseInstance["publish-date"]);
-  const [articleReadDate, setArticleReadDate] = useState(baseInstance["read-date"]);
-  const [articleSource, setArticleSource] = useState(baseInstance.source);
-  const [articleTags, setArticleTags] = useState(baseInstance.tags);
-  const [articleNotes, setArticleNotes] = useState(baseInstance.notes);
+  const [id, setId] = useState(baseInstance.id);
+  const [title, setTitle] = useState(baseInstance.title);
+  const [publishDate, setPublishDate] = useState(baseInstance["publish-date"]);
+  const [readDate, setReadDate] = useState(baseInstance["read-date"]);
+  const [source, setSource] = useState(baseInstance.source);
+  const [tags, setTags] = useState(baseInstance.tags);
+  const [notes, setNotes] = useState(baseInstance.notes);
 
   const data = {
-    articleId,
-    articleTitle,
-    articlePublishDate,
-    articleReadDate,
-    articleSource,
-    articleTags,
-    articleNotes
+    id,
+    title,
+    publishDate,
+    readDate,
+    source,
+    tags,
+    notes
   };
 
   const setters = {
-    setArticleId,
-    setArticleTitle,
-    setArticlePublishDate,
-    setArticleReadDate,
-    setArticleSource,
-    setArticleTags,
-    setArticleNotes
+    setId,
+    setTitle,
+    setPublishDate,
+    setReadDate,
+    setSource,
+    setTags,
+    setNotes
   };
 
   const actionSubmitChanges = () => {
     const postArticle = Article({
-      id: articleId,
-      title: articleTitle,
-      "publish-date": articlePublishDate,
-      "read-date": articleReadDate,
-      source: articleSource,
-      tags: articleTags,
-      notes: articleNotes
+      id: id,
+      title: title,
+      "publish-date": publishDate,
+      "read-date": readDate,
+      source: source,
+      tags: tags,
+      notes: notes
     });
 
     wm.getArticleContainer().postItem(postArticle);

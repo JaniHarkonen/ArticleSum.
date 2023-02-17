@@ -47,6 +47,11 @@
       "tag": "Tag",
       "note": "Note"
     },
+    "tag-filter-form": {
+      "tag-id": "Tag ID",
+      "name": "Tag",
+      "color": "Color"
+    },
     "article-form": {
       "publish-date": "Published",
       "read-date": "Read",

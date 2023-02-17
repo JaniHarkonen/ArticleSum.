@@ -1,10 +1,10 @@
-import ArticleFilters from "../../forms/FilterForm/ArticleFilterForm/ArticleFilters";
 import FilterForm from "../../forms/FilterForm/FilterForm"
 import Accordion from "react-bootstrap/Accordion"
 import TagList from "../../components/TagList/TagList";
 import TagControlPanel from "../../components/TagControlPanel/TagControlPanel";
 import { useContext } from "react";
 import { GlobalContext } from "../../context/GlobalContext";
+import TagFilters from "../../forms/FilterForm/TagFilterForm/TagFilters";
 
 
 export default function TagsView() {
@@ -14,7 +14,7 @@ export default function TagsView() {
     <>
       <Accordion defaultActiveKey={-1}>
         <FilterForm>
-          <ArticleFilters />
+          <TagFilters />
         </FilterForm>
       </Accordion>
       <TagControlPanel />
