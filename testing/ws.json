@@ -1,5 +1,5 @@
 {
-  "id-counter": 11,
+  "id-counter": 13,
   "articles": {
     "1": {
       "id": "1",
@@ -8,8 +8,7 @@
       "read-date": "1999-09-09T00:00Z",
       "source": "www.google.com",
       "tags": [
-        "coronavirus",
-        "STUPED"
+        "12"
       ],
       "notes": "took a boxcutter, morphine, cus u do not, u fucking YAAANKEEEE!!!"
     },
@@ -77,31 +76,13 @@
     }
   },
   "tags": {
-    "7": {
-      "tagId": 7,
-      "name": "X_X",
+    "12": {
+      "tagId": 12,
+      "name": "CORONAVAARUS",
       "color": {
-        "r": 0,
-        "g": 255,
-        "b": 0
-      }
-    },
-    "8": {
-      "tagId": 8,
-      "name": "naaah",
-      "color": {
-        "r": 255,
-        "g": 0,
-        "b": 255
-      }
-    },
-    "10": {
-      "tagId": 10,
-      "name": "taggalicious",
-      "color": {
-        "r": 255,
-        "g": 0,
-        "b": 0
+        "r": 20,
+        "g": 225,
+        "b": 98
       }
     }
   }

@@ -4,14 +4,15 @@ import Col from "react-bootstrap/Col";
 import { Styles } from "./ArticleForm.styles"
 import { mapElements } from "../../utils/mapElements";
 import ArticleTag from "../../components/ArticleTag/ArticleTag";
-import { useContext } from "react";
+import { useContext, useLayoutEffect, useState } from "react";
 import { GlobalContext } from "../../context/GlobalContext";
 import EditableText from "../../components/EditableText/EditableText";
 
 
 export default function ArticleForm(props) {
   const lpCategory = "forms.article-form.";
-  const { languageManager: lm } = useContext(GlobalContext);
+  const { languageManager: lm, workspaceManager: wm } = useContext(GlobalContext);
+  const [resolvedTags, setResolvedTags] = useState([]);
   const {
     id,
     title,
@@ -31,18 +32,23 @@ export default function ArticleForm(props) {
     setNotes
   } = props.setters;
 
+  useLayoutEffect(() => {
+    const tagContainer = wm.getTagContainer();
+    setResolvedTags(tags.map((tag) => tagContainer.getItem(tag)));
+  }, []);
+
   const renderTags = (tags) => {
-    return mapElements(
-      tags, (key, tag) => {
-        return (
-          <ArticleTag
-            key={key}
-            tag={tag}
-          />
-        );
-      },
-      "article-form-tags-"
-    );
+    return tags.map((tag) => {
+      if( !tag )
+      return <></>;
+      
+      return (
+        <ArticleTag
+          name={tag.name}
+          color={tag.color}
+        />
+      );
+    });
   };
 
   return (
@@ -82,7 +88,7 @@ export default function ArticleForm(props) {
       <br/>
       <b>{lm.translate(lpCategory + "source")}:</b> <a href={"https://" + source}>{source}</a>
       <Form.Group>
-        <Form.Label><b>{lm.translate(lpCategory + "tags")}: </b></Form.Label> {/*renderTags(articleTags)*/}
+        <Form.Label><b>{lm.translate(lpCategory + "tags")}: </b></Form.Label> {renderTags(resolvedTags)}
       </Form.Group>
       <Form.Group>
         <Form.Label><b>{lm.translate(lpCategory + "notes")}</b></Form.Label>
