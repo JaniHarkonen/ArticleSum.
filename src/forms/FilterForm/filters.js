@@ -1,3 +1,6 @@
+import { convertDefaultDateToDatetimeString } from "../../utils/dates";
+
+
 export const ArticleFilter = (settings = {}) => {
   return {
     id: "",
@@ -27,13 +30,27 @@ const splitAndTest = (target, string) => {
   return false;
 };
 
+const splitAndTestDate = (target, string) => {
+  if( !string || string === "" )
+  return true;
+
+  const criterias = parseDateFilter(string);
+
+  for( let testCriteria of criterias )
+  {
+    if( testCriteria(target) )
+    return true;
+  }
+
+  return false;
+};
+
 const parseFilter = (string) => {
   const words = string.split(" ");
   const tokens = [];
 
   let currentToken = "";
   let tokenOpen = false;
-  let tokenOpenThisIteration = false;
 
   for( let i in words )
   {
@@ -52,7 +69,6 @@ const parseFilter = (string) => {
           // Compound word starts
         w = w.substring(1);
         tokenOpen = true;
-        tokenOpenThisIteration = true;
       }
     }
     
@@ -75,14 +91,48 @@ const parseFilter = (string) => {
   return tokens;
 };
 
+const parseDateFilter = (string) => {
+  const words = string.split(" ");
+  const tokens = [];
+
+  for( let w of words )
+  {
+    const dashPosition = w.indexOf("-");
+    if( dashPosition < 0 )
+    tokens.push((date) => new Date(date) === new Date(convertDefaultDateToDatetimeString(w)));
+    else if( w[0] === "-" )
+    {
+      const compareTo = convertDefaultDateToDatetimeString(w.substring(1));
+      tokens.push((date) => new Date(date) <= new Date(compareTo));
+    }
+    else if( w[w.length - 1] === "-" )
+    {
+      const compareTo = convertDefaultDateToDatetimeString(w.substring(0, w.length - 1));
+      tokens.push((date) => new Date(date) >= new Date(compareTo));
+    }
+    else
+    {
+      const rangeStart = convertDefaultDateToDatetimeString(w.substring(0, dashPosition));
+      const rangeEnd = convertDefaultDateToDatetimeString(w.substring(dashPosition + 1));
+
+      tokens.push((date) => {
+        const dateInstance = new Date(date);
+        return (dateInstance >= new Date(rangeStart) && dateInstance <= new Date(rangeEnd));
+      });
+    }
+  }
+
+  return tokens;
+};
+
 export const filterArticle = (item, filter) => {
   return (
     splitAndTest(item.id, filter.id) &&
     splitAndTest(item.title, filter.title) &&
-    //splitAndTest(item["publish-date"], filter["publish-date"]) &&
-    //splitAndTest(item["read-date"], filter["read-date"]) &&
+    splitAndTestDate(item["publish-date"], filter.publishDate) &&
+    splitAndTestDate(item["read-date"], filter.readDate) &&
     splitAndTest(item.source, filter.source) &&
-    //splitAndTest(filter.tags) ||
+    //splitAndTest(item.tags, filter.tags) &&
     splitAndTest(item.notes, filter.notes)
   );
 };

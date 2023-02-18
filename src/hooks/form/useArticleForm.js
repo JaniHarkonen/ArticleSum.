@@ -1,14 +1,15 @@
 import { useContext, useState } from "react";
 import { GlobalContext } from "../../context/GlobalContext";
 import { Article } from "../../model/components/Article";
+import { convertDatetimeStringToDefaultDate, convertDefaultDateToDatetimeString } from "../../utils/dates";
 
 
 export default function useArticleForm(baseInstance) {
   const {workspaceManager: wm, closeModal} = useContext(GlobalContext);
   const [id, setId] = useState(baseInstance.id);
   const [title, setTitle] = useState(baseInstance.title);
-  const [publishDate, setPublishDate] = useState(baseInstance["publish-date"]);
-  const [readDate, setReadDate] = useState(baseInstance["read-date"]);
+  const [publishDate, setPublishDate] = useState(convertDatetimeStringToDefaultDate(baseInstance["publish-date"]));
+  const [readDate, setReadDate] = useState(convertDatetimeStringToDefaultDate(baseInstance["read-date"]));
   const [source, setSource] = useState(baseInstance.source);
   const [tags, setTags] = useState(baseInstance.tags);
   const [notes, setNotes] = useState(baseInstance.notes);
@@ -37,8 +38,8 @@ export default function useArticleForm(baseInstance) {
     const postArticle = Article({
       id: id,
       title: title,
-      "publish-date": publishDate,
-      "read-date": readDate,
+      "publish-date": convertDefaultDateToDatetimeString(publishDate),
+      "read-date": convertDefaultDateToDatetimeString(readDate),
       source: source,
       tags: tags,
       notes: notes

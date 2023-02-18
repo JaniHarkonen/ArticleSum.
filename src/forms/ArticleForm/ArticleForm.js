@@ -7,6 +7,7 @@ import ArticleTag from "../../components/ArticleTag/ArticleTag";
 import { useContext, useLayoutEffect, useState } from "react";
 import { GlobalContext } from "../../context/GlobalContext";
 import EditableText from "../../components/EditableText/EditableText";
+import { convertDatetimeStringToDefaultDate } from "../../utils/dates";
 
 
 export default function ArticleForm(props) {
@@ -23,7 +24,6 @@ export default function ArticleForm(props) {
     notes
   } = props.data;
   const {
-    setId,
     setTitle,
     setPublishDate,
     setReadDate,
@@ -41,7 +41,7 @@ export default function ArticleForm(props) {
     return tags.map((tag) => {
       if( !tag )
       return <></>;
-      
+
       return (
         <ArticleTag
           name={tag.name}
@@ -62,6 +62,7 @@ export default function ArticleForm(props) {
         <Col>
           <Form.Control
             value={publishDate}
+            onChange={(e) => setPublishDate(e.target.value)}
           />
         </Col>
       </Form.Group>
@@ -74,8 +75,9 @@ export default function ArticleForm(props) {
         </Col>
         <Col>
           <Form.Control
-            value={readDate}
             inline
+            value={readDate}
+            onChange={(e) => setReadDate(e.target.value)}
           />
         </Col>
       </Form.Group>

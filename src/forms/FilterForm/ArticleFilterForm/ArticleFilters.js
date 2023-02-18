@@ -5,7 +5,7 @@ import Col from "react-bootstrap/Col";
 import { useContext } from "react";
 import { GlobalContext } from "../../../context/GlobalContext";
 import { mapElements } from "../../../utils/mapElements";
-import { capitalizeFirstLetter } from "../../../utils/stringUtils";
+import { capitalizeFirstLetter, kebabCaseToCamelCase } from "../../../utils/stringUtils";
 
 
 export const articleFieldToLocaleField = (articleField) => {
@@ -47,7 +47,7 @@ export default function ArticleFilters(props) {
           <Col sm="10">
             <Form.Control
               value={data[filter]}
-              onChange={(e) => setters["set" + capitalizeFirstLetter(filter)](e.target.value)}
+              onChange={(e) => setters[kebabCaseToCamelCase("set-" + filter)](e.target.value)}
             />
           </Col>
         </Form.Group>
