@@ -7,7 +7,7 @@ import ArticleTag from "../../components/ArticleTag/ArticleTag";
 import { useContext, useLayoutEffect, useState } from "react";
 import { GlobalContext } from "../../context/GlobalContext";
 import EditableText from "../../components/EditableText/EditableText";
-import { convertDatetimeStringToDefaultDate } from "../../utils/dates";
+import Datepicker from "../../components/Datepicker/Datepicker";
 
 
 export default function ArticleForm(props) {
@@ -60,9 +60,9 @@ export default function ArticleForm(props) {
       >
         <Form.Label column><b>{lm.translate(lpCategory + "publish-date")}: </b></Form.Label>
         <Col>
-          <Form.Control
+          <Datepicker
             value={publishDate}
-            onChange={(e) => setPublishDate(e.target.value)}
+            onChange={(value) => setPublishDate(value + "T00:00Z")}
           />
         </Col>
       </Form.Group>
@@ -74,10 +74,9 @@ export default function ArticleForm(props) {
           <Form.Check/>
         </Col>
         <Col>
-          <Form.Control
-            inline
+          <Datepicker
             value={readDate}
-            onChange={(e) => setReadDate(e.target.value)}
+            onChange={(value) => setReadDate(value + "T00:00Z")}
           />
         </Col>
       </Form.Group>

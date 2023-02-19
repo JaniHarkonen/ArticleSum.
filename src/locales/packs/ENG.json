@@ -8,6 +8,42 @@
     "list": "Articles",
     "tags": "Tags"
   },
+  "date": {
+    "months": {
+      "january": "January",
+      "february": "February",
+      "march": "March",
+      "april": "April",
+      "may": "May",
+      "june": "June",
+      "july": "July",
+      "august": "August",
+      "september": "September",
+      "october": "October",
+      "november": "November",
+      "december": "December"
+    },
+    "weekdays": {
+      "full": {
+        "monday": "Monday",
+        "tuesday": "Tuesday",
+        "wednesday": "Wednesday",
+        "thursday": "Thursday",
+        "friday": "Friday",
+        "saturday": "Saturday",
+        "sunday": "Sunday"
+      },
+      "abbreviated": {
+        "monday": "mon",
+        "tuesday": "tues",
+        "wednesday": "wed",
+        "thursday": "thurs",
+        "friday": "fri",
+        "saturday": "sat",
+        "sunday": "sun"
+      }
+    }
+  },
   "list-view": {
     "listings-caption": "Articles",
     "listing": {

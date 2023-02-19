@@ -8,6 +8,42 @@
     "list": "Artikkelit",
     "tags": "Tagit"
   },
+  "date": {
+    "months": {
+      "january": "Tammikuu",
+      "february": "Helmikuu",
+      "march": "Maaliskuu",
+      "april": "Huhtikuu",
+      "may": "Toukokuu",
+      "june": "Kesäkuu",
+      "july": "Heinäkuu",
+      "august": "Elokuu",
+      "september": "Syyskuu",
+      "october": "Lokakuu",
+      "november": "Marraskuu",
+      "december": "Joulukuu"
+    },
+    "weekdays": {
+      "full": {
+        "monday": "Maanantai",
+        "tuesday": "Tiistai",
+        "wednesday": "Keskiviikko",
+        "thursday": "Torstai",
+        "friday": "Perjantai",
+        "saturday": "Lauantai",
+        "sunday": "Sunnuntai"
+      },
+      "abbreviated": {
+        "monday": "ma",
+        "tuesday": "ti",
+        "wednesday": "ke",
+        "thursday": "to",
+        "friday": "pe",
+        "saturday": "la",
+        "sunday": "su"
+      }
+    }
+  },
   "list-view": {
     "listings-caption": "Artikkelit",
     "listing": {
