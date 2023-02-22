@@ -1,5 +1,5 @@
 {
-  "id-counter": 13,
+  "id-counter": 16,
   "articles": {
     "1": {
       "id": "1",
@@ -78,11 +78,38 @@
   "tags": {
     "12": {
       "tagId": 12,
-      "name": "CORONAVAARUS",
+      "name": "CORONAVIRUS",
       "color": {
-        "r": 20,
-        "g": 225,
-        "b": 98
+        "r": 225,
+        "g": 20,
+        "b": 20
+      }
+    },
+    "13": {
+      "tagId": 13,
+      "name": "OIL",
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0
+      }
+    },
+    "14": {
+      "tagId": 14,
+      "name": "INFLATION",
+      "color": {
+        "r": 35,
+        "g": 212,
+        "b": 22
+      }
+    },
+    "15": {
+      "tagId": 15,
+      "name": "CRYPTO",
+      "color": {
+        "r": 0,
+        "g": 123,
+        "b": 255
       }
     }
   }

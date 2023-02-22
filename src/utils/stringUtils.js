@@ -13,3 +13,7 @@ export const kebabCaseToCamelCase = (string) => {
 
   return camelString;
 };
+
+export const renderStringOrEmptyFiller = (string) => {
+  return (!string || string === "") ? <>&nbsp;</> : <>{string}</>;
+}

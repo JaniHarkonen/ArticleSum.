@@ -1,5 +1,17 @@
+import { useContext, useState } from "react";
+import TaggedFormControl from "../../components/TaggedFormControl/TaggedFormControl";
+import { GlobalContext } from "../../context/GlobalContext";
+
+
 export default function WordCloudView(props) {
+  const [value, setValue] = useState("");
+  const { workspaceManager: wm } = useContext(GlobalContext);
+
   return (
-    <div style={{ position: "relative", width: "256px", height: "128px" }}><input type="date"/></div>
+    <TaggedFormControl
+      value={value}
+      onChange={setValue}
+      availableTags={wm.getTagContainer().filterItems()}
+    />
   );
 }

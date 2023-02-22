@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import FormControl from "react-bootstrap/FormControl";
-import addEventListenerTo from "../../utils/addEventListenerTo";
+import useKeyListener from "../../hooks/keyboard/useKeyListener";
+import { renderStringOrEmptyFiller } from "../../utils/stringUtils";
 import { Styles } from "./EditableText.styles";
 
 
@@ -10,14 +11,14 @@ export default function EditableText(props) {
   const [isEditing, setEditing] = useState(false);
   const [isMouseOver, setMouseOver] = useState(false);
 
-  useEffect(() => {
-    return addEventListenerTo(document, { type: "keypress", listener: handleEnterPress });
-  }, [isEditing]);
-
-  const handleEnterPress = (e) => {
-    if( isEditing && e.code === "Enter" )
+  const handleEnterPress = () => {
+    if( isEditing )
     setEditing(false);
   };
+
+  useKeyListener({
+    listeners: { Enter: handleEnterPress }
+  });
 
   const handleDoubleClick = (e) => {
     if( e.detail == 2 )
@@ -42,7 +43,7 @@ export default function EditableText(props) {
         onMouseOver={() => setMouseOver(true)}
         onMouseLeave={() => setMouseOver(false)}
       >
-        {text}
+        {renderStringOrEmptyFiller(text)}
       </div>
   );
 }
