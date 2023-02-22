@@ -332,16 +332,28 @@ export default class Container {
    * over as input, however, the output can take an arbitrary 
    * form. The results will be placed into an array that is then 
    * returned.
+   * 
+   * By default, the method will ignore undefined values returned 
+   * by the mapping function, however, undefined results can be 
+   * included by setting `ignoreUndefined` to `false`.
    * @param {Function} mapFunction A mapping function that will be
    * executed on each item in the Container.
+   * @param {Boolean} ignoreUndefined Whether `undefined` mapping 
+   * function results should be ignored and *NOT* included in the 
+   * array.
    * 
    * @returns An array of the results of the mapping functions.
    */
-  mapItems(mapFunction) {
+  mapItems(mapFunction, ignoreUndefined = true) {
     const mapping = [];
 
     for( let item in this.items )
-    mapping.push(mapFunction(this.items[item]));
+    {
+      const mapResult = mapFunction(this.items[item]);
+
+      if( mapResult !== undefined || !ignoreUndefined )
+      mapping.push(mapResult);
+    }
 
     return mapping;
   }

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { GlobalContext } from "../../context/GlobalContext";
 import Form from "react-bootstrap/Form";
 import ArticleTag from "../ArticleTag/ArticleTag";
 import { Tag } from "../../model/components/Tag";
@@ -10,7 +9,7 @@ export default function TaggedFormControl(props) {
   const value = props.value;
   const onChange = props.onChange;
   const availableTags = props.availableTags;
-  const [isEditing, setEditing] = useState(GlobalContext);
+  const [isEditing, setEditing] = useState(false);
 
   const getTagByName = (name) => {
     return availableTags.filter((tag) => tag.name === name)[0] || Tag({ name: name });

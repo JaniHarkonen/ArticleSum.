@@ -2,18 +2,16 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Styles } from "./ArticleForm.styles"
-import { mapElements } from "../../utils/mapElements";
-import ArticleTag from "../../components/ArticleTag/ArticleTag";
-import { useContext, useLayoutEffect, useState } from "react";
+import { useContext } from "react";
 import { GlobalContext } from "../../context/GlobalContext";
 import EditableText from "../../components/EditableText/EditableText";
 import Datepicker from "../../components/Datepicker/Datepicker";
+import TaggedFormControl from "../../components/TaggedFormControl/TaggedFormControl";
 
 
 export default function ArticleForm(props) {
   const lpCategory = "forms.article-form.";
   const { languageManager: lm, workspaceManager: wm } = useContext(GlobalContext);
-  const [resolvedTags, setResolvedTags] = useState([]);
   const {
     id,
     title,
@@ -31,25 +29,6 @@ export default function ArticleForm(props) {
     setTags,
     setNotes
   } = props.setters;
-
-  useLayoutEffect(() => {
-    const tagContainer = wm.getTagContainer();
-    setResolvedTags(tags.map((tag) => tagContainer.getItem(tag)));
-  }, []);
-
-  const renderTags = (tags) => {
-    return tags.map((tag) => {
-      if( !tag )
-      return <></>;
-
-      return (
-        <ArticleTag
-          name={tag.name}
-          color={tag.color}
-        />
-      );
-    });
-  };
 
   return (
     <Form>
@@ -89,7 +68,12 @@ export default function ArticleForm(props) {
       <br/>
       <b>{lm.translate(lpCategory + "source")}:</b> <a href={"https://" + source}>{source}</a>
       <Form.Group>
-        <Form.Label><b>{lm.translate(lpCategory + "tags")}: </b></Form.Label> {renderTags(resolvedTags)}
+        <Form.Label><b>{lm.translate(lpCategory + "tags")}: </b></Form.Label>
+        <TaggedFormControl
+          value={tags}
+          onChange={setTags}
+          availableTags={wm.getTagContainer().filterItems()}
+        />
       </Form.Group>
       <Form.Group>
         <Form.Label><b>{lm.translate(lpCategory + "notes")}</b></Form.Label>

@@ -1,6 +1,7 @@
-import { useContext, useState } from "react";
+import { useContext, useLayoutEffect, useState } from "react";
 import { GlobalContext } from "../../context/GlobalContext";
 import { Article } from "../../model/components/Article";
+import { tagsToString } from "../../model/components/Tag";
 
 
 export default function useArticleForm(baseInstance) {
@@ -10,8 +11,15 @@ export default function useArticleForm(baseInstance) {
   const [publishDate, setPublishDate] = useState(baseInstance["publish-date"]);
   const [readDate, setReadDate] = useState(baseInstance["read-date"]);
   const [source, setSource] = useState(baseInstance.source);
-  const [tags, setTags] = useState(baseInstance.tags);
+  const [tags, setTags] = useState("");   // Tags are in string format by default; must be converted into tag IDs
   const [notes, setNotes] = useState(baseInstance.notes);
+
+  useLayoutEffect(() => {
+
+      // Resolve tag names given their IDs
+    const resolvedTags = baseInstance.tags.map((id) => wm.getTagContainer().getItem(id));
+    setTags(tagsToString(resolvedTags));
+  }, []);
 
   const data = {
     id,
@@ -34,13 +42,21 @@ export default function useArticleForm(baseInstance) {
   };
 
   const actionSubmitChanges = () => {
+      
+      // Resolve tag IDs given their names
+    const tagNames = tags.split(" ");
+    const tagIds = wm.getTagContainer().mapItems((tag) => {
+      if( tagNames.includes(tag.name) )
+      return "" + tag.tagId;
+    });
+
     const postArticle = Article({
       id: id,
       title: title,
       "publish-date": publishDate,
       "read-date": readDate,
       source: source,
-      tags: tags,
+      tags: tagIds,
       notes: notes
     });
 
