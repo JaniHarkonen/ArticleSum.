@@ -18,6 +18,20 @@ export default function ListView() {
   const { data, setters } = useArticleFilterForm(Article());
   const [articles, setArticles] = useState(wm.getArticleContainer().filterItems());
 
+  const handleApplyFilters = () => {
+    const tagIds = wm.getTagContainer().mapItems((tag) => {
+      if( data.tags.includes(tag.name) )
+      return "" + tag.tagId;
+    });
+
+    const filters = {
+      ...data,
+      tags: tagIds
+    };
+
+    setArticles(wm.getArticleContainer().filterItems((article) => filterArticle(article, filters)))
+  };
+
   const renderArticleListings = () => {
     return articles.map((item) => {
       return (
@@ -39,7 +53,7 @@ export default function ListView() {
       <Accordion defaultActiveKey="-1">
         <FilterForm
           actions={{
-            apply: () => setArticles(wm.getArticleContainer().filterItems((article) => filterArticle(article, data))),
+            apply: handleApplyFilters,
 
           }}
         >

@@ -45,6 +45,17 @@ const splitAndTestDate = (target, string) => {
   return false;
 };
 
+const testTag = (target, tagIDs) => {
+  if( !tagIDs || tagIDs.length === 0 )
+  return true;
+
+  for( let id of tagIDs )
+  if( target.includes(id) )
+  return true;
+
+  return false;
+};
+
 const parseFilter = (string) => {
   const words = string.split(" ");
   const tokens = [];
@@ -132,7 +143,7 @@ export const filterArticle = (item, filter) => {
     splitAndTestDate(item["publish-date"], filter.publishDate) &&
     splitAndTestDate(item["read-date"], filter.readDate) &&
     splitAndTest(item.source, filter.source) &&
-    //splitAndTest(item.tags, filter.tags) &&
+    testTag(item.tags, filter.tags) &&
     splitAndTest(item.notes, filter.notes)
   );
 };

@@ -18,8 +18,12 @@ export const tagSchema = {
 export const tagsToString = (tags) => {
   let string = "";
 
-  for( let tag of tags )
-  string += tag.name + " ";
+  if( tags )
+  {
+    for( let tag of tags )
+    if( tag )
+    string += tag.name + " ";
+  }
 
   return string;
 };
