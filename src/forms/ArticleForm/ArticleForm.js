@@ -7,6 +7,10 @@ import { GlobalContext } from "../../context/GlobalContext";
 import EditableText from "../../components/EditableText/EditableText";
 import Datepicker from "../../components/Datepicker/Datepicker";
 import TaggedFormControl from "../../components/TaggedFormControl/TaggedFormControl";
+import ASSETS from "../../assets/assets";
+import Button from "react-bootstrap/Button";
+import Image from "react-bootstrap/Image";
+import openLinkUsingHTTPS from "../../utils/openLink";
 
 
 export default function ArticleForm(props) {
@@ -33,7 +37,9 @@ export default function ArticleForm(props) {
   return (
     <Form>
       <Styles.ItemIdContainer>#{id}</Styles.ItemIdContainer>
-      <h2><b><EditableText onChange={setTitle}>{title}</EditableText></b></h2>
+      <Styles.SourceContainer>
+        <h2><b><EditableText onChange={setTitle}>{title}</EditableText></b></h2>
+      </Styles.SourceContainer>
       <Form.Group
         as={Row}
       >
@@ -59,14 +65,24 @@ export default function ArticleForm(props) {
           />
         </Col>
       </Form.Group>
-      <embed 
+      {/*<embed 
         src="https://investors.finnair.com/~/media/Files/F/Finnair-IR/documents/fi/reports-and-presentation/2022/finnair-report-half-year-1-jan-30-sept-2022-fi.pdf"
         type="application/pdf"
         width="100%"
         height="100%"
-      />
+  />*/}
       <br/>
-      <b>{lm.translate(lpCategory + "source")}:</b> <a href={"https://" + source}>{source}</a>
+      <Form.Group>
+        <Form.Label><b>{lm.translate(lpCategory + "source")}:</b></Form.Label>
+        <Styles.SourceContainer>
+            <Styles.LinkPopupButton onClick={() => openLinkUsingHTTPS(source)}>
+              <Styles.LinkPopupIcon src={ASSETS.black.icon.linkPopup} />
+            </Styles.LinkPopupButton>
+          <Styles.LinkContainer>
+            <EditableText onChange={setSource}>{source}</EditableText>
+          </Styles.LinkContainer>
+        </Styles.SourceContainer>
+      </Form.Group>
       <Form.Group>
         <Form.Label><b>{lm.translate(lpCategory + "tags")}: </b></Form.Label>
         <TaggedFormControl

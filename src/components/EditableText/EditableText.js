@@ -29,21 +29,21 @@ export default function EditableText(props) {
   };
 
   return (
-      isEditing ?
-      <FormControl
-        autoFocus={true}
-        value={text}
-        onBlur={() => setEditing(false)}
-        onChange={(e) => onChange(e.target.value)}
-      />
-      :
-      <div
-        style={isMouseOver ? Styles.textContainerHighlight : {}}
-        onClick={handleDoubleClick}
-        onMouseOver={() => setMouseOver(true)}
-        onMouseLeave={() => setMouseOver(false)}
-      >
-        {renderStringOrEmptyFiller(text)}
-      </div>
+    isEditing ?
+    <FormControl
+      autoFocus={true}
+      value={text}
+      onBlur={() => setEditing(false)}
+      onChange={(e) => onChange(e.target.value)}
+    />
+    :
+    <div
+      onClick={handleDoubleClick}
+      onMouseOver={() => setMouseOver(true)}
+      onMouseLeave={() => setMouseOver(false)}
+    >
+      {renderStringOrEmptyFiller(text)}
+      {isMouseOver && <Styles.Highlight />}
+    </div>
   );
 }
