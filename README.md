@@ -7,7 +7,37 @@ articles in useful ways.
 
 
 ### 1.3.2023
-
+In this update, the functionalities of the `FilterForm` on "Articles"-tab were sketched and 
+carried out to near completion. So far, the dates have to be manually entered which may be changed 
+in later updates. Some special characters can be used to provide more flexibility to the queries, 
+such as the quotation mark, "", which allows multiple words to be combined into a single search 
+term. Date ranges can also be determined using a dash, -, to denote a range between two dates or 
+dates before/after a date, -DATE or DATE-. So far, the filteration is carried out by functions 
+declared in `filters.js`. The placement of this file and/or its functions may have to be changed 
+later. The filteration functions also contain a fair amount of redundancy among other 
+inefficiencies, and thus, their design has to be reassessed in a later update.
+<br />
+<br />
+Two major React-components were also introduced in this update: `TaggedFormControl` and 
+`DropdownSearch`. DropdownSearch is a Bootstrap FormControl that can be assigned a word inventory.
+When the user types into the FormControl a dropdown menu underneath the input field is populated 
+with suggestions based on a given filter criteria. By defaul, the filter matches the input with 
+the initial characters of the words in the word inventory. Normally, DropdownSearch doesn't allow 
+multiple words to be input, however this functionality can be toggled with a `multiInput`-tag.
+<br />
+<br />
+TaggedFormControl uses the DropdownSearch-component to suggest tags and displays them as 
+ArticleTags when the component uses focus. As of now, there is a strange refresh glitch that 
+occurs when ENTER is pressed while TaggedFormControl is in focus, however, this needs to be 
+investigated further. TaggedFormControls have been integrated to the ArticleForm as well as the 
+FilterForm on "Articles"-tab.
+<br />
+<br />
+Finally, slight changes were made to the `EditableText`-component to make it more general with 
+regards to its compatibility with parent CSS.
+<br />
+<br />
+Next the development will be focused on finalizing the "Timeline"-tab.
 
 ### 15.2.2023
 The architecture of components previously listed in `TODO.md` has been somewhat improved to cut 
