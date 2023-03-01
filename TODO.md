@@ -5,9 +5,6 @@
 - remove CAN and DIV
 - make Timeline and its subcomponents less dependent on Article
 
-### TagsView.js
-- remove tag filters -> unnecessary
-
 ### TagControlPanel.js
 - consider refactoring due to similarities with ArticleControlPanel
 

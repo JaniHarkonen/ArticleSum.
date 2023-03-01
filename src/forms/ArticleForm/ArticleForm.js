@@ -10,7 +10,7 @@ import TaggedFormControl from "../../components/TaggedFormControl/TaggedFormCont
 import ASSETS from "../../assets/assets";
 import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/Image";
-import openLinkUsingHTTPS from "../../utils/openLink";
+import openLinkUsingHTTPS from "../../utils/openLinkUsingHTTPS";
 
 
 export default function ArticleForm(props) {

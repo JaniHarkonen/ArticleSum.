@@ -6,6 +6,9 @@ articles in useful ways.
 ## Development log
 
 
+### 1.3.2023
+
+
 ### 15.2.2023
 The architecture of components previously listed in `TODO.md` has been somewhat improved to cut 
 redundancy. This has been done mostly with the inclusion of JSON-components (functions that only 
