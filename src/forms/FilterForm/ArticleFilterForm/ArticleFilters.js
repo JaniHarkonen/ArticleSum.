@@ -1,10 +1,12 @@
-import { articleFields, ArticleUtils } from "../../../model/components/Article";
+import { articleFields } from "../../../model/components/Article";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useContext } from "react";
 import { GlobalContext } from "../../../context/GlobalContext";
 import { mapElements } from "../../../utils/mapElements";
+import { capitalizeFirstLetter, kebabCaseToCamelCase } from "../../../utils/stringUtils";
+import TaggedFormControl from "../../../components/TaggedFormControl/TaggedFormControl";
 
 
 export const articleFieldToLocaleField = (articleField) => {
@@ -25,12 +27,34 @@ export const articleFieldToLocaleField = (articleField) => {
 };
 
 export default function ArticleFilters(props) {
+  const data = props.data;
+  const setters = props.setters;
   const disabledFilters = props.disabledFilters;
-  const { languageManager: lm } = useContext(GlobalContext);
+  const { workspaceManager: wm, languageManager: lm } = useContext(GlobalContext);
+
+  const renderTagsInput = () => {
+    return (
+      <TaggedFormControl
+        value={data["tags"]}
+        onChange={setters["setTags"]}
+        availableTags={wm.getTagContainer().filterItems()}
+      />
+    );
+  };
 
   return mapElements(
     articleFields,
-    (key, filter) => {
+    (key, filter) => {  
+      let controlElement = (
+        <Form.Control
+          value={data[filter]}
+          onChange={(e) => setters[kebabCaseToCamelCase("set-" + filter)](e.target.value)}
+        />
+      );
+
+      if( filter === "tags" )
+      controlElement = renderTagsInput();
+
       return (
         <Form.Group
           key={key}
@@ -42,7 +66,7 @@ export default function ArticleFilters(props) {
             <b>{lm.translate(articleFieldToLocaleField(filter))}:</b>
           </Form.Label>
           <Col sm="10">
-            <Form.Control />
+            {controlElement}
           </Col>
         </Form.Group>
       );

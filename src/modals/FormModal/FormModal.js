@@ -6,7 +6,7 @@ export default function FormModal(props) {
   const header = props.header || "";
   const FormElement = props.FormElement || function() {};
   const controls = props.controls || {};
-  const useForm = props.useForm || function() {};
+  const useForm = props.useForm || function(baseInstance) {};
   const baseInstance = props.baseInstance;
   const {data, setters, actions} = useForm(baseInstance);
 

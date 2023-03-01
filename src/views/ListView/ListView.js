@@ -1,20 +1,39 @@
 import FilterForm from "../../forms/FilterForm/FilterForm";
 import Accordion from "react-bootstrap/Accordion";
 import ArticleListing from "../../components/ArticleListing/ArticleListing";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { GlobalContext } from "../../context/GlobalContext";
 import ArticleFilters from "../../forms/FilterForm/ArticleFilterForm/ArticleFilters";
 import ArticleControlPanel from "../../components/ArticleControlPanel/ArticleControlPanel";
 import useFormModal from "../../hooks/modal/useFormModal";
 import createArticlePopup from "../../modals/create/article/createArticlePopup";
+import useArticleFilterForm from "../../hooks/form/useArticleFilterForm";
+import { Article } from "../../model/components/Article";
+import { filterArticle } from "../../forms/FilterForm/filters";
 
 
 export default function ListView() {
   const { languageManager: lm, workspaceManager: wm } = useContext(GlobalContext);
   const { popup } = useFormModal();
+  const { data, setters } = useArticleFilterForm(Article());
+  const [articles, setArticles] = useState(wm.getArticleContainer().filterItems());
+
+  const handleApplyFilters = () => {
+    const tagIds = wm.getTagContainer().mapItems((tag) => {
+      if( data.tags.includes(tag.name) )
+      return "" + tag.tagId;
+    });
+
+    const filters = {
+      ...data,
+      tags: tagIds
+    };
+
+    setArticles(wm.getArticleContainer().filterItems((article) => filterArticle(article, filters)))
+  };
 
   const renderArticleListings = () => {
-    return wm.getArticleContainer().mapItems((item) => {
+    return articles.map((item) => {
       return (
         <ArticleListing
           key={"list-view-article-listing" + item.id}
@@ -32,8 +51,16 @@ export default function ListView() {
   return (
     <div>
       <Accordion defaultActiveKey="-1">
-        <FilterForm>
-          <ArticleFilters />
+        <FilterForm
+          actions={{
+            apply: handleApplyFilters,
+
+          }}
+        >
+          <ArticleFilters
+            data={data}
+            setters={setters}
+          />
         </FilterForm>
       </Accordion>
       <ArticleControlPanel />

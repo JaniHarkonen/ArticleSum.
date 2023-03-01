@@ -9,6 +9,7 @@ import Accordion from "react-bootstrap/Accordion";
 
 export default function FilterForm(props) {
   const children = props.children;
+  const controlActions = props.actions;
 
   const { languageManager: lm } = useContext(GlobalContext);
   const localeCategory = "forms.filter-form.";
@@ -20,7 +21,14 @@ export default function FilterForm(props) {
         <Accordion.Body>
           {children}
           <Row className="align-items-center">
-            <Col><Button className="me-auto">{lm.translate(localeCategory + "apply")}</Button></Col>
+            <Col>
+              <Button
+                className="me-auto"
+                onClick={() => controlActions.apply()}
+              >
+                {lm.translate(localeCategory + "apply")}
+              </Button>
+            </Col>
             <Col><Button>{lm.translate(localeCategory + "clear")}</Button></Col>
             <Col><Button>{lm.translate(localeCategory + "save")}</Button></Col>
           </Row>

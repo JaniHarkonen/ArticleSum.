@@ -15,5 +15,18 @@ export const tagSchema = {
   color: { defaultValue: Color() }
 };
 
+export const tagsToString = (tags) => {
+  let string = "";
+
+  if( tags )
+  {
+    for( let tag of tags )
+    if( tag )
+    string += tag.name + " ";
+  }
+
+  return string;
+};
+
 const component = createComponentFromSchema(tagSchema);
 export const { constructor: Tag, schemaKeys: tagFields } = component;

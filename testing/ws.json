@@ -1,15 +1,15 @@
 {
-  "id-counter": 11,
+  "id-counter": 16,
   "articles": {
     "1": {
       "id": "1",
       "title": "bush did 9/11 - yeah, i said it",
-      "publish-date": "2001-09-11T00:00Z",
-      "read-date": "1999-09-09T00:00Z",
+      "publish-date": "2001-09-10T00:00Z",
+      "read-date": "1999-09-10T00:00Z",
       "source": "www.google.com",
       "tags": [
-        "coronavirus",
-        "STUPED"
+        "12",
+        "13"
       ],
       "notes": "took a boxcutter, morphine, cus u do not, u fucking YAAANKEEEE!!!"
     },
@@ -18,10 +18,9 @@
       "title": "NAAAH LIL BRO X_X",
       "publish-date": "2005-09-11T00:00Z",
       "read-date": "2000-09-09T00:00Z",
-      "source": "www.google.com",
+      "source": "www.youtube.com",
       "tags": [
-        "fake",
-        "news"
+        "13"
       ],
       "notes": "he didn't do it xD"
     },
@@ -69,39 +68,48 @@
     "9": {
       "id": 9,
       "title": "tested again",
-      "publish-date": "",
-      "read-date": "",
+      "publish-date": "2023-02-19T00:00Z",
+      "read-date": "2023-02-19T00:00Z",
       "source": "",
       "tags": [],
       "notes": "test artic"
     }
   },
   "tags": {
-    "7": {
-      "tagId": 7,
-      "name": "X_X",
+    "12": {
+      "tagId": 12,
+      "name": "CORONAVIRUS",
+      "color": {
+        "r": 225,
+        "g": 20,
+        "b": 20
+      }
+    },
+    "13": {
+      "tagId": 13,
+      "name": "OIL",
       "color": {
         "r": 0,
-        "g": 255,
+        "g": 0,
         "b": 0
       }
     },
-    "8": {
-      "tagId": 8,
-      "name": "naaah",
+    "14": {
+      "tagId": 14,
+      "name": "INFLATION",
       "color": {
-        "r": 255,
-        "g": 0,
+        "r": 35,
+        "g": 212,
+        "b": 22
+      }
+    },
+    "15": {
+      "tagId": 15,
+      "name": "CRYPTO",
+      "color": {
+        "r": 0,
+        "g": 123,
         "b": 255
-      }
-    },
-    "10": {
-      "tagId": 10,
-      "name": "taggalicious",
-      "color": {
-        "r": 255,
-        "g": 0,
-        "b": 0
       }
     }
   }
