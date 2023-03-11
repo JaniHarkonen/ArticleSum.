@@ -9,8 +9,8 @@ export default function ArticleDataSortControls(props) {
   const handleSelect = (criteriaKey) => {
     switch( criteriaKey )
     {
-      case "publish": setArticles(articles.sort((a1, a2) => compareDateStrings(a1.publishDate, a2.publishDate))); break;
-      case "read": setArticles(articles.sort((a1, a2) => compareDateStrings(a1.readDate, a2.readDate))); break;
+      case "publish": setArticles([...articles].sort((a1, a2) => compareDateStrings(a1["publish-date"], a2["publish-date"]))); break;
+      case "read": setArticles([...articles].sort((a1, a2) => compareDateStrings(a1["read-date"], a2["read-date"]))); break;
     }
   };
 

@@ -1,11 +1,12 @@
 import Accordion from "react-bootstrap/Accordion";
 import ArticleListing from "../../components/ArticleListing/ArticleListing";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../../context/GlobalContext";
 import ArticleControlPanel from "../../components/ArticleControlPanel/ArticleControlPanel";
 import useFormModal from "../../hooks/modal/useFormModal";
 import createArticlePopup from "../../modals/create/article/createArticlePopup";
 import ArticleFilterForm from "../../components/ArticleFilterForm/ArticleFilterForm";
+import ArticleDataSortControls from "../../components/ArticleDateSortControls/ArticleDataSortControls";
 
 
 export default function ListView() {
@@ -37,6 +38,10 @@ export default function ListView() {
       <ArticleControlPanel />
       <br />
       <h2>{lm.translate("list-view.listings-caption")}</h2>
+      <ArticleDataSortControls
+        articles={articles}
+        setArticles={setArticles}
+      />
       <Accordion defaultActiveKey="-1">
         {renderArticleListings()}
       </Accordion>

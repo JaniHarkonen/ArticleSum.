@@ -8,8 +8,14 @@ export const compareNumber = (n1, n2) => {
   return 0;
 };
 
-export const compareDateStrings = (d1, d2) => {
-  return compareNumber(Date.parse(d1).getTime(), Date.parse(d2).getTime());
+export const compareDateStrings = (str1, str2) => {
+  const d1 = Date.parse(str1);
+  const d2 = Date.parse(str2);
+
+  if( !d1 || !d2 )
+  return 1;
+
+  return compareNumber(d1, d2);
 };
 
 export const compareStringAlphabetical = (s1, s2) => {
