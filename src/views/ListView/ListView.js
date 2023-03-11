@@ -32,7 +32,7 @@ export default function ListView() {
   return (
     <>
       <Accordion defaultActiveKey="-1">
-        <ArticleFilterForm filterArticles={setArticles}/>
+        <ArticleFilterForm filterArticles={setArticles} />
       </Accordion>
       <ArticleControlPanel />
       <br />

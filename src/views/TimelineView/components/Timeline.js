@@ -20,6 +20,7 @@ export default function Timeline(props) {
 
   const [articlePreview, openArticlePreview] = useState({ article: {title: "lol", "publish-date": "date"}, marker: new Marker(), isMouseOver: false });
   const [visibleMarkers, setVisibleMarkers] = useState([]);
+  const [isMouseOver, setMouseOver] = useState(false);
   const [mousePosition] = useMouseTracker();
   const {viewPosition, zoomLevel, draggedItems}
   = usePannableView({
@@ -86,11 +87,16 @@ export default function Timeline(props) {
       let marker = new Marker(x, 16);
       marker.setRadius(8 / zoomLevel);
       marker.draw(ctx);
-      marker.setCollisionEvent(() => openArticlePreview({
-        ...articlePreview,
-        article: article,
-        marker: marker
-      }));
+      marker.setCollisionEvent(() => {
+        if( isMouseOver )
+        {
+          openArticlePreview({
+            ...articlePreview,
+            article: article,
+            marker: marker
+          });
+        }
+      });
       markers.push(marker);
     }
 
@@ -110,11 +116,15 @@ export default function Timeline(props) {
   };
 
   const renderCursor = (ctx) => {
+    if( isMouseOver )
     drawCursor(ctx, mousePosition.x, 0, 128);
   };
 
   return (
-    <DIV>
+    <DIV
+      onMouseOver={() => setMouseOver(true)}
+      onMouseLeave={() => setMouseOver(false)}
+    >
       <CAN id={canvasId} />
       {
         articlePreview &&
