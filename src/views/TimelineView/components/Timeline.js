@@ -10,15 +10,16 @@ import Marker from "./Marker";
 
 export default function Timeline(props) {
   const cursors = {
-    default: "crosshair",
-    dragging: "grabbing"
+    default: "default",
+    dragging: "grabbing",
+    hover: "crosshair"
   };
 
   const articles = props.articles;
   const timelineOrigin = (new Date(props.origin)).getFullYear() || 0;
   const canvasId = "timeline-view-timeline-canvas";
 
-  const [articlePreview, openArticlePreview] = useState({ article: {title: "lol", "publish-date": "date"}, marker: new Marker(), isMouseOver: false });
+  //const [articlePreview, openArticlePreview] = useState({ article: {title: "lol", "publish-date": "date"}, marker: new Marker(), isMouseOver: false });
   const [visibleMarkers, setVisibleMarkers] = useState([]);
   const [isMouseOver, setMouseOver] = useState(false);
   const [mousePosition] = useMouseTracker();
@@ -66,14 +67,16 @@ export default function Timeline(props) {
       }
     }
 
-    if( articlePreview && !articlePreview.isMouseOver && !collidedWithMouse )
-    openArticlePreview(null);
+    /*if( articlePreview && !articlePreview.isMouseOver && !collidedWithMouse )
+    openArticlePreview(null);*/
 
       // Toggle mouse cursor when dragging
     if( draggedItems.length > 0 )
     document.body.style.cursor = cursors.dragging;
     else
-    document.body.style.cursor = cursors.default;
+    document.body.style.cursor = cursors.hover;
+
+    return () => document.body.style.cursor = cursors.default;
 
   }, [viewPosition, zoomLevel, draggedItems, mousePosition]);
 
@@ -87,7 +90,7 @@ export default function Timeline(props) {
       let marker = new Marker(x, 16);
       marker.setRadius(8 / zoomLevel);
       marker.draw(ctx);
-      marker.setCollisionEvent(() => {
+      /*marker.setCollisionEvent(() => {
         if( isMouseOver )
         {
           openArticlePreview({
@@ -96,7 +99,7 @@ export default function Timeline(props) {
             marker: marker
           });
         }
-      });
+      });*/
       markers.push(marker);
     }
 
@@ -114,7 +117,7 @@ export default function Timeline(props) {
       }
     );
   };
-
+ 
   const renderCursor = (ctx) => {
     if( isMouseOver )
     drawCursor(ctx, mousePosition.x, 0, 128);
@@ -126,7 +129,7 @@ export default function Timeline(props) {
       onMouseLeave={() => setMouseOver(false)}
     >
       <CAN id={canvasId} />
-      {
+      {/*
         articlePreview &&
         <ArticlePreview
           arrowX={articlePreview.marker.getPosition().x}
@@ -135,7 +138,7 @@ export default function Timeline(props) {
           onMouseOver={() => openArticlePreview({ ...articlePreview, isMouseOver: true })}
           onMouseLeave={() => openArticlePreview({ ...articlePreview, isMouseOver: false })}
         />
-      }
+  */}
     </DIV>
   );
 }

@@ -5,6 +5,7 @@ import Accordion from "react-bootstrap/Accordion";
 import ArticleFilterForm from "../../components/ArticleFilterForm/ArticleFilterForm";
 import createEnum from "../../utils/createEnum";
 import Dropdown from "react-bootstrap/Dropdown";
+import GotoPanel from "./components/GotoPanel/GotoPanel";
 
 const DISPLAY_CRITERIAS = createEnum([
   "publishDate",
@@ -17,6 +18,7 @@ export default function TimelineView() {
   const articleContainer = wm.getArticleContainer();
   const [articles, setArticles] = useState(articleContainer.filterItems());
   const [displayCriteria, setDisplayCriteria] = useState(DISPLAY_CRITERIAS.publishDate);
+  const [timelineOriginDate, setTimelineOriginDate] = useState(new Date());
 
   return (
     <>
@@ -30,8 +32,12 @@ export default function TimelineView() {
           <Dropdown.Item eventKey={DISPLAY_CRITERIAS.readDate}>{"Read date"}</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
+      <GotoPanel
+        value={timelineOriginDate}
+        onGoto={setTimelineOriginDate}
+      />
       <Timeline
-        origin="1/1/2000"
+        origin={timelineOriginDate}
         articles={articles}
       />
     </>

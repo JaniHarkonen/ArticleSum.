@@ -5,6 +5,10 @@
 - remove CAN and DIV
 - make Timeline and its subcomponents less dependent on Article
 
+- add ability to sort according to "publish date" or "read date"
+- add ability to switch intervals (years/months/days)
+
+
 ### TagControlPanel.js
 - consider refactoring due to similarities with ArticleControlPanel
 
