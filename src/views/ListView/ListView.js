@@ -1,34 +1,15 @@
 import Accordion from "react-bootstrap/Accordion";
-import ArticleListing from "../../components/ArticleListing/ArticleListing";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { GlobalContext } from "../../context/GlobalContext";
 import ArticleControlPanel from "../../components/ArticleControlPanel/ArticleControlPanel";
-import useFormModal from "../../hooks/modal/useFormModal";
-import createArticlePopup from "../../modals/create/article/createArticlePopup";
-import ArticleFilterForm from "../../components/ArticleFilterForm/ArticleFilterForm";
 import ArticleDataSortControls from "../../components/ArticleDateSortControls/ArticleDataSortControls";
+import ArticleList from "../../components/ArticleList/ArticleList";
+import ArticleFilterForm from "../../components/ArticleFilterForm/ArticleFilterForm";
 
 
 export default function ListView() {
   const { languageManager: lm, workspaceManager: wm } = useContext(GlobalContext);
-  const { popup } = useFormModal();
   const [articles, setArticles] = useState(wm.getArticleContainer().filterItems());
-
-  const renderArticleListings = () => {
-    return articles.map((item) => {
-      return (
-        <ArticleListing
-          key={"list-view-article-listing" + item.id}
-          eventKey={"" + item.id}
-          articleTitle={item.title}
-          articleSource={item.source}
-          actions={{
-            onEdit: () => popup(createArticlePopup(item))
-          }}
-        />
-      );
-    });
-  };
 
   return (
     <>
@@ -42,9 +23,10 @@ export default function ListView() {
         articles={articles}
         setArticles={setArticles}
       />
-      <Accordion defaultActiveKey="-1">
-        {renderArticleListings()}
-      </Accordion>
+      <ArticleList
+        defaultActiveKey="-1"
+        articles={articles}
+      />
     </>
   );
 }

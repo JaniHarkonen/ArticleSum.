@@ -1,4 +1,4 @@
-import { addPoints, Dimension, Point, subtractPoints } from "../../utils/geometry";
+import { addPoints, constrainPoint, Dimension, Point, subtractPoints } from "../../utils/geometry";
 
 const combineJsons = (json1, json2) => {
   return { ...json1, ...json2 };
@@ -15,6 +15,7 @@ export default class DragBox {
     this.dimensions = dimensions;
     this.lastMousePosition = Point();
     this.anchorPoint = Point();
+    this.constraints = null;
 
     this.listeners = {
       grab: [],
@@ -54,7 +55,7 @@ export default class DragBox {
     return;
 
     const delta = subtractPoints(mousePosition, this.lastMousePosition);
-    this.setPosition(addPoints(this.position, delta));
+    this.setPosition(constrainPoint(addPoints(this.position, delta), this.constraints));
     this.setLastMousePosition(mousePosition);
 
       // Notify DRAG-listeners
@@ -111,11 +112,19 @@ export default class DragBox {
     this.anchorPoint = combineJsons(this.anchorPoint, anchorPoint);
   }
 
+  setConstraints(constraints) {
+    this.constraints = constraints;
+  }
+
   getPosition() {
     return this.position;
   }
 
   getDimensions() {
     return this.dimensions;
+  }
+
+  getConstraints() {
+    return this.constraints;
   }
 }

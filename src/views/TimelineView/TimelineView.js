@@ -1,16 +1,16 @@
 import { useContext, useState } from "react";
 import { GlobalContext } from "../../context/GlobalContext";
-import Timeline from "./components/Timeline";
 import Accordion from "react-bootstrap/Accordion";
 import ArticleFilterForm from "../../components/ArticleFilterForm/ArticleFilterForm";
-import createEnum from "../../utils/createEnum";
 import Dropdown from "react-bootstrap/Dropdown";
 import GotoPanel from "./components/GotoPanel/GotoPanel";
+import IntervalPicker, { DATE_INTERVAL_TYPES } from "../../components/IntervalPicker/IntervalPicker";
+import Timeline from "./components/Timeline";
 
-const DISPLAY_CRITERIAS = createEnum([
-  "publishDate",
-  "readDate"
-]);
+const DISPLAY_CRITERIAS = {
+  publishDate: "publish-date",
+  readDate: "read-date"
+};
 
 
 export default function TimelineView() {
@@ -19,6 +19,7 @@ export default function TimelineView() {
   const [articles, setArticles] = useState(articleContainer.filterItems());
   const [displayCriteria, setDisplayCriteria] = useState(DISPLAY_CRITERIAS.publishDate);
   const [timelineOriginDate, setTimelineOriginDate] = useState(new Date());
+  const [dateInterval, setDateInterval] = useState(DATE_INTERVAL_TYPES.year);
 
   return (
     <>
@@ -36,10 +37,14 @@ export default function TimelineView() {
         value={timelineOriginDate}
         onGoto={setTimelineOriginDate}
       />
-      <Timeline
-        origin={timelineOriginDate}
-        articles={articles}
-      />
+      <IntervalPicker onChange={setDateInterval} />
+      <div style={{ position: "absolute", width: "100%", height: "100%" }}>
+        <Timeline
+          origin={timelineOriginDate}
+          articles={articles}
+          dateField={displayCriteria}
+        />
+      </div>
     </>
   );
 }

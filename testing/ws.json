@@ -1,5 +1,5 @@
 {
-  "id-counter": 16,
+  "id-counter": 25,
   "articles": {
     "1": {
       "id": "1",
@@ -47,6 +47,50 @@
       ],
       "notes": "he didn't DO IT xD"
     },
+    "16": {
+      "id": "16",
+      "title": "johnny dududu",
+      "publish-date": "2002-09-11T00:00Z",
+      "read-date": "2005-09-09T00:00Z",
+      "source": "www.google.com",
+      "tags": [
+        "fake"
+      ],
+      "notes": "he didn't DO IT xD"
+    },
+    "17": {
+      "id": "17",
+      "title": "du du duu du du",
+      "publish-date": "2002-09-11T00:00Z",
+      "read-date": "2005-09-09T00:00Z",
+      "source": "www.google.com",
+      "tags": [
+        "fake"
+      ],
+      "notes": "he didn't DO IT xD"
+    },
+    "18": {
+      "id": "18",
+      "title": "i aint got nothing u want",
+      "publish-date": "2002-09-11T00:00Z",
+      "read-date": "2005-09-09T00:00Z",
+      "source": "www.google.com",
+      "tags": [
+        "fake"
+      ],
+      "notes": "he didn't DO IT xD"
+    },
+    "19": {
+      "id": "19",
+      "title": "somethingsomething",
+      "publish-date": "2002-09-11T00:00Z",
+      "read-date": "2005-09-09T00:00Z",
+      "source": "www.google.com",
+      "tags": [
+        "fake"
+      ],
+      "notes": "he didn't DO IT xD"
+    },
     "5": {
       "id": 5,
       "title": "changes brb",
@@ -73,6 +117,18 @@
       "source": "",
       "tags": [],
       "notes": "test artic"
+    },
+    "24": {
+      "id": "24",
+      "title": "bush did 9/11 - yeah, i said it",
+      "publish-date": "1999-09-10T00:00Z",
+      "read-date": "2000-09-10T00:00Z",
+      "source": "www.google.com",
+      "tags": [
+        "12",
+        "13"
+      ],
+      "notes": "took a boxcutter, morphine, cus u do not, u fucking YAAANKEEEE!!!"
     }
   },
   "tags": {
