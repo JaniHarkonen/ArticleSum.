@@ -8,8 +8,6 @@ import EditableText from "../../components/EditableText/EditableText";
 import Datepicker from "../../components/Datepicker/Datepicker";
 import TaggedFormControl from "../../components/TaggedFormControl/TaggedFormControl";
 import ASSETS from "../../assets/assets";
-import Button from "react-bootstrap/Button";
-import Image from "react-bootstrap/Image";
 import openLinkUsingHTTPS from "../../utils/openLinkUsingHTTPS";
 
 

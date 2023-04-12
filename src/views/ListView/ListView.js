@@ -26,6 +26,7 @@ export default function ListView() {
       <ArticleList
         defaultActiveKey="-1"
         articles={articles}
+        allowListingSelection
       />
     </>
   );
