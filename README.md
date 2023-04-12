@@ -5,6 +5,21 @@ articles in useful ways.
 
 ## Development log
 
+### 12.4.2023
+Timeline view has now been completely revamped. The initial design was needlessly elaborate, and 
+thus, a simpler way to visualize the timeline has been implemented. The timeline is no longer a 
+line consisting of news articles indicated by circles, rather, it is now a chronological ordering 
+of articles that have been sorted into "slots" by date. The user can still pan the timeline via 
+mouse, however, zooming in and out is no longer possible as it is not necessary given that the 
+user can simply jump to a date using the "Goto"-button. A zooming feature may still be implemented 
+later on.
+<br />
+<br />
+This update took a very long time partially due to the redesign of the Timeline view as well as its 
+architecture, but also due to other projects in the background. In the next update, the Articles- 
+and Tags-views will be finalized in terms of features. All other views are to be finalized before 
+moving onto the Wordcloud view. There also needs to be controls for the creation and loading of 
+workspaces.
 
 ### 1.3.2023
 In this update, the functionalities of the `FilterForm` on "Articles"-tab were sketched and 
