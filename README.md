@@ -5,6 +5,10 @@ articles in useful ways.
 
 ## Development log
 
+### 19.5.2023
+
+
+
 ### 12.4.2023
 Timeline view has now been completely revamped. The initial design was needlessly elaborate, and 
 thus, a simpler way to visualize the timeline has been implemented. The timeline is no longer a 

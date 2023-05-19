@@ -104,7 +104,8 @@
       "controls": {
         "cancel": "Cancel",
         "create": "Create",
-        "save": "Save"
+        "save": "Save",
+        "delete": "Delete"
       },
       "article": {
         "title": {

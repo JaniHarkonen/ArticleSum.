@@ -1,8 +1,9 @@
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import { hexToRGB, rgbToHex } from "../../utils/colors";
 import { useContext } from "react";
+
+import { hexToRGB, rgbToHex } from "../../utils/colors";
 import { GlobalContext } from "../../context/GlobalContext";
 
 

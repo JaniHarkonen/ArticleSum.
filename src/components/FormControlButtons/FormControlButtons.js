@@ -1,5 +1,6 @@
-import { useContext } from "react";
 import Button from "react-bootstrap/Button";
+import { useContext } from "react";
+
 import { GlobalContext } from "../../context/GlobalContext";
 
 
@@ -10,6 +11,7 @@ export default function FormControlButtons(props) {
 
   return controls.order.map((controlKey) => {
     const control = controls.buttons[controlKey];
+
     return (
       <Button
         onClick={actions[control.onClick]}
