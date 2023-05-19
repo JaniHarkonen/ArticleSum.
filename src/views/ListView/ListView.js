@@ -1,6 +1,7 @@
 import Accordion from "react-bootstrap/Accordion";
 import Button from "react-bootstrap/Button";
 import { useContext, useState } from "react";
+
 import { GlobalContext } from "../../context/GlobalContext";
 import ArticleControlPanel from "../../components/ArticleControlPanel/ArticleControlPanel";
 import ArticleDataSortControls from "../../components/ArticleDateSortControls/ArticleDataSortControls";
@@ -10,7 +11,7 @@ import SelectableElement from "../../components/SelectableElement/SelectableElem
 
 
 export default function ListView() {
-  const {languageManager: lm, workspaceManager: wm} = useContext(GlobalContext);
+  const { languageManager: lm, workspaceManager: wm } = useContext(GlobalContext);
   const articleContainer = wm.getArticleContainer();
   const [articles, setArticles] = useState(wm.getArticleContainer().filterItems());
   const [selectedArticles, setSelectedArticles] = useState({});
@@ -41,7 +42,7 @@ export default function ListView() {
     articleContainer.removeMany((article) => selectedArticles[article.id]);
   };
 
-  const ListingSelectionWrapper = (listing, article) => {
+  const ListingSelectionWrapper = (Listing, article) => {
     const articleId = article.id;
 
     return (
@@ -49,7 +50,7 @@ export default function ListView() {
         checked={selectedArticles[articleId]}
         onChange={(isSelected) => handleSelect(articleId, isSelected)}
       >
-        {listing}
+        {Listing}
       </SelectableElement>
     );
   };
@@ -72,6 +73,10 @@ export default function ListView() {
       <ArticleList
         defaultActiveKey="-1"
         articles={articles}
+        pageSettings={{
+          allowPages: true,
+          pageCapacity: 10
+        }}
         ListingWrapper={ListingSelectionWrapper}
       />
     </>

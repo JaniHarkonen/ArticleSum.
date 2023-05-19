@@ -1,4 +1,4 @@
-import { useContext, Fragment } from "react";
+import { useContext } from "react";
 
 import ArticleTag from "../ArticleTag/ArticleTag";
 import useFormModal from "../../hooks/modal/useFormModal";
@@ -12,7 +12,13 @@ export const ELEMENT_ID = {
   tagSizeContainer: "tag-size-container"
 };
 
-export default function TagList() {
+export const DEFAULT_SETTINGS = {
+  ListingWrapper: (Listing, item) => <>{Listing}</>
+};
+
+
+export default function TagList(props) {
+  const ListingWrapper = props.ListingWrapper || DEFAULT_SETTINGS.ListingWrapper;
   const { workspaceManager: ws } = useContext(GlobalContext);
   const { popup } = useFormModal();
   const tagContainer = ws.getTagContainer();
@@ -24,14 +30,17 @@ export default function TagList() {
   const renderTags = () => {
     return tagContainer.mapItems((tag) => {
       return (
-        <Styles.TagContainer key={"tag-list-article-tag-" + tag.tagId}>
-          <ArticleTag
-            name={tag.name}
-            color={tag.color}
-            onClick={() => handleTagEdit(tag)}
-          />
-          <br />
-        </Styles.TagContainer>
+        ListingWrapper(
+          <Styles.TagContainer key={"tag-list-article-tag-" + tag.tagId}>
+            <ArticleTag
+              name={tag.name}
+              color={tag.color}
+              onClick={() => handleTagEdit(tag)}
+            />
+            <br />
+          </Styles.TagContainer>,
+          tag
+        )
       );
     });
   };
