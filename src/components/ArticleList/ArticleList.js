@@ -1,10 +1,11 @@
 import Accordion from "react-bootstrap/Accordion";
-import ArticleListing from "../ArticleListing/ArticleListing";
 import PageControlPanel from "../PageControlPanel/PageControlPanel";
 import useFormModal from "../../hooks/modal/useFormModal";
-import createArticlePopup from "../../modals/create/article/createArticlePopup";
-
 import { useEffect, useState } from "react";
+
+import ArticleListing from "../ArticleListing/ArticleListing";
+import createArticlePopup from "../../modals/create/article/createArticlePopup";
+import { Style } from "./ArticleList.styles";
 
 
 export const DEFAULT_SETTINGS = {
@@ -80,6 +81,7 @@ export default function ArticleList(props) {
   return (
     <>
       {pageSettings.allowPages && renderPageControls()}
+
       <Accordion defaultActiveKey={defaultActiveKey}>
         {renderArticleListings()}
       </Accordion>

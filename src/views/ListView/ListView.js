@@ -75,7 +75,7 @@ export default function ListView() {
         articles={articles}
         pageSettings={{
           allowPages: true,
-          pageCapacity: 10
+          pageCapacity: 100
         }}
         ListingWrapper={ListingSelectionWrapper}
       />
