@@ -6,7 +6,14 @@ articles in useful ways.
 ## Development log
 
 ### 19.5.2023
-
+Finalized the functionalities of the Articles- and Tags-view. ArticleList is now more versatile 
+and allows the selection of articles using checkboxes whose visibility can be toggled via a prop.
+Selection/de-selection controls that are available in the Articles-tab have also been introduced.
+Tags can be removed via the "Delete"-button on the Tags-tab.
+<br />
+<br />
+Next, the development will focus on finalizing the functionalities of the Word cloud -tab. After 
+this, the GUI of the application will be perfected.
 
 
 ### 12.4.2023
