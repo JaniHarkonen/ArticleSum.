@@ -104,7 +104,8 @@
       "controls": {
         "cancel": "Peruuta",
         "create": "Luo",
-        "save": "Tallenna"
+        "save": "Tallenna",
+        "delete": "Poista"
       },
       "article": {
         "title": {

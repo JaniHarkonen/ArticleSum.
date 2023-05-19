@@ -2,6 +2,7 @@ import TagForm from "../../../forms/TagForm/TagForm";
 import useTagForm from "../../../hooks/form/useTagForm";
 import createFormPopup from "../createFormPopup";
 import applySimpleFormControls from "../applySimpleFormControls";
+import applyDeleteButton from "./applyDeleteButton";
 
 
 export default function createTagPopup(baseTag = null) {
@@ -13,6 +14,9 @@ export default function createTagPopup(baseTag = null) {
   });
 
   applySimpleFormControls(popup);
+  applyDeleteButton(popup);
+
+  console.log(popup);
 
   return popup;
 }

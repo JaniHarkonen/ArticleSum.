@@ -1,11 +1,14 @@
-import DateSlot from "./DateSlot/DateSlot";
-import { Styles } from "../Timeline.styles";
-import usePannableView from "../../../hooks/mouse/usePannableView";
 import { useState, useLayoutEffect } from "react";
-import { compareDateStrings } from "../../../utils/sortComparisons";
+
+import DateSlot from "./DateSlot/DateSlot";
+import usePannableView from "../../../hooks/mouse/usePannableView";
 import nmod from "../../../utils/nmod";
-import { Point } from "../../../utils/geometry";
 import useResizeEffect from "../../../hooks/useResizeEffect";
+
+import { Point } from "../../../utils/geometry";
+import { Styles } from "../Timeline.styles";
+import { compareDateStrings } from "../../../utils/sortComparisons";
+
 
 export const ELEMENT_ID = {
   timelineContainer: "timeline-container"
@@ -121,7 +124,9 @@ export default function Timeline(props) {
   return (
     <>
       <Styles.TimelineContainer id={ELEMENT_ID.timelineContainer}>
-        <Styles.SlotCarouselContainer style={{ left: (nmod(viewPosition.x, slotWidth) - slotWidth) + "px" }}>
+        <Styles.SlotCarouselContainer style={{
+          left: (nmod(viewPosition.x, slotWidth) - slotWidth) + "px"
+        }}>
           {renderArticleSlots(dateField)}
         </Styles.SlotCarouselContainer>
       </Styles.TimelineContainer>

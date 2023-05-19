@@ -1,13 +1,8 @@
-### Timeline.js
-- separate mouse cursor to another canvas
-- separate cursor logic to another useEffect
-- make Timeline more general so that it is capable of displaying data other than dates
-- remove CAN and DIV
-- make Timeline and its subcomponents less dependent on Article
+### TagList.js
+- should not be dependent on WorkspaceManager like ArticleList.js
 
-- add ability to sort according to "publish date" or "read date"
-- add ability to switch intervals (years/months/days)
-
+### ArticleList.js
+- extract pagination into a separate component
 
 ### TagControlPanel.js
 - consider refactoring due to similarities with ArticleControlPanel

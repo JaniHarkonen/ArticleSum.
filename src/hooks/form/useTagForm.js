@@ -31,8 +31,13 @@ export default function useTagForm(baseInstance) {
     wm.getTagContainer().postItem(postTag);
   };
 
+  const actionDelete = () => {
+    wm.getTagContainer().removeItem(baseInstance);
+  };
+
   const actions = {
     actionSubmitChanges,
+    actionDelete,
     actionCancel: closeModal  // closeModal is provided by the above context
   };
 

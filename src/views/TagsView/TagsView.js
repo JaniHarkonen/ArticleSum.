@@ -1,6 +1,7 @@
+import { useContext } from "react";
+
 import TagList from "../../components/TagList/TagList";
 import TagControlPanel from "../../components/TagControlPanel/TagControlPanel";
-import { useContext } from "react";
 import { GlobalContext } from "../../context/GlobalContext";
 
 
