@@ -1,4 +1,3 @@
-import Accordion from "react-bootstrap/Accordion";
 import Button from "react-bootstrap/Button";
 import { useContext, useState } from "react";
 
@@ -8,6 +7,7 @@ import ArticleDataSortControls from "../../components/ArticleDateSortControls/Ar
 import ArticleList from "../../components/ArticleList/ArticleList";
 import ArticleFilterForm from "../../components/ArticleFilterForm/ArticleFilterForm";
 import SelectableElement from "../../components/SelectableElement/SelectableElement";
+import wrapAccordion from "../../components/wrappers/wrapAccordion";
 
 
 export default function ListView() {
@@ -57,9 +57,7 @@ export default function ListView() {
 
   return (
     <>
-      <Accordion defaultActiveKey="-1">
-        <ArticleFilterForm filterArticles={setArticles} />
-      </Accordion>
+      {wrapAccordion(<ArticleFilterForm filterArticles={setArticles} />)}
       <ArticleControlPanel />
       <br />
       <h2>{lm.translate("list-view.listings-caption")}</h2>
