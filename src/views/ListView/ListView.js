@@ -8,37 +8,25 @@ import ArticleList from "../../components/ArticleList/ArticleList";
 import ArticleFilterForm from "../../components/ArticleFilterForm/ArticleFilterForm";
 import SelectableElement from "../../components/SelectableElement/SelectableElement";
 import wrapAccordion from "../../components/wrappers/wrapAccordion";
+import useSelectables from "../../hooks/form/useSelectables";
 
 
 export default function ListView() {
   const { languageManager: lm, workspaceManager: wm } = useContext(GlobalContext);
   const articleContainer = wm.getArticleContainer();
   const [articles, setArticles] = useState(wm.getArticleContainer().filterItems());
-  const [selectedArticles, setSelectedArticles] = useState({});
+  const {
+    selection: selectedArticles,
+    getSelection,
+    handleSelect,
+    handleSelectAll,
+    handleDeselectAll
 
+  } = useSelectables({ items: articles, idField: "id" });
 
-  const handleSelect = (articleId, isSelected) => {
-    setSelectedArticles({
-      ...selectedArticles,
-      [articleId]: isSelected
-    });
-  };
-
-  const handleSelectAll = () => {
-    const newSelectedArticles = {};
-
-    for( let article of articles )
-    newSelectedArticles[article.id] = true;
-
-    setSelectedArticles(newSelectedArticles);
-  };
-
-  const handleDeselectAll = () => {
-    setSelectedArticles({});
-  };
 
   const handleDelete = () => {
-    if( Object.keys(selectedArticles).length > 0 )
+    if( getSelection().length > 0 )
     articleContainer.removeMany((article) => selectedArticles[article.id]);
   };
 

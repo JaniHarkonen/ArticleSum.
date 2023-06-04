@@ -16,8 +16,6 @@ export default function WordCloudView() {
 
 
   const generateWordInventory = () => {
-    //const articles = articleContainer.filterItems();
-
     const inventory = []; // Eventual inventory of the word cloud
     const inventoryEntries = {};  // Indices of inventory items coupled with their words
 
