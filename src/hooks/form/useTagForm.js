@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { GlobalContext } from "../../context/GlobalContext";
 import { Tag } from "../../model/components/Tag";
+import Container, { Result } from "../../model/WorkspaceManager/Container";
 
 
 export default function useTagForm(baseInstance) {
@@ -32,7 +33,20 @@ export default function useTagForm(baseInstance) {
   };
 
   const actionDelete = () => {
-    wm.getTagContainer().removeItem(baseInstance);
+    wm.getTagContainer().removeItem(baseInstance);  // Remove the tag from the workspace
+
+      // Remove the tag from all of the articles that have it
+    wm.getArticleContainer().updateAll((a) => {
+
+        // Article doesn't have the tag -> ignore
+      if( !a.tags.includes(baseInstance.tagId) )
+      return Result(Container.ACTION_MODIFIED);
+
+        // Artilce has the tag -> remove the tag
+      a.tags = a.tags.filter((tag) => tag != baseInstance.tagId);
+
+      return Result(Container.ACTION_MODIFIED, [a]);
+    });
   };
 
   const actions = {

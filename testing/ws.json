@@ -19,9 +19,7 @@
       "publish-date": "2005-09-11T00:00Z",
       "read-date": "2001-09-09T00:00Z",
       "source": "www.youtube.com",
-      "tags": [
-        "13"
-      ],
+      "tags": [],
       "notes": "he didn't do it xD"
     },
     "3": {
@@ -114,15 +112,14 @@
       "read-date": "2000-09-10T00:00Z",
       "source": "www.google.com",
       "tags": [
-        "12",
-        "13"
+        "12"
       ],
       "notes": "took a boxcutter, morphine, cus u do not, u fucking YAAANKEEEE!!!"
     }
   },
   "tags": {
     "12": {
-      "tagId": 12,
+      "tagId": "12",
       "name": "CORONAVIRUS",
       "color": {
         "r": 225,
@@ -130,17 +127,8 @@
         "b": 20
       }
     },
-    "13": {
-      "tagId": 13,
-      "name": "OIL",
-      "color": {
-        "r": 0,
-        "g": 0,
-        "b": 0
-      }
-    },
     "14": {
-      "tagId": 14,
+      "tagId": "14",
       "name": "INFLATION",
       "color": {
         "r": 35,
@@ -149,12 +137,21 @@
       }
     },
     "15": {
-      "tagId": 15,
+      "tagId": "15",
       "name": "CRYPTO",
       "color": {
         "r": 0,
         "g": 123,
         "b": 255
+      }
+    },
+    "13": {
+      "tagId": "13",
+      "name": "OIL",
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0
       }
     }
   }
