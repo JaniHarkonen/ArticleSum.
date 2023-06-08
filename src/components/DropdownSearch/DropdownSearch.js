@@ -1,5 +1,4 @@
 import Form from "react-bootstrap/Form";
-import Dropdown from "react-bootstrap/Dropdown";
 import useKeyListener from "../../hooks/keyboard/useKeyListener";
 import { useState } from "react";
 import callbackElementById from "../../utils/callbackElementById";

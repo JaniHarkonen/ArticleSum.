@@ -30,12 +30,19 @@ export default function ArticleList(props) {
 
     // Arranges all the available articles into different pages
   useEffect(() => {
-    const groupedArticles = [];
-    const pcapacity = pageSettings.pageCapacity;
-    const numberOfArticles = allArticles.length;
+    let groupedArticles = [];
 
-    for( let i = 0; i < numberOfArticles; i += pcapacity )
-    groupedArticles.push(allArticles.slice(i, Math.min(numberOfArticles, i + pcapacity)));
+      // Only use pages when they are allowed by the pageSettings
+    if( pageSettings.allowPages )
+    {
+      const pcapacity = pageSettings.pageCapacity;
+      const numberOfArticles = allArticles.length;
+
+      for( let i = 0; i < numberOfArticles; i += pcapacity )
+      groupedArticles.push(allArticles.slice(i, Math.min(numberOfArticles, i + pcapacity)));
+    }
+    else
+    groupedArticles = [allArticles];  // Otherwise, use a single page
 
     setArticles(groupedArticles);
   }, []);

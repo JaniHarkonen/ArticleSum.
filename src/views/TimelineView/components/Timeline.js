@@ -64,7 +64,7 @@ export default function Timeline(props) {
         // Exclude articles with no date
       if( !articleDate )
       continue;
-      
+
         // Determine the index from which to start rendering the timeline
       if( renditionStartIndex < 0 && (new Date(articleDate)).getTime() >= originTimestamp )
       renditionStartIndex = filteredArticles.length + 1;
@@ -78,6 +78,7 @@ export default function Timeline(props) {
       }
       else
       articlesInDate.push(article);
+      
     }
 
       // Add the remaining articles
