@@ -14,7 +14,7 @@ const DISPLAY_CRITERIAS = {
 
 
 export default function TimelineView() {
-  const {workspaceManager: wm} = useContext(GlobalContext);
+  const { workspaceManager: wm } = useContext(GlobalContext);
   const articleContainer = wm.getArticleContainer();
   const [articles, setArticles] = useState(articleContainer.filterItems());
   const [displayCriteria, setDisplayCriteria] = useState(DISPLAY_CRITERIAS.publishDate);
@@ -41,6 +41,7 @@ export default function TimelineView() {
           origin={timelineOriginDate}
           articles={articles}
           dateField={displayCriteria}
+          dateInterval={dateInterval}
         />
       </div>
     </>

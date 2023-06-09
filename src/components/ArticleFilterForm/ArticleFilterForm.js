@@ -24,7 +24,7 @@ export default function ArticleFilterForm(props) {
       tags: tagIds
     };
 
-    filterArticles(wm.getArticleContainer().filterItems((article) => filterArticle(article, filters)))
+    filterArticles(wm.getArticleContainer().filterItems((article) => filterArticle(article, filters)));
   };
 
   return (

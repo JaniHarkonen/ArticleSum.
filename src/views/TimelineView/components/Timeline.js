@@ -1,4 +1,5 @@
-import { useState, useLayoutEffect } from "react";
+import { useState, useLayoutEffect, useContext } from "react";
+import { GlobalContext } from "../../../context/GlobalContext";
 
 import DateSlot from "./DateSlot/DateSlot";
 import usePannableView from "../../../hooks/mouse/usePannableView";
@@ -8,25 +9,29 @@ import useResizeEffect from "../../../hooks/useResizeEffect";
 import { Point } from "../../../utils/geometry";
 import { Styles } from "../Timeline.styles";
 import { compareDateStrings } from "../../../utils/sortComparisons";
-
-
-export const ELEMENT_ID = {
-  timelineContainer: "timeline-container"
-};
+import { DATE_INTERVAL_TYPES } from "../../../components/IntervalPicker/IntervalPicker";
+import { convertDatetimeStringToDefaultDate, getMonthFromDatetimeString, getMonthName, getYearFromDatetimeString } from "../../../utils/dates";
+import { capitalizeFirstLetter } from "../../../utils/stringUtils";
 
 export const DEFAULT_SETTINGS = {
   slotWidth: 250,
   articles: [],
   orderedArticles: [],
-  dateField: "publish-date"
+  dateField: "publish-date",
+  dateInterval: DATE_INTERVAL_TYPES.day
+};
+
+export const ELEMENT_ID = {
+  timelineContainer: "timeline-container"
 };
 
 
 export default function Timeline(props) {
   const originDate = props.origin || new Date();  // Date form which to start rendering the timeline
   const articles = props.articles || DEFAULT_SETTINGS.articles; // Available articles that can be displayed on the timeline
-  const slotWidth = props.slotWidth || DEFAULT_SETTINGS.slotWidth;  // Width of a date slot (in pixels)
-  const dateField = props.dateField || DEFAULT_SETTINGS.dateField;  // Field in the article JSON containing the date according to which the timeline is assembled
+  const slotWidth = props.slotWidth || DEFAULT_SETTINGS.slotWidth; // Width of a date slot (in pixels)
+  const dateField = props.dateField || DEFAULT_SETTINGS.dateField; // Field in the article JSON containing the date according to which the timeline is assembled
+  const dateInterval = props.dateInterval || DEFAULT_SETTINGS.dateInterval; // The interval type according to which the date slots will be constructed (day, month, year)
 
   const [orderedArticles, setOrderedArticles] = useState(DEFAULT_SETTINGS.orderedArticles); // Arrays of articles grouped by date
   const {viewPosition, setConstraints} = usePannableView({
@@ -34,6 +39,8 @@ export default function Timeline(props) {
   });
   const [numberOfSlots, setNumberOfSlots] = useState(0);  // Number of slots displayed in the timeline
   const [articleRenditionStartIndex, setArticleRenditionStartIndex] = useState(-1); // Index of the article group in orderedArticles to start rendering the timeline from
+
+  const { languageManager: lm } = useContext(GlobalContext);
 
 
     // Determine the number of displayed slots according to the parent container's dimensions
@@ -53,20 +60,35 @@ export default function Timeline(props) {
       // Filter and order articles into arrays by date
     const filteredArticles = [];  // Contains arrays of articles grouped a shared date
     let articlesInDate = [];      // Articles sharing the currently iterated date
-    let articleDatePrevious = sortedArticles[0][dateField]; // Date string of the previously iterated date
     let renditionStartIndex = -1; // Index of filteredArticles from which to start rendering the timeline
+    let articleDatePrevious = sortedArticles[0][dateField]; // Date string of the previously iterated date
+    let dateResolver = (article) => article[dateField];
+
+    switch( dateInterval.type )
+    {
+      case DATE_INTERVAL_TYPES.month.type:
+        dateResolver = (article) => getYearFromDatetimeString(article[dateField]) + "-" + getMonthFromDatetimeString(article[dateField]);
+        articleDatePrevious = getYearFromDatetimeString(articleDatePrevious) + "-" + getMonthFromDatetimeString(articleDatePrevious);
+        break;
+
+      case DATE_INTERVAL_TYPES.year.type:
+        dateResolver = (article) => getYearFromDatetimeString(article[dateField]);
+        articleDatePrevious = getYearFromDatetimeString(articleDatePrevious);
+        break;
+    }
 
       // Assemble the sorted articles by date into different arrays
     for( let article of sortedArticles )
     {
-      const articleDate = article[dateField]; // Date string of the currently iterated article (see dateField above)
+      const articleDate = dateResolver(article); // Date string of the currently iterated article (see dateField above)
+      const articleDateTimestamp = new Date(article[dateField]);  // Timestamp of the article's date
 
         // Exclude articles with no date
       if( !articleDate )
       continue;
 
         // Determine the index from which to start rendering the timeline
-      if( renditionStartIndex < 0 && (new Date(articleDate)).getTime() >= originTimestamp )
+      if( renditionStartIndex < 0 && articleDateTimestamp >= originTimestamp )
       renditionStartIndex = filteredArticles.length + 1;
 
         // New date encountered
@@ -78,7 +100,6 @@ export default function Timeline(props) {
       }
       else
       articlesInDate.push(article);
-      
     }
 
       // Add the remaining articles
@@ -87,11 +108,12 @@ export default function Timeline(props) {
 
     setOrderedArticles(filteredArticles);
     setArticleRenditionStartIndex(renditionStartIndex);
+
     setConstraints({
-      left: -filteredArticles.length * slotWidth,
+      left: slotWidth,
       right: (renditionStartIndex + 2) * slotWidth - 1
     });
-  }, [articles, originDate, dateField]);
+  }, [articles, originDate, dateField, dateInterval]);
 
   const renderArticleSlots = (dateField) => {
     let slots = [];   // Contains all the SlotContainer elements
@@ -105,14 +127,32 @@ export default function Timeline(props) {
       if( !articlesByDate[0] )
       continue;
 
+        // Determine the appropriate caption for the date slot
+        // DEFAULT: dd.mm.yyyy
       const date = articlesByDate[0][dateField];
+      let slotCaption = convertDatetimeStringToDefaultDate(date);
+
+      switch( dateInterval.type )
+      {
+          // By month: month.yyyy
+        case DATE_INTERVAL_TYPES.month.type:
+          const month = getMonthName(parseInt(getMonthFromDatetimeString(date)));
+          slotCaption = lm.translate("date.months." + month) + " " + getYearFromDatetimeString(date);
+          break;
+
+          // By year: yyyy
+        case DATE_INTERVAL_TYPES.year.type:
+          slotCaption = getYearFromDatetimeString(date);
+          break;
+      }
+
       slots.push(
         <Styles.SlotContainer
           key={"timeline-slot-" + date}
           style={{ width: slotWidth }}
         >
           <DateSlot
-            date={date}
+            caption={slotCaption}
             articles={articlesByDate}
           />
         </Styles.SlotContainer>

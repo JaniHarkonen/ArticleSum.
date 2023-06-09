@@ -25,9 +25,19 @@ export const convertDefaultDateToDatetimeString = (defaultDate) => {
 };
 
 export const getYearFromDatetimeString = (datetimeString) => {
+  if( !datetimeString || datetimeString === "" )
+  return datetimeString;
+  
   return datetimeString.substring(0, datetimeString.indexOf("-"));
-}
+};
+
+export const getMonthFromDatetimeString = (datetimeString) => {
+  if( !datetimeString || datetimeString === "" )
+  return datetimeString;
+  
+  return datetimeString.split("-")[1];
+};
 
 export const getMonthName = (month) => {
-  return MONTHS[month];
+  return MONTHS[month - 1];
 };

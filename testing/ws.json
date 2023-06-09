@@ -1,5 +1,5 @@
 {
-  "id-counter": 26,
+  "id-counter": 27,
   "articles": {
     "1": {
       "id": "1",
@@ -46,7 +46,7 @@
       "notes": "he didn't DO IT xD"
     },
     "5": {
-      "id": 5,
+      "id": "5",
       "title": "changes brb",
       "publish-date": "",
       "read-date": "",
@@ -55,7 +55,7 @@
       "notes": "lololollolo trolololo"
     },
     "6": {
-      "id": 6,
+      "id": "6",
       "title": "yet another art dw",
       "publish-date": "",
       "read-date": "",
@@ -64,7 +64,7 @@
       "notes": "dwdwdwdwdw"
     },
     "9": {
-      "id": 9,
+      "id": "9",
       "title": "tested again",
       "publish-date": "2023-02-19T00:00Z",
       "read-date": "2023-02-19T00:00Z",
@@ -115,6 +115,15 @@
         "12"
       ],
       "notes": "took a boxcutter, morphine, cus u do not, u fucking YAAANKEEEE!!!"
+    },
+    "26": {
+      "id": "26",
+      "title": "lottory",
+      "publish-date": "2001-10-10T00:00Z",
+      "read-date": "",
+      "source": "",
+      "tags": [],
+      "notes": "qwqq q_q"
     }
   },
   "tags": {
@@ -125,6 +134,15 @@
         "r": 225,
         "g": 20,
         "b": 20
+      }
+    },
+    "13": {
+      "tagId": "13",
+      "name": "OIL",
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0
       }
     },
     "14": {
@@ -143,15 +161,6 @@
         "r": 0,
         "g": 123,
         "b": 255
-      }
-    },
-    "13": {
-      "tagId": "13",
-      "name": "OIL",
-      "color": {
-        "r": 0,
-        "g": 0,
-        "b": 0
       }
     }
   }

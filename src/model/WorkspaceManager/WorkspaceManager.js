@@ -71,6 +71,6 @@ export default class WorkspaceManager {
   }
 
   getUniqueId() {
-    return this.idCounter++;
+    return "" + (this.idCounter++);
   }
 }
