@@ -16,6 +16,7 @@ export const DATE_INTERVAL_TYPES = {
   }
 };
 
+
 export default function IntervalPicker(props) {
   const onChange = props.onChange;
 
@@ -26,7 +27,7 @@ export default function IntervalPicker(props) {
   ];
 
   const renderControls = () => {
-    return CONTROLS.map((type) => <Button onClick={() => onChange(type.type)}>{type.caption}</Button>);
+    return CONTROLS.map((type) => <Button onClick={() => onChange(type)}>{type.caption}</Button>);
   };
 
   return (

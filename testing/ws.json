@@ -1,5 +1,5 @@
 {
-  "id-counter": 26,
+  "id-counter": 27,
   "articles": {
     "1": {
       "id": "1",
@@ -19,9 +19,7 @@
       "publish-date": "2005-09-11T00:00Z",
       "read-date": "2001-09-09T00:00Z",
       "source": "www.youtube.com",
-      "tags": [
-        "13"
-      ],
+      "tags": [],
       "notes": "he didn't do it xD"
     },
     "3": {
@@ -48,7 +46,7 @@
       "notes": "he didn't DO IT xD"
     },
     "5": {
-      "id": 5,
+      "id": "5",
       "title": "changes brb",
       "publish-date": "",
       "read-date": "",
@@ -57,7 +55,7 @@
       "notes": "lololollolo trolololo"
     },
     "6": {
-      "id": 6,
+      "id": "6",
       "title": "yet another art dw",
       "publish-date": "",
       "read-date": "",
@@ -66,7 +64,7 @@
       "notes": "dwdwdwdwdw"
     },
     "9": {
-      "id": 9,
+      "id": "9",
       "title": "tested again",
       "publish-date": "2023-02-19T00:00Z",
       "read-date": "2023-02-19T00:00Z",
@@ -114,15 +112,23 @@
       "read-date": "2000-09-10T00:00Z",
       "source": "www.google.com",
       "tags": [
-        "12",
-        "13"
+        "12"
       ],
       "notes": "took a boxcutter, morphine, cus u do not, u fucking YAAANKEEEE!!!"
+    },
+    "26": {
+      "id": "26",
+      "title": "lottory",
+      "publish-date": "2001-10-10T00:00Z",
+      "read-date": "",
+      "source": "",
+      "tags": [],
+      "notes": "qwqq q_q"
     }
   },
   "tags": {
     "12": {
-      "tagId": 12,
+      "tagId": "12",
       "name": "CORONAVIRUS",
       "color": {
         "r": 225,
@@ -131,7 +137,7 @@
       }
     },
     "13": {
-      "tagId": 13,
+      "tagId": "13",
       "name": "OIL",
       "color": {
         "r": 0,
@@ -140,7 +146,7 @@
       }
     },
     "14": {
-      "tagId": 14,
+      "tagId": "14",
       "name": "INFLATION",
       "color": {
         "r": 35,
@@ -149,7 +155,7 @@
       }
     },
     "15": {
-      "tagId": 15,
+      "tagId": "15",
       "name": "CRYPTO",
       "color": {
         "r": 0,

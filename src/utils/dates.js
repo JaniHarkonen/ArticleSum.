@@ -24,6 +24,20 @@ export const convertDefaultDateToDatetimeString = (defaultDate) => {
   return dateComponents[2] + "-" + dateComponents[1].padStart(2, "0") + "-" + dateComponents[0].padStart(2, "0") + "T00:00Z";
 };
 
+export const getYearFromDatetimeString = (datetimeString) => {
+  if( !datetimeString || datetimeString === "" )
+  return datetimeString;
+  
+  return datetimeString.substring(0, datetimeString.indexOf("-"));
+};
+
+export const getMonthFromDatetimeString = (datetimeString) => {
+  if( !datetimeString || datetimeString === "" )
+  return datetimeString;
+  
+  return datetimeString.split("-")[1];
+};
+
 export const getMonthName = (month) => {
-  return MONTHS[month];
+  return MONTHS[month - 1];
 };

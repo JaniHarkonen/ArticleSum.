@@ -6,7 +6,7 @@ import { tagsToString } from "../../model/components/Tag";
 
 export default function useArticleForm(baseInstance) {
   const {workspaceManager: wm, closeModal} = useContext(GlobalContext);
-  const [id, setId] = useState(baseInstance.id);
+  const [id, setId] = useState(baseInstance.id ? "" + baseInstance.id: null);
   const [title, setTitle] = useState(baseInstance.title);
   const [publishDate, setPublishDate] = useState(baseInstance["publish-date"]);
   const [readDate, setReadDate] = useState(baseInstance["read-date"]);
@@ -14,12 +14,13 @@ export default function useArticleForm(baseInstance) {
   const [tags, setTags] = useState("");   // Tags are in string format by default; must be converted into tag IDs
   const [notes, setNotes] = useState(baseInstance.notes);
 
-  useLayoutEffect(() => {
 
-      // Resolve tag names given their IDs
+    // Resolve tag names given their IDs
+  useLayoutEffect(() => {
     const resolvedTags = baseInstance.tags.map((id) => wm.getTagContainer().getItem(id));
     setTags(tagsToString(resolvedTags));
   }, []);
+
 
   const data = {
     id,
@@ -68,5 +69,5 @@ export default function useArticleForm(baseInstance) {
     actionCancel: closeModal  // closeModal is provided by the above context
   };
 
-  return {data, setters, actions};
+  return { data, setters, actions };
 }

@@ -10,7 +10,7 @@
  * 
  * @returns A JSON representing the action result.
  */
-const Result = (action, affectedItems = []) => {
+export const Result = (action, affectedItems = []) => {
   return {
     action: action,
     affectedItems: affectedItems
