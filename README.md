@@ -5,6 +5,17 @@ articles in useful ways.
 
 ## Development log
 
+### 10.6.2023
+Created the Word cloud -view with full functionalities. Also some bugfixes were made to other 
+views. For example, the removal of tags also results in them being removed from the articles that 
+are associated with them. Also the selection functionality present in the ArticleList-component
+was abstracted to a custom hook `useSelectables`. The functionality takes on a more abstract form 
+so that it can be deployed to any React-component.
+<br />
+<br />
+With this update, most of the core functionalities of ArticleSum. are finished. Next, the ability 
+to switch workspaces and, potentially, the theme will be added.
+
 ### 19.5.2023
 Finalized the functionalities of the Articles- and Tags-view. ArticleList is now more versatile 
 and allows the selection of articles using checkboxes whose visibility can be toggled via a prop.
