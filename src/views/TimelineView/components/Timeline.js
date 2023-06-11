@@ -53,6 +53,9 @@ export default function Timeline(props) {
 
     // Order articles according to their date
   useLayoutEffect(() => {
+    if(articles.length <= 0)
+    return;
+
       // Sort articles by their dates
     const sortedArticles = articles.sort((a1, a2) => compareDateStrings(a2[dateField], a1[dateField]));
     const originTimestamp = originDate.getTime();   // Milliseconds of the date of the first visible date on the timeline

@@ -3,12 +3,20 @@ import TagContainer from "./TagContainer";
 
 const fs = window.require("fs");
 
+export const Workspace = (counter, articles, tags) => {
+  return {
+    "id-counter": counter,
+    "articles": articles || {},
+    "tags": tags || {}
+  };
+};
+
 
 export default class WorkspaceManager {
   constructor() {
     this.articles = null;
     this.tags = null;
-    this.idCounter = -1;
+    this.idCounter = 0;
 
     this.workspacePath = "";
   }
@@ -17,14 +25,18 @@ export default class WorkspaceManager {
     return JSON.parse(fs.readFileSync(path));
   }
 
-  saveWorkspace() {
-    const ws = {
-      "id-counter": this.idCounter,
-      articles: this.articles.getItemArrayReference(),
-      tags: this.tags.getItemArrayReference()
-    };
+  saveWorkspace(path, workspace) {
+    const replacer = (key, value) => value ?? undefined;
+    fs.writeFileSync(path, JSON.stringify(workspace, replacer, 2));
+  }
 
-    fs.writeFileSync(this.workspacePath, JSON.stringify(ws, null, 2));
+  createWorkspace(path) {
+    if( !path )
+    return;
+
+    this.workspacePath = path;
+    this.saveWorkspace(this.workspacePath, Workspace(0));
+    this.openWorkspace(this.workspacePath);
   }
 
   openWorkspace(path) {
@@ -47,6 +59,7 @@ export default class WorkspaceManager {
   closeWorkspace() {
     this.articles = null;
     this.tags = null;
+    this.idCounter = -1;
 
     this.workspacePath = "";
   }
@@ -55,7 +68,8 @@ export default class WorkspaceManager {
     if( changes.affectedItems.length <= 0 )
     return;
     
-    this.saveWorkspace();
+    const ws = Workspace(this.idCounter, this.articles.getItemArrayReference(), this.tags.getItemArrayReference());
+    this.saveWorkspace(this.workspacePath, ws);
   }
 
   getArticleContainer() {

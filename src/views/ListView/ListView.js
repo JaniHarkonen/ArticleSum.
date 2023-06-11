@@ -17,7 +17,7 @@ export default function ListView() {
   const [articles, setArticles] = useState(wm.getArticleContainer().filterItems());
   const {
     selection: selectedArticles,
-    getSelection,
+    getSelectionIds,
     handleSelect,
     handleSelectAll,
     handleDeselectAll
@@ -26,7 +26,7 @@ export default function ListView() {
 
 
   const handleDelete = () => {
-    if( getSelection().length > 0 )
+    if( getSelectionIds().length > 0 )
     articleContainer.removeMany((article) => selectedArticles[article.id]);
   };
 

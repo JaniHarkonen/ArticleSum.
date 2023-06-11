@@ -8,10 +8,10 @@ import useModal from './hooks/modal/useModal';
 
 
 function App(props) {
-  const {workspaceManager, languageManager} = props;
+  const { workspaceManager, languageManager } = props;
   const [activeLanguage, setLanguage] = useState(languageManager.getActiveLanguage());
   const [activeTheme, setTheme] = useState(null);
-  const {displayedModal, popupModal, closeModal, isModalOpen} = useModal();
+  const { displayedModal, popupModal, closeModal, isModalOpen } = useModal();
 
     // Pass the language setter function to LanguageManager allowing
     // the LanguageManager.changeLanguage-method to update the React-
