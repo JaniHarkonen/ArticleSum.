@@ -19,7 +19,7 @@ export default function TagForm(props) {
         <Col><b>{lm.translate("forms.tag-form.name")}: </b></Col>
         <Col>
           <Form.Control
-            value={tagName}
+            value={tagName.toUpperCase()}
             onChange={(e) => setTagName(e.target.value)}
           />
         </Col>
