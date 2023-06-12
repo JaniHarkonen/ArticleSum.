@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+
 import App from './App';
 import LanguageManager from "./locales/LanguageManager";
 import Languages from './locales/Languages';

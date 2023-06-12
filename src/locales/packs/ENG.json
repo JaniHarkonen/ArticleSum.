@@ -8,7 +8,28 @@
     "list": "Articles",
     "tags": "Tags"
   },
+  "workspace-changer": {
+    "workspace": "Workspace",
+    "create": "Create",
+    "open": "Open"
+  },
+  "filesys-dialog": {
+    "workspace": {
+      "filter": "ArticleSum. workspaces",
+      "create": {
+        "title": "Create a new workspace",
+        "button": "Create"
+      },
+      "open": {
+        "title": "Open a workspace",
+        "button": "Open"
+      }
+    }
+  },
   "date": {
+    "day": "Day",
+    "month": "Month",
+    "year": "Year",
     "months": {
       "january": "January",
       "february": "February",
@@ -43,6 +64,19 @@
         "sunday": "sun"
       }
     }
+  },
+  "selection-controls": {
+    "select": "Select all",
+    "deselect": "De-select all",
+    "delete": "Delete"
+  },
+  "article-sort-controls": {
+    "sort-by": "Sort by"
+  },
+  "word-filter-form": {
+    "match-only": "Only include matching",
+    "match-filter": "Filter matching",
+    "filter": "Filter"
   },
   "list-view": {
     "listings-caption": "Articles",

@@ -16,7 +16,7 @@ export default function ArticleTag(props) {
       style={{ background: `rgb(${red}, ${green}, ${blue})` }}
       onClick={onClick}
     >
-      {tagName}
+      {tagName.toUpperCase()}
     </Badge>
   );
 }

@@ -30,6 +30,7 @@ export default function useTagForm(baseInstance) {
     });
 
     wm.getTagContainer().postItem(postTag);
+    closeModal();
   };
 
   const actionDelete = () => {
@@ -47,6 +48,8 @@ export default function useTagForm(baseInstance) {
 
       return Result(Container.ACTION_MODIFIED, [a]);
     });
+
+    closeModal();
   };
 
   const actions = {

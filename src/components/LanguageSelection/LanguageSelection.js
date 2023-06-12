@@ -27,7 +27,7 @@ export default function LanguageSelection() {
   };
 
   return (
-    <DropdownButton title={lm.translate("language")}>
+    <DropdownButton className="" title={lm.translate("language")}>
       {renderLanguageItems(LanguageManager.listAllLanguages())}
     </DropdownButton>
   );

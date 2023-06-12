@@ -45,7 +45,7 @@ export default function ArticleList(props) {
     groupedArticles = [allArticles];  // Otherwise, use a single page
 
     setArticles(groupedArticles);
-  }, []);
+  }, [allArticles]);
 
   const renderPageControls = () => {
     const articleGroup = articles[currentPage];

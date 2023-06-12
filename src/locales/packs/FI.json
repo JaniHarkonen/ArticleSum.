@@ -8,7 +8,28 @@
     "list": "Artikkelit",
     "tags": "Tagit"
   },
+  "workspace-changer": {
+    "workspace": "Työtila",
+    "create": "Luo uusi",
+    "open": "Avaa"
+  },
+  "filesys-dialog": {
+    "workspace": {
+      "filter": "ArticleSum. työtilat",
+      "create": {
+        "title": "Luo uusi työtila",
+        "button": "Luo"
+      },
+      "open": {
+        "title": "Avaa työtila",
+        "button": "Avaa"
+      }
+    }
+  },
   "date": {
+    "day": "Päivä",
+    "month": "Kuukausi",
+    "year": "Vuosi",
     "months": {
       "january": "Tammikuu",
       "february": "Helmikuu",
@@ -43,6 +64,19 @@
         "sunday": "su"
       }
     }
+  },
+  "selection-controls": {
+    "select": "Valitse kaikki",
+    "deselect": "Tyhjennä valinnat",
+    "delete": "Poista"
+  },
+  "article-sort-controls": {
+    "sort-by": "Järjestä"
+  },
+  "word-filter-form": {
+    "match-only": "Näytä vain osumat",
+    "match-filter": "Suodata osumat",
+    "filter": "Suodata"
   },
   "list-view": {
     "listings-caption": "Artikkelit",

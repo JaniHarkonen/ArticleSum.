@@ -1,27 +1,33 @@
-import Dropdown from "react-bootstrap/Dropdown";
 import { compareDateStrings } from "../../utils/sortComparisons";
+import ArticleSortControls, { ARTICLE_SORT_CRITERIAS } from "../ArticleSortControls/ArticleSortControls";
+
+export const SORT_CRITERIAS = {
+  publish: "publish",
+  read: "read"
+};
 
 
 export default function ArticleDataSortControls(props) {
   const articles = props.articles;
   const setArticles = props.setArticles || function(ars) {};
 
-  const handleSelect = (criteriaKey) => {
+
+  const handleCriteriaSelection = (criteriaKey) => {
     switch( criteriaKey )
     {
-      case "publish": setArticles([...articles].sort((a1, a2) => compareDateStrings(a1["publish-date"], a2["publish-date"]))); break;
-      case "read": setArticles([...articles].sort((a1, a2) => compareDateStrings(a1["read-date"], a2["read-date"]))); break;
+        // Sort by publish date
+      case ARTICLE_SORT_CRITERIAS["publish-date"]:
+        setArticles([...articles].sort((a1, a2) => compareDateStrings(a1["publish-date"], a2["publish-date"])));
+        break;
+
+        // Sort by read date
+      case ARTICLE_SORT_CRITERIAS["read-date"]:
+        setArticles([...articles].sort((a1, a2) => compareDateStrings(a1["read-date"], a2["read-date"]))); 
+        break;
     }
   };
 
-
   return (
-    <Dropdown onSelect={handleSelect}>
-      <Dropdown.Toggle>{"Sort by:"}</Dropdown.Toggle>
-      <Dropdown.Menu>
-        <Dropdown.Item eventKey={"publish"}>{"Publish date"}</Dropdown.Item>
-        <Dropdown.Item eventKey={"read"}>{"Read date"}</Dropdown.Item>
-      </Dropdown.Menu>
-    </Dropdown>
+    <ArticleSortControls onSelect={handleCriteriaSelection} />
   );
 }

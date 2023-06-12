@@ -5,6 +5,23 @@ articles in useful ways.
 
 ## Development log
 
+
+### 12.6.2023
+The functionalities for creating a new workspace as well as openining an existing one have now 
+been added. This required the inclusion of Electron's `dialog`-module, which provides native 
+system dialogs that can be displayed, for example, when selecting files. Additionally, 
+translations were also added to some of the components that didn't yet have them. Some bugs 
+were also fixed and a few new components were created to separate the article sorting 
+functionalities from the views using them (namely, TimelineView and ListView). The ability to 
+switch themes was not yet added, as it is considered to be closely related to the styling of 
+the HTML-elements which is also the subject of the next update.
+<br />
+<br />
+The development of this project is coming to a close, and so, few functionalities will be added 
+after this update. Next, the grahpical representation of ArticleSum. will be (almost) finalized 
+and the ability to switch themes will be added (unless it is too time consuming).
+
+
 ### 10.6.2023
 Created the Word cloud -view with full functionalities. Also some bugfixes were made to other 
 views. For example, the removal of tags also results in them being removed from the articles that 
@@ -25,7 +42,6 @@ Tags can be removed via the "Delete"-button on the Tags-tab.
 <br />
 Next, the development will focus on finalizing the functionalities of the Word cloud -tab. After 
 this, the GUI of the application will be perfected.
-
 
 ### 12.4.2023
 Timeline view has now been completely revamped. The initial design was needlessly elaborate, and 

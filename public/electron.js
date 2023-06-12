@@ -1,6 +1,8 @@
-const { app, BrowserWindow } = require("electron");
+const { app, BrowserWindow, ipcMain, dialog } = require("electron");
 const path = require("path");
 const url = require("url");
+//const { default: openFileSystemDialog } = require("../src/ipc/filesys/openFileSystemDialog");
+//const { default: saveFileSystemDialog } = require("../src/ipc/filesys/saveFileSystemDialog");
 
   // Create Electron-window
 function createWindow() {
@@ -42,4 +44,22 @@ app.on("window-all-closed", function () {
   if (process.platform !== "darwin") {
     app.quit();
   }
+});
+
+ipcMain.handle("open-filesys-dialog", async (event, settings) => {
+  return dialog.showOpenDialogSync(null, {
+    title: settings?.title || "",
+    buttonLabel: settings?.buttonLabel || "",
+    filters: settings?.filters || "",
+    properties: settings?.properties || []
+  });
+});
+
+ipcMain.handle("save-filesys-dialog", async (event, settings) => {
+  return dialog.showSaveDialogSync(null, {
+    title: settings?.title || "",
+    buttonLabel: settings?.buttonLabel || "",
+    filters: settings?.filters || "",
+    properties: settings?.properties || []
+  });
 });

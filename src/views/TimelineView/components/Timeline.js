@@ -5,13 +5,11 @@ import DateSlot from "./DateSlot/DateSlot";
 import usePannableView from "../../../hooks/mouse/usePannableView";
 import nmod from "../../../utils/nmod";
 import useResizeEffect from "../../../hooks/useResizeEffect";
-
 import { Point } from "../../../utils/geometry";
 import { Styles } from "../Timeline.styles";
 import { compareDateStrings } from "../../../utils/sortComparisons";
 import { DATE_INTERVAL_TYPES } from "../../../components/IntervalPicker/IntervalPicker";
 import { convertDatetimeStringToDefaultDate, getMonthFromDatetimeString, getMonthName, getYearFromDatetimeString } from "../../../utils/dates";
-import { capitalizeFirstLetter } from "../../../utils/stringUtils";
 
 export const DEFAULT_SETTINGS = {
   slotWidth: 250,
@@ -53,6 +51,9 @@ export default function Timeline(props) {
 
     // Order articles according to their date
   useLayoutEffect(() => {
+    if(articles.length <= 0)
+    return;
+
       // Sort articles by their dates
     const sortedArticles = articles.sort((a1, a2) => compareDateStrings(a2[dateField], a1[dateField]));
     const originTimestamp = originDate.getTime();   // Milliseconds of the date of the first visible date on the timeline
@@ -64,14 +65,14 @@ export default function Timeline(props) {
     let articleDatePrevious = sortedArticles[0][dateField]; // Date string of the previously iterated date
     let dateResolver = (article) => article[dateField];
 
-    switch( dateInterval.type )
+    switch( dateInterval )
     {
-      case DATE_INTERVAL_TYPES.month.type:
+      case DATE_INTERVAL_TYPES.month:
         dateResolver = (article) => getYearFromDatetimeString(article[dateField]) + "-" + getMonthFromDatetimeString(article[dateField]);
         articleDatePrevious = getYearFromDatetimeString(articleDatePrevious) + "-" + getMonthFromDatetimeString(articleDatePrevious);
         break;
 
-      case DATE_INTERVAL_TYPES.year.type:
+      case DATE_INTERVAL_TYPES.year:
         dateResolver = (article) => getYearFromDatetimeString(article[dateField]);
         articleDatePrevious = getYearFromDatetimeString(articleDatePrevious);
         break;
@@ -132,16 +133,16 @@ export default function Timeline(props) {
       const date = articlesByDate[0][dateField];
       let slotCaption = convertDatetimeStringToDefaultDate(date);
 
-      switch( dateInterval.type )
+      switch( dateInterval )
       {
           // By month: month.yyyy
-        case DATE_INTERVAL_TYPES.month.type:
+        case DATE_INTERVAL_TYPES.month:
           const month = getMonthName(parseInt(getMonthFromDatetimeString(date)));
           slotCaption = lm.translate("date.months." + month) + " " + getYearFromDatetimeString(date);
           break;
 
           // By year: yyyy
-        case DATE_INTERVAL_TYPES.year.type:
+        case DATE_INTERVAL_TYPES.year:
           slotCaption = getYearFromDatetimeString(date);
           break;
       }

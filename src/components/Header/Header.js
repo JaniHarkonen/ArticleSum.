@@ -1,7 +1,9 @@
-import { useContext } from "react";
 import Navbar from "react-bootstrap/Navbar";
-import { GlobalContext } from "../../context/GlobalContext";
+import { useContext } from "react";
+
 import LanguageSelection from "../LanguageSelection/LanguageSelection";
+import WorkspaceDropMenu from "../WorkspaceDropMenu/WorkspaceDropMenu";
+import { GlobalContext } from "../../context/GlobalContext";
 
 
 export default function Header() {
@@ -10,7 +12,10 @@ export default function Header() {
   return (
     <Navbar bg="dark" variant="dark">
       <Navbar.Brand>{lm.translate("app-name")}</Navbar.Brand>
-      <LanguageSelection />
+      <WorkspaceDropMenu />
+      <Navbar.Collapse className="justify-content-end me-2">
+        <LanguageSelection />
+      </Navbar.Collapse>
     </Navbar>
   );
 }

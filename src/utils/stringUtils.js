@@ -2,6 +2,10 @@ export const capitalizeFirstLetter = (string) => {
   return string[0].toUpperCase() + string.substring(1);
 };
 
+export const lowercaseFirstLetter = (string) => {
+  return string[0].toLowerCase() + string.substring(1);
+};
+
 export const kebabCaseToCamelCase = (string) => {
   string = string[0].toLowerCase() + string.substring(1);
   
