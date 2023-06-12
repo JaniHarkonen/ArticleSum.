@@ -43,6 +43,8 @@ export default function ListView() {
     );
   };
 
+  console.log(articles);
+
   return (
     <>
       {wrapAccordion(<ArticleFilterForm filterArticles={setArticles} />)}
@@ -53,9 +55,9 @@ export default function ListView() {
         articles={articles}
         setArticles={setArticles}
       />
-      <Button onClick={handleSelectAll}>{"select all"}</Button>
-      <Button onClick={handleDeselectAll}>{"de-select all"}</Button>
-      <Button onClick={handleDelete}>{"delete"}</Button>
+      <Button onClick={handleSelectAll}>{lm.translate("selection-controls.select")}</Button>
+      <Button onClick={handleDeselectAll}>{lm.translate("selection-controls.deselect")}</Button>
+      <Button onClick={handleDelete}>{lm.translate("selection-controls.delete")}</Button>
       <ArticleList
         defaultActiveKey="-1"
         articles={articles}

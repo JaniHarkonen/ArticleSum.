@@ -8,6 +8,24 @@
     "list": "Artikkelit",
     "tags": "Tagit"
   },
+  "workspace-changer": {
+    "workspace": "Työtila",
+    "create": "Luo uusi",
+    "open": "Avaa"
+  },
+  "filesys-dialog": {
+    "workspace": {
+      "filter": "ArticleSum. työtilat",
+      "create": {
+        "title": "Luo uusi työtila",
+        "button": "Luo"
+      },
+      "open": {
+        "title": "Avaa työtila",
+        "button": "Avaa"
+      }
+    }
+  },
   "date": {
     "months": {
       "january": "Tammikuu",
@@ -43,6 +61,14 @@
         "sunday": "su"
       }
     }
+  },
+  "selection-controls": {
+    "select": "Valitse kaikki",
+    "deselect": "Tyhjennä valinnat",
+    "delete": "Poista"
+  },
+  "article-sort-controls": {
+    "sort-by": "Järjestä"
   },
   "list-view": {
     "listings-caption": "Artikkelit",

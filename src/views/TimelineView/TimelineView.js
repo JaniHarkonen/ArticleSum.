@@ -1,36 +1,26 @@
 import { useContext, useState } from "react";
-import { GlobalContext } from "../../context/GlobalContext";
+
 import ArticleFilterForm from "../../components/ArticleFilterForm/ArticleFilterForm";
-import Dropdown from "react-bootstrap/Dropdown";
 import GotoPanel from "./components/GotoPanel/GotoPanel";
 import IntervalPicker, { DATE_INTERVAL_TYPES } from "../../components/IntervalPicker/IntervalPicker";
 import Timeline from "./components/Timeline";
+import ArticleSortControls, { ARTICLE_SORT_CRITERIAS } from "../../components/ArticleSortControls/ArticleSortControls";
+import { GlobalContext } from "../../context/GlobalContext";
 import wrapAccordion from "../../components/wrappers/wrapAccordion";
-
-const DISPLAY_CRITERIAS = {
-  publishDate: "publish-date",
-  readDate: "read-date"
-};
 
 
 export default function TimelineView() {
   const { workspaceManager: wm } = useContext(GlobalContext);
   const articleContainer = wm.getArticleContainer();
   const [articles, setArticles] = useState(articleContainer.filterItems());
-  const [displayCriteria, setDisplayCriteria] = useState(DISPLAY_CRITERIAS.publishDate);
+  const [displayCriteria, setDisplayCriteria] = useState(ARTICLE_SORT_CRITERIAS["publish-date"]);
   const [timelineOriginDate, setTimelineOriginDate] = useState(new Date());
   const [dateInterval, setDateInterval] = useState(DATE_INTERVAL_TYPES.year);
 
   return (
     <>
       {wrapAccordion(<ArticleFilterForm filterArticles={setArticles} />)}
-      <Dropdown onSelect={(criteriaKey) => setDisplayCriteria(criteriaKey)}>
-        <Dropdown.Toggle>{"Sort by: " + displayCriteria}</Dropdown.Toggle>
-        <Dropdown.Menu>
-          <Dropdown.Item eventKey={DISPLAY_CRITERIAS.publishDate}>{"Publish date"}</Dropdown.Item>
-          <Dropdown.Item eventKey={DISPLAY_CRITERIAS.readDate}>{"Read date"}</Dropdown.Item>
-        </Dropdown.Menu>
-      </Dropdown>
+      <ArticleSortControls onSelect={setDisplayCriteria} />
       <GotoPanel
         value={timelineOriginDate}
         onGoto={setTimelineOriginDate}
