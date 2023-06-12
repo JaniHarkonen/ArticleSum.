@@ -70,6 +70,11 @@
   "article-sort-controls": {
     "sort-by": "Järjestä"
   },
+  "word-filter-form": {
+    "match-only": "Näytä vain osumat",
+    "match-filter": "Suodata osumat",
+    "filter": "Suodata"
+  },
   "list-view": {
     "listings-caption": "Artikkelit",
     "listing": {

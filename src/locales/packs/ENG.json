@@ -70,6 +70,11 @@
   "article-sort-controls": {
     "sort-by": "Sort by"
   },
+  "word-filter-form": {
+    "match-only": "Only include matching",
+    "match-filter": "Filter matching",
+    "filter": "Filter"
+  },
   "list-view": {
     "listings-caption": "Articles",
     "listing": {
