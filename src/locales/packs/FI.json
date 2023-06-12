@@ -27,6 +27,9 @@
     }
   },
   "date": {
+    "day": "Päivä",
+    "month": "Kuukausi",
+    "year": "Vuosi",
     "months": {
       "january": "Tammikuu",
       "february": "Helmikuu",

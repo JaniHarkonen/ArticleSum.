@@ -27,6 +27,9 @@
     }
   },
   "date": {
+    "day": "Day",
+    "month": "Month",
+    "year": "Year",
     "months": {
       "january": "January",
       "february": "February",
