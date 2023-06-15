@@ -1,7 +1,10 @@
+import Container from "react-bootstrap/Container";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
-import { workspaceTabs } from "./workspaceTabs";
+
 import { useContext, useState } from "react";
+
+import { workspaceTabs } from "./workspaceTabs";
 import { GlobalContext } from "../../context/GlobalContext";
 import { mapElements } from "../../utils/mapElements";
 
@@ -10,6 +13,7 @@ export default function Workspace() {
   const defaultTab = workspaceTabs[0];
   const [activeTab, setActiveTab] = useState(defaultTab);
   const { languageManager: lm } = useContext(GlobalContext);
+
 
   const renderTabs = (tabs) => {
     return mapElements(
@@ -24,7 +28,12 @@ export default function Workspace() {
             eventKey={id}
             title={lm.translate("navigation." + id)}
           >
-            <TabElement />
+            <Container
+              className="h-100 py-3"
+              style={{ overflowY: "auto" }}
+            >
+              <TabElement />
+            </Container>
           </Tab>
         );
       },

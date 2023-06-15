@@ -71,7 +71,7 @@
     "delete": "Poista"
   },
   "article-sort-controls": {
-    "sort-by": "Järjestä"
+    "sort-by": "Järjestys"
   },
   "word-filter-form": {
     "match-only": "Näytä vain osumat",
@@ -89,7 +89,8 @@
   },
   "control-panels": {
     "controls": {
-      "add": "Lisää"
+      "add": "Lisää",
+      "delete": "Poista"
     },
     "article": {
       "description": "Lisää artikkeli"
@@ -111,8 +112,8 @@
     "article-filter-form": {
       "id": "Artikkelin ID",
       "title": "Otsikko",
-      "publish-date": "Julkaisupäivämäärä",
-      "read-date": "Lukupäivämäärä",
+      "publish-date": "Julkaistu",
+      "read-date": "Luettu",
       "source": "Lähde",
       "tag": "Tagi",
       "note": "Muistiinpanot"

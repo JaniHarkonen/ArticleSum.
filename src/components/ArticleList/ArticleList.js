@@ -87,11 +87,17 @@ export default function ArticleList(props) {
 
   return (
     <>
-      {pageSettings.allowPages && renderPageControls()}
-
-      <Accordion defaultActiveKey={defaultActiveKey}>
-        {renderArticleListings()}
-      </Accordion>
+      <div className={pageSettings.allowPages ? "mb-3" : ""}>
+        <Accordion defaultActiveKey={defaultActiveKey}>
+          {renderArticleListings()}
+        </Accordion>
+      </div>
+      {
+        pageSettings.allowPages &&
+        <div className="d-flex justify-content-center">
+          {renderPageControls()}
+        </div>
+      }
     </>
   );
 }

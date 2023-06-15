@@ -1,19 +1,29 @@
 import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
 import { useContext, useState } from "react";
 
-import { GlobalContext } from "../../context/GlobalContext";
 import ArticleControlPanel from "../../components/ArticleControlPanel/ArticleControlPanel";
+import ArticleFilterForm from "../../components/ArticleFilterForm/ArticleFilterForm";
 import ArticleDataSortControls from "../../components/ArticleDateSortControls/ArticleDataSortControls";
 import ArticleList from "../../components/ArticleList/ArticleList";
-import ArticleFilterForm from "../../components/ArticleFilterForm/ArticleFilterForm";
 import SelectableElement from "../../components/SelectableElement/SelectableElement";
+
+import { GlobalContext } from "../../context/GlobalContext";
 import wrapAccordion from "../../components/wrappers/wrapAccordion";
 import useSelectables from "../../hooks/form/useSelectables";
+import createButtons from "../../utils/createButtons";
+
+export const DEFAULT_SETTINGS = {
+  articleList: {
+    pageCapacity: 25
+  }
+};
 
 
 export default function ListView() {
   const { languageManager: lm, workspaceManager: wm } = useContext(GlobalContext);
-  const articleContainer = wm.getArticleContainer();
   const [articles, setArticles] = useState(wm.getArticleContainer().filterItems());
   const {
     selection: selectedArticles,
@@ -24,11 +34,6 @@ export default function ListView() {
 
   } = useSelectables({ items: articles, idField: "id" });
 
-
-  const handleDelete = () => {
-    if( getSelectionIds().length > 0 )
-    articleContainer.removeMany((article) => selectedArticles[article.id]);
-  };
 
   const ListingSelectionWrapper = (Listing, article) => {
     const articleId = article.id;
@@ -43,30 +48,44 @@ export default function ListView() {
     );
   };
 
-  console.log(articles);
-
   return (
     <>
-      {wrapAccordion(<ArticleFilterForm filterArticles={setArticles} />)}
-      <ArticleControlPanel />
-      <br />
-      <h2>{lm.translate("list-view.listings-caption")}</h2>
-      <ArticleDataSortControls
-        articles={articles}
-        setArticles={setArticles}
-      />
-      <Button onClick={handleSelectAll}>{lm.translate("selection-controls.select")}</Button>
-      <Button onClick={handleDeselectAll}>{lm.translate("selection-controls.deselect")}</Button>
-      <Button onClick={handleDelete}>{lm.translate("selection-controls.delete")}</Button>
-      <ArticleList
-        defaultActiveKey="-1"
-        articles={articles}
-        pageSettings={{
-          allowPages: true,
-          pageCapacity: 100
-        }}
-        ListingWrapper={ListingSelectionWrapper}
-      />
+      <Row>
+        {wrapAccordion(<ArticleFilterForm filterArticles={setArticles} />)}
+      </Row>
+      <Row>
+        <Col lg="5" className="ms-2 me-2 mt-2">
+          {createButtons([
+            { className: "mt-1 me-1", onClick: handleSelectAll, caption: lm.translate("selection-controls.select") },
+            { className: "mt-1 me-1", onClick: handleDeselectAll, caption: lm.translate("selection-controls.deselect") }
+          ])}
+        </Col>
+      </Row>
+      <Row className="mb-2">
+        <Col className="ms-2 me-2 mt-1 mb-1">
+          <ArticleControlPanel selection={{
+            articles: selectedArticles,
+            getSelectionIds
+          }} />
+        </Col>
+        <Col className="d-flex justify-content-end align-items-end mb-1">
+          <ArticleDataSortControls
+            articles={articles}
+            setArticles={setArticles}
+          />
+        </Col>
+      </Row>
+      <Row>
+        <ArticleList
+          defaultActiveKey="-1"
+          articles={articles}
+          pageSettings={{
+            allowPages: true,
+            pageCapacity: DEFAULT_SETTINGS.articleList.pageCapacity
+          }}
+          ListingWrapper={ListingSelectionWrapper}
+        />
+      </Row>
     </>
   );
 }

@@ -89,7 +89,8 @@
   },
   "control-panels": {
     "controls": {
-      "add": "Add"
+      "add": "Add",
+      "delete": "Delete"
     },
     "article": {
       "description": "Add an article"

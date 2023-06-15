@@ -20,7 +20,7 @@ export default function WorkspaceDropMenu() {
       ...FilesysDialogSettings(),
       title: lm.translate(tDialog + "create.title"),
       buttonLabel: lm.translate(tDialog + "create.button"),
-      filters: [{ name: tDialog + "create.filter", extensions: ["asum"] }]
+      filters: [{ name: tDialog + "filter", extensions: ["asum"] }]
     }, (path) => {
       if( !path || path === "" )
       return;
@@ -37,7 +37,7 @@ export default function WorkspaceDropMenu() {
       ...FilesysDialogSettings(),
       title: lm.translate(tDialog + "open.title"),
       buttonLabel: lm.translate(tDialog + "open.button"),
-      filters: [{ name: lm.translate(tDialog + "open.filter"), extensions: ["asum"] }]
+      filters: [{ name: lm.translate(tDialog + "filter"), extensions: ["asum"] }]
     }, (path) => {
       if( !path )
       return;

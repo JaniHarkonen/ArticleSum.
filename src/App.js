@@ -1,10 +1,16 @@
-import './App.css';
+import Modal from "react-bootstrap/Modal";
+import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import { useState } from 'react';
+
 import Header from './components/Header/Header';
 import Workspace from './components/Workspace/Workspace';
+
 import { GlobalContext } from './context/GlobalContext';
-import { useState } from 'react';
-import Modal from "react-bootstrap/Modal";
 import useModal from './hooks/modal/useModal';
+
+import './App.css';
 
 
 function App(props) {
@@ -39,7 +45,9 @@ function App(props) {
         >
           {displayedModal}
         </Modal>
-        <Workspace />
+        <div className="App-workspace-container">
+          <Workspace />
+        </div>
       </div>
     </GlobalContext.Provider>
   );
