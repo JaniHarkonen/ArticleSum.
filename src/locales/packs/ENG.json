@@ -74,9 +74,14 @@
     "sort-by": "Sort by"
   },
   "word-filter-form": {
+    "label": "Quick word filter",
     "match-only": "Only include matching",
     "match-filter": "Filter matching",
-    "filter": "Filter"
+    "filter": "Filter",
+    "clear": "Clear"
+  },
+  "word-cloud-view": {
+    "cloud-empty-message": "No words found for year"
   },
   "list-view": {
     "listings-caption": "Articles",

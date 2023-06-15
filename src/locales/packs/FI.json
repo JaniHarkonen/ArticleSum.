@@ -74,9 +74,14 @@
     "sort-by": "Järjestys"
   },
   "word-filter-form": {
-    "match-only": "Näytä vain osumat",
-    "match-filter": "Suodata osumat",
-    "filter": "Suodata"
+    "label": "Pikasuodatin",
+    "match-only": "Näytä vain sanat",
+    "match-filter": "Suodata sanat",
+    "filter": "Suodata",
+    "clear": "Tyhjennä"
+  },
+  "word-cloud-view": {
+    "cloud-empty-message": "Sanoja ei löytynyt vuodelle"
   },
   "list-view": {
     "listings-caption": "Artikkelit",

@@ -18,9 +18,3 @@
   width: 100%;
   height: calc(100% - 56px);
 }
-
-/* THIS MAKES THE BOOTSTRAP TABS FILL THE HEIGHT OF THE SCREEN */
-/*.tab-pane {
-  height: 100%;
-  flex-grow: 1;
-}*/
