@@ -30,7 +30,10 @@ export default function Workspace() {
           >
             <Container
               className="h-100 py-3"
-              style={{ overflowY: "auto" }}
+              style={{
+                overflowY: "auto",
+                overflowX: "hidden"
+              }}
             >
               <TabElement />
             </Container>

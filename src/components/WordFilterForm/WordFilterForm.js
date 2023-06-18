@@ -47,7 +47,9 @@ export default function WordFilterForm(props) {
 
   return (
     <Form>
-      <Form.Label>{lm.translate("word-filter-form.label")}:</Form.Label>
+      <Form.Label>
+        {lm.translate("word-filter-form.label")}:
+      </Form.Label>
       <Form.Control
         value={wordString}
         onChange={(e) => setWordString(e.target.value)}

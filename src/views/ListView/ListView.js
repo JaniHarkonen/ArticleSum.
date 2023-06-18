@@ -68,7 +68,7 @@ export default function ListView() {
             getSelectionIds
           }} />
         </Col>
-        <Col className="d-flex justify-content-end align-items-end mb-1">
+        <Col className="d-flex justify-content-end align-items-end mb-1 me-2">
           <ArticleDataSortControls
             articles={articles}
             setArticles={setArticles}

@@ -1,6 +1,8 @@
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
-import { useContext } from "react";
+
+import { useContext, useState } from "react";
+
 import { GlobalContext } from "../../context/GlobalContext";
 
 export const DATE_INTERVAL_TYPES = {
@@ -12,6 +14,7 @@ export const DATE_INTERVAL_TYPES = {
 
 export default function IntervalPicker(props) {
   const onChange = props.onChange;
+  const value = props.value;
   
   const { languageManager: lm } = useContext(GlobalContext);
 
@@ -22,14 +25,15 @@ export default function IntervalPicker(props) {
   ];
 
 
-  const renderControls = () => {
-    return CONTROLS.map((type) => <Button onClick={() => onChange(type)}>{lm.translate("date." + type)}</Button>);
-  };
-
-
-  return (
-    <Col>
-      {renderControls()}
-    </Col>
-  );
+  return CONTROLS.map((type) => {
+    return (
+      <Button
+        className="me-1 mt-1"
+        variant={(value === type) ? "primary" : "secondary"}
+        onClick={() => onChange(type)}
+      >
+        {lm.translate("date." + type)}
+      </Button>
+    );
+  });
 }

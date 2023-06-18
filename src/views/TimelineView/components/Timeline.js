@@ -32,8 +32,8 @@ export default function Timeline(props) {
   const dateInterval = props.dateInterval || DEFAULT_SETTINGS.dateInterval; // The interval type according to which the date slots will be constructed (day, month, year)
 
   const [orderedArticles, setOrderedArticles] = useState(DEFAULT_SETTINGS.orderedArticles); // Arrays of articles grouped by date
-  const {viewPosition, setConstraints} = usePannableView({
-    position: Point(slotWidth - 1, 0)
+  const { viewPosition, setConstraints, moveView } = usePannableView({
+    position: Point(/*slotWidth - 1*/0, 0)
   });
   const [numberOfSlots, setNumberOfSlots] = useState(0);  // Number of slots displayed in the timeline
   const [articleRenditionStartIndex, setArticleRenditionStartIndex] = useState(-1); // Index of the article group in orderedArticles to start rendering the timeline from
@@ -51,7 +51,7 @@ export default function Timeline(props) {
 
     // Order articles according to their date
   useLayoutEffect(() => {
-    if(articles.length <= 0)
+    if( articles.length <= 0 )
     return;
 
       // Sort articles by their dates
@@ -61,7 +61,7 @@ export default function Timeline(props) {
       // Filter and order articles into arrays by date
     const filteredArticles = [];  // Contains arrays of articles grouped a shared date
     let articlesInDate = [];      // Articles sharing the currently iterated date
-    let renditionStartIndex = -1; // Index of filteredArticles from which to start rendering the timeline
+    let renditionStartIndex = 0; // Index of filteredArticles from which to start rendering the timeline
     let articleDatePrevious = sortedArticles[0][dateField]; // Date string of the previously iterated date
     let dateResolver = (article) => article[dateField];
 
@@ -82,15 +82,15 @@ export default function Timeline(props) {
     for( let article of sortedArticles )
     {
       const articleDate = dateResolver(article); // Date string of the currently iterated article (see dateField above)
-      const articleDateTimestamp = new Date(article[dateField]);  // Timestamp of the article's date
+      const articleDateTimestamp = (new Date(article[dateField])).getTime();  // Timestamp of the article's date
 
         // Exclude articles with no date
-      if( !articleDate )
+      if( !articleDate || articleDate === "" || articleDate === "-" )
       continue;
 
         // Determine the index from which to start rendering the timeline
-      if( renditionStartIndex < 0 && articleDateTimestamp >= originTimestamp )
-      renditionStartIndex = filteredArticles.length + 1;
+      /*if( renditionStartIndex < 0 && articleDateTimestamp >= originTimestamp )
+      renditionStartIndex = filteredArticles.length + 1;*/
 
         // New date encountered
       if( articleDate !== articleDatePrevious )
@@ -109,16 +109,24 @@ export default function Timeline(props) {
 
     setOrderedArticles(filteredArticles);
     setArticleRenditionStartIndex(renditionStartIndex);
-
     setConstraints({
-      left: slotWidth,
-      right: (renditionStartIndex + 2) * slotWidth - 1
+      left: 0,
+      //left: slotWidth,
+      //right: (renditionStartIndex + 2) * slotWidth - 1
+      right: filteredArticles.length * slotWidth - 1
     });
-  }, [articles, originDate, dateField, dateInterval]);
+    moveView(Point(0, 0));
+  }, [
+    articles,
+    originDate,
+    dateField,
+    dateInterval
+  ]);
 
   const renderArticleSlots = (dateField) => {
     let slots = [];   // Contains all the SlotContainer elements
-    const startIndex = Math.max(0, articleRenditionStartIndex - Math.floor((viewPosition.x - slotWidth) / slotWidth)); // Index of the article from which to start (offset)
+    //const startIndex = Math.max(0, articleRenditionStartIndex - Math.floor((viewPosition.x - slotWidth) / slotWidth)); 
+    const startIndex = Math.max(0, orderedArticles.length - Math.floor(viewPosition.x / slotWidth) - 1); // Index of the article from which to start (offset)
     const endIndex = Math.min(orderedArticles.length, startIndex + numberOfSlots);  // Index of the article where to stop rendering the slots
 
     for( let i = startIndex; i < endIndex; i++ )
@@ -167,7 +175,8 @@ export default function Timeline(props) {
     <>
       <Styles.TimelineContainer id={ELEMENT_ID.timelineContainer}>
         <Styles.SlotCarouselContainer style={{
-          left: (nmod(viewPosition.x, slotWidth) - slotWidth) + "px"
+          left: (nmod(viewPosition.x, slotWidth) - slotWidth) + "px",
+          width: (numberOfSlots * slotWidth) + "px"
         }}>
           {renderArticleSlots(dateField)}
         </Styles.SlotCarouselContainer>

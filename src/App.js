@@ -34,7 +34,10 @@ function App(props) {
         closeModal: closeModal
       }}
     >
-      <div className="App">
+      <div
+        id="App"
+        className="App"
+      >
         <Header />
         <Modal
           size="lg"
