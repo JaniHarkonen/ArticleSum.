@@ -96,6 +96,9 @@ export default function WordCloudView() {
             type="number"
             value={parseInt(targetYear)}
             onChange={(e) => setTargetYear(e.target.value)}
+            style={{
+              width: "50%"
+            }}
           />
         </div>
       </Row>
