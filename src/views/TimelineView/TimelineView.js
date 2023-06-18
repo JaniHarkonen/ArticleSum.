@@ -27,12 +27,15 @@ export default function TimelineView() {
       <Row>
         {wrapAccordion(<ArticleFilterForm filterArticles={setArticles} />)}
       </Row>
-      {/*<Row>
-        <GotoPanel
-          value={timelineOriginDate}
-          onGoto={setTimelineOriginDate}
-        />
-  </Row>*/}
+      <Row className="mt-2">
+        <Col>
+          <GotoPanel
+            value={timelineOriginDate}
+            onGoto={setTimelineOriginDate}
+          />
+        </Col>
+        <Col />
+      </Row>
       <Row className="mb-2">
         <Col className="mt-1">
           <IntervalPicker

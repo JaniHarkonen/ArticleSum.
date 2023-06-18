@@ -80,6 +80,10 @@
     "filter": "Filter",
     "clear": "Clear"
   },
+  "goto-panel": {
+    "caption": "Goto date",
+    "goto-button": "Goto"
+  },
   "word-cloud-view": {
     "cloud-empty-message": "No words found for year"
   },

@@ -80,6 +80,10 @@
     "filter": "Suodata",
     "clear": "Tyhjennä"
   },
+  "goto-panel": {
+    "caption": "Etsi päivämäärä",
+    "goto-button": "Etsi"
+  },
   "word-cloud-view": {
     "cloud-empty-message": "Sanoja ei löytynyt vuodelle"
   },
