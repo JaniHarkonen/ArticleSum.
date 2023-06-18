@@ -41,3 +41,10 @@ export const getMonthFromDatetimeString = (datetimeString) => {
 export const getMonthName = (month) => {
   return MONTHS[month - 1];
 };
+
+export const isDatetimeStringValid = (datetimeString) => {
+  if( !datetimeString || typeof datetimeString !== "string" || datetimeString === "" )
+  return false;
+
+  return /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}Z/.test(datetimeString);
+};

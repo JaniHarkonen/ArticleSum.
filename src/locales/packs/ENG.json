@@ -65,6 +65,10 @@
       }
     }
   },
+  "article-list": {
+    "warning": "Article has missing information"
+  }
+  ,
   "selection-controls": {
     "select": "Select all",
     "deselect": "De-select all",

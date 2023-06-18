@@ -1,11 +1,14 @@
 import Accordion from "react-bootstrap/Accordion";
 import PageControlPanel from "../PageControlPanel/PageControlPanel";
+
+import { useContext, useEffect, useState } from "react";
 import useFormModal from "../../hooks/modal/useFormModal";
-import { useEffect, useState } from "react";
 
 import ArticleListing from "../ArticleListing/ArticleListing";
+
+import { GlobalContext } from "../../context/GlobalContext";
 import createArticlePopup from "../../modals/create/article/createArticlePopup";
-import { Style } from "./ArticleList.styles";
+import { checkArticleIssues } from "../../model/components/Article";
 
 
 export const DEFAULT_SETTINGS = {
@@ -23,10 +26,11 @@ export default function ArticleList(props) {
   const allArticles = props.articles;
   const ListingWrapper = props.ListingWrapper || DEFAULT_SETTINGS.ListingWrapper;
   const pageSettings = props.pageSettings || DEFAULT_SETTINGS.pageSettings;
-  const { popup } = useFormModal();
 
   const [currentPage, setCurrentPage] = useState(0);
   const [articles, setArticles] = useState([]);
+  const { popup } = useFormModal();
+  const { languageManager: lm } = useContext(GlobalContext);
 
     // Arranges all the available articles into different pages
   useEffect(() => {
@@ -68,6 +72,12 @@ export default function ArticleList(props) {
     const articleGroup = articles[currentPage] || [];
 
     return articleGroup.map((item) => {
+      const issues = checkArticleIssues(item);
+      let warning = null;
+
+      if( issues.hasIssues )
+      warning = lm.translate("article-list.warning") + " (" + issues.issueCount + ")";
+
       return (
         ListingWrapper(
           <ArticleListing
@@ -75,6 +85,7 @@ export default function ArticleList(props) {
             eventKey={"" + item.id}
             articleTitle={item.title}
             articleSource={item.source}
+            warning={warning}
             actions={{
               onEdit: () => popup(createArticlePopup(item))
             }}

@@ -65,6 +65,9 @@
       }
     }
   },
+  "article-list": {
+    "warning": "Artikkelin tiedot ovat puutteelliset"
+  },
   "selection-controls": {
     "select": "Valitse kaikki",
     "deselect": "Tyhjennä valinnat",
