@@ -48,3 +48,10 @@ export const isDatetimeStringValid = (datetimeString) => {
 
   return /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}Z/.test(datetimeString);
 };
+
+/*export const isDefaultDateValid = (defaultDate) => {
+  if( !defaultDate || typeof defaultDate !== "string" || defaultDate === "" )
+  return false;
+
+  return /\d{2}/.test(defaultDate);
+};*/

@@ -21,3 +21,13 @@ export const kebabCaseToCamelCase = (string) => {
 export const renderStringOrEmptyFiller = (string) => {
   return (!string || string === "") ? <>&nbsp;</> : <>{string}</>;
 }
+
+export const numberOfCharOccurrences = (string, character) => {
+  let occurrences = 0;
+  
+  for( let c of string )
+  if( c === character )
+  occurrences++;
+
+  return occurrences;
+};

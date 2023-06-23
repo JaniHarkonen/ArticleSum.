@@ -1,10 +1,12 @@
-import { useContext } from "react";
-import { GlobalContext } from "../../context/GlobalContext";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Accordion from "react-bootstrap/Accordion";
+
+import { useContext } from "react";
+
+import { GlobalContext } from "../../context/GlobalContext";
 
 
 export default function FilterForm(props) {
@@ -20,7 +22,7 @@ export default function FilterForm(props) {
         <Accordion.Header><h2>{lm.translate(localeCategory + "caption")}</h2></Accordion.Header>
         <Accordion.Body>
           {children}
-          <Row className="align-items-center">
+          <Row className="w-50">
             <Col>
               <Button
                 className="me-auto"
