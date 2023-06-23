@@ -306,45 +306,69 @@ const parseDateFilter = (dateString) => {
   return result;
 };
 
-export const filterArticle = (article, filter) => {
-
-  const parseAndTestFilter = (target, filter, parser) => {
-    if( !filter || filter === "" )
-    return true;
-
-    const parsedFilter = parser(filter);
-    if( !parsedFilter.failed )
-    {
-      for( let testFilter of parsedFilter.filters )
-      {
-        if( testFilter(target) )
-        return true;
-      }
-    }
-
-    return false;
-  };
-
-  const testTagsFilter = (target, filter) => {
-    if( !filter || filter.length === 0 )
-    return true;
-
-    for( let tag of filter )
+const parseTagFilter = (tags) => {
+  const result = Result();
+  result.filters.push((target) => {
+    for( let tag of tags )
     {
       if( target.includes(tag) )
       return true;
     }
 
     return false;
+  });
+
+  return result;
+};
+
+const createSkippedFilter = () => {
+  const result = Result();
+  result.filters.push((target) => true);
+
+  return result;
+};
+
+export const parseFilter = (filterStrings) => {
+
+  const parseOrCreateSkipper = (filterString, parse) => {
+    if( !filterString || filterString === "" )
+    return createSkippedFilter();
+    else
+    return parse(filterString);
   };
 
+  return {
+    id: parseOrCreateSkipper(filterStrings.id, parseKeywordFilter),
+    title: parseOrCreateSkipper(filterStrings.title, parseKeywordFilter),
+    publishDate: parseOrCreateSkipper(filterStrings.publishDate, parseDateFilter),
+    readDate: parseOrCreateSkipper(filterStrings.readDate, parseDateFilter),
+    source: parseOrCreateSkipper(filterStrings.source, parseKeywordFilter),
+    tags: parseOrCreateSkipper(filterStrings.tags, parseTagFilter),
+    notes: parseOrCreateSkipper(filterStrings.notes, parseKeywordFilter)
+  };
+};
+
+const testFilter = (target, parsedFilter) => {
+  if( parsedFilter.failed === false )
+  {
+    for( let test of parsedFilter.filters )
+    {
+      if( test(target) )
+      return true;
+    }
+  }
+
+  return false;
+};
+
+export const filterArticle = (article, parsedFilter) => {
   return (
-    parseAndTestFilter(article.id, filter.id, parseKeywordFilter) &&
-    parseAndTestFilter(article.title, filter.title, parseKeywordFilter) &&
-    parseAndTestFilter(Date.parse(article["publish-date"]), filter.publishDate, parseDateFilter) &&
-    parseAndTestFilter(Date.parse(article["read-date"]), filter.readDate, parseDateFilter) &&
-    parseAndTestFilter(article.source, filter.source, parseKeywordFilter) &&
-    testTagsFilter(article.tags, filter.tags) &&
-    parseAndTestFilter(article.notes, filter.notes, parseKeywordFilter)
+    testFilter(article.id, parsedFilter.id) &&
+    testFilter(article.title, parsedFilter.title) &&
+    testFilter(article["publish-date"], parsedFilter.publishDate) &&
+    testFilter(article["read-date"], parsedFilter.readDate) &&
+    testFilter(article.source, parsedFilter.source) &&
+    testFilter(article.tags, parsedFilter.tags) &&
+    testFilter(article.notes, parsedFilter.notes)
   );
 };

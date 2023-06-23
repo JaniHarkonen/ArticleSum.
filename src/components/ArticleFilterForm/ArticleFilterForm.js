@@ -5,7 +5,7 @@ import ArticleFilters from "../../forms/FilterForm/ArticleFilterForm/ArticleFilt
 import FilterForm from "../../forms/FilterForm/FilterForm";
 import { GlobalContext } from "../../context/GlobalContext";
 import { Article } from "../../model/components/Article";
-import { filterArticle } from "../../forms/FilterForm/filters";
+import { filterArticle, parseFilter, parseFilterString } from "../../forms/FilterForm/filters";
 
 
 export default function ArticleFilterForm(props) {
@@ -24,7 +24,8 @@ export default function ArticleFilterForm(props) {
       tags: tagIds
     };
 
-    filterArticles(wm.getArticleContainer().filterItems((article) => filterArticle(article, filters)));
+    const parsedFilters = parseFilter(filters);
+    filterArticles(wm.getArticleContainer().filterItems((article) => filterArticle(article, parsedFilters)));
   };
 
   return (
