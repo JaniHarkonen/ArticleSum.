@@ -19,7 +19,9 @@
       "publish-date": "2005-09-11T00:00Z",
       "read-date": "2001-09-09T00:00Z",
       "source": "www.youtube.com",
-      "tags": [],
+      "tags": [
+        "27"
+      ],
       "notes": "he didn't do it xD"
     },
     "3": {
@@ -199,7 +201,7 @@
     },
     "27": {
       "tagId": "27",
-      "name": "DEED :(",
+      "name": "DEED:(",
       "color": {
         "r": 0,
         "g": 138,

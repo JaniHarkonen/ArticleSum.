@@ -17,7 +17,10 @@ export default function ArticleListing(props) {
   const { languageManager: lm } = useContext(GlobalContext);
 
   return (
-    <Accordion.Item eventKey={eventKey}>
+    <Accordion.Item
+      className="mt-1"
+      eventKey={eventKey}
+    >
       <Accordion.Header>
         {
           warning &&
@@ -32,7 +35,10 @@ export default function ArticleListing(props) {
       </Accordion.Header>
       <Accordion.Body>
         {articleSource}
-        <Button onClick={() => actions.onEdit()}>
+        <Button
+          className="ms-2"
+          onClick={() => actions.onEdit()}
+        >
           {lm.translate("list-view.listing.open")}
         </Button>
       </Accordion.Body>

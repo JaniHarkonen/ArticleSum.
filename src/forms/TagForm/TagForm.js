@@ -16,14 +16,19 @@ export default function TagForm(props) {
   return (
     <Form>
       <Row>
-        <Col><b>{lm.translate("forms.tag-form.name")}: </b></Col>
+        <Col
+          className="d-flex align-items-center"
+          xs="2"
+        >
+          <b>{lm.translate("forms.tag-form.name")}: </b>
+        </Col>
         <Col>
           <Form.Control
             value={tagName.toUpperCase()}
             onChange={(e) => setTagName(e.target.value)}
           />
         </Col>
-        <Col>
+        <Col className="d-flex align-items-center">
           <input
             type="color"
             value={"#" + rgbToHex(r, g, b)}
