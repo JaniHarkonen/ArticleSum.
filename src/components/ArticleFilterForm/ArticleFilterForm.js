@@ -28,11 +28,15 @@ export default function ArticleFilterForm(props) {
     filterArticles(wm.getArticleContainer().filterItems((article) => filterArticle(article, parsedFilters)));
   };
 
+  const handleClearFilters = () => {
+    filterArticles(wm.getArticleContainer().filterItems());
+  };
+
   return (
     <FilterForm
       actions={{
         apply: handleApplyFilters,
-
+        clear: handleClearFilters
       }}
     >
       <ArticleFilters

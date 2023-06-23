@@ -57,15 +57,17 @@ export default function ArticleFilters(props) {
 
       return (
         <Form.Group
+          className="mt-1"
           key={key}
           as={Row}
         >
-          <Form.Label 
-            column
-          >
+          <Form.Label column>
             <b>{lm.translate(articleFieldToLocaleField(filter))}:</b>
           </Form.Label>
-          <Col sm="10">
+          <Col
+            className="d-flex align-items-center"
+            sm="10"
+          >
             {controlElement}
           </Col>
         </Form.Group>

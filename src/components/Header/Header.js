@@ -14,7 +14,9 @@ export default function Header() {
       bg="dark"
       variant="dark"
     >
-      <Navbar.Brand>{lm.translate("app-name")}</Navbar.Brand>
+      <Navbar.Brand className="ms-2">
+        {lm.translate("app-name")}
+      </Navbar.Brand>
       <Navbar.Collapse className="me-2">
         <WorkspaceDropMenu />
       </Navbar.Collapse>
