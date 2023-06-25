@@ -9,6 +9,10 @@ const LinkContainer = styled.div`
   position: relative;
   display: inline-block;
   margin-left: 5px;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const LinkPopupButton = styled.button`
@@ -37,10 +41,15 @@ const SourceContainer = styled.div`
   position: relative;
 `;
 
+const EditableTextPlaceholder = styled.span`
+  color: #CCCCCC;
+`;
+
 export const Styles = {
   ItemIdContainer,
   LinkContainer,
   LinkPopupButton,
   LinkPopupIcon,
-  SourceContainer
+  SourceContainer,
+  EditableTextPlaceholder
 };

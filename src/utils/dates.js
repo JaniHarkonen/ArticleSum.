@@ -24,6 +24,14 @@ export const convertDefaultDateToDatetimeString = (defaultDate) => {
   return dateComponents[2] + "-" + dateComponents[1].padStart(2, "0") + "-" + dateComponents[0].padStart(2, "0") + "T00:00Z";
 };
 
+export const convertDateToDatetimestring = (date) => {
+  const year = "" + date.getFullYear();
+  const month = date.getMonth();
+  const day = date.getDate();
+
+  return year + "-" + (month > 9 ? "" : "0") + (month + 1) + "-" + ((day > 9 ? "" : "0") + day) + "T00:00Z";
+};
+
 export const getYearFromDatetimeString = (datetimeString) => {
   if( !datetimeString || datetimeString === "" )
   return datetimeString;
@@ -48,10 +56,3 @@ export const isDatetimeStringValid = (datetimeString) => {
 
   return /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}Z/.test(datetimeString);
 };
-
-/*export const isDefaultDateValid = (defaultDate) => {
-  if( !defaultDate || typeof defaultDate !== "string" || defaultDate === "" )
-  return false;
-
-  return /\d{2}/.test(defaultDate);
-};*/

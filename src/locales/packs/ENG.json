@@ -141,7 +141,11 @@
       "read-date": "Read",
       "source": "Source",
       "tags": "Tags",
-      "notes": "Notes"
+      "notes": "Notes",
+      "placeholders": {
+        "title": "Title",
+        "source": "Source address"
+      }
     },
     "tag-form": {
       "name": "Tag"

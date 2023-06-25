@@ -140,7 +140,11 @@
       "read-date": "Luettu",
       "source": "Lähde",
       "tags": "Tagit",
-      "notes": "Muistiinpanot"
+      "notes": "Muistiinpanot",
+      "placeholders": {
+        "title": "Otsikko",
+        "source": "Lähteen osoite"
+      }
     },
     "tag-form": {
       "name": "Tagi"

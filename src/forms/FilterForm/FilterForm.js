@@ -29,7 +29,7 @@ export default function FilterForm(props) {
                 <Col>
                   <Button
                     className="w-100"
-                    variant="danger"
+                    variant="secondary"
                     onClick={() => controlActions.clear()}
                   >
                     {lm.translate(localeCategory + "clear")}

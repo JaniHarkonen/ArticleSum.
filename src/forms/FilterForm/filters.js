@@ -309,6 +309,9 @@ const parseDateFilter = (dateString) => {
 const parseTagFilter = (tags) => {
   const result = Result();
   result.filters.push((target) => {
+    if( tags.length === 0 )
+    return true;
+    
     for( let tag of tags )
     {
       if( target.includes(tag) )

@@ -65,7 +65,7 @@ export default function ArticleFilters(props) {
             <b>{lm.translate(articleFieldToLocaleField(filter))}:</b>
           </Form.Label>
           <Col
-            className="d-flex align-items-center"
+            className={(filter === "tags") ? "" : "d-flex align-items-center"}
             sm="10"
           >
             {controlElement}
