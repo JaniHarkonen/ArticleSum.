@@ -1,7 +1,7 @@
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 
-import { useContext, useState } from "react";
+import { useContext, useLayoutEffect, useState } from "react";
 
 import ArticleFilterForm from "../../components/ArticleFilterForm/ArticleFilterForm";
 import GotoPanel from "./components/GotoPanel/GotoPanel";
@@ -17,10 +17,14 @@ export default function TimelineView() {
   const { workspaceManager: wm } = useContext(GlobalContext);
   const articleContainer = wm.getArticleContainer();
 
-  const [articles, setArticles] = useState(articleContainer.filterItems());
+  const [articles, setArticles] = useState([]);
   const [displayCriteria, setDisplayCriteria] = useState(ARTICLE_SORT_CRITERIAS["publish-date"]);
   const [timelineOriginDate, setTimelineOriginDate] = useState(new Date());
   const [dateInterval, setDateInterval] = useState(DATE_INTERVAL_TYPES.year);
+
+  useLayoutEffect(() => {
+    setArticles(articleContainer.filterItems());
+  }, [articleContainer]);
 
   return (
     <>

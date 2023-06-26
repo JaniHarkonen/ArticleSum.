@@ -1,8 +1,7 @@
-import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import { useContext, useState } from "react";
+
+import { useContext, useLayoutEffect, useState } from "react";
 
 import ArticleControlPanel from "../../components/ArticleControlPanel/ArticleControlPanel";
 import ArticleFilterForm from "../../components/ArticleFilterForm/ArticleFilterForm";
@@ -24,7 +23,8 @@ export const DEFAULT_SETTINGS = {
 
 export default function ListView() {
   const { languageManager: lm, workspaceManager: wm } = useContext(GlobalContext);
-  const [articles, setArticles] = useState(wm.getArticleContainer().filterItems());
+  const articleContainer = wm.getArticleContainer();
+  const [articles, setArticles] = useState([]);
   const {
     selection: selectedArticles,
     getSelectionIds,
@@ -34,6 +34,9 @@ export default function ListView() {
 
   } = useSelectables({ items: articles, idField: "id" });
 
+  useLayoutEffect(() => {
+    setArticles(wm.getArticleContainer().filterItems());
+  }, [articleContainer]);
 
   const ListingSelectionWrapper = (Listing, article) => {
     const articleId = article.id;

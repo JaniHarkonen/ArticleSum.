@@ -1,7 +1,6 @@
-import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 
-import { useContext, useState } from "react";
+import { useContext, useLayoutEffect, useState } from "react";
 
 import WordCloud from "../../components/WordCloud/WordCloud";
 import ArticleFilterForm from "../../components/ArticleFilterForm/ArticleFilterForm";
@@ -21,9 +20,13 @@ export default function WordCloudView() {
   const { workspaceManager: wm, languageManager: lm } = useContext(GlobalContext);
   const articleContainer = wm.getArticleContainer();
 
-  const [articles, setArticles] = useState(articleContainer.filterItems());
+  const [articles, setArticles] = useState([]);
   const [wordFilter, setWordFilter] = useState(DEFAULT_SETTINGS.wordFilter);
   const [targetYear, setTargetYear] = useState("" + (new Date()).getFullYear());
+
+  useLayoutEffect(() => {
+    setArticles(articleContainer.filterItems());
+  }, [articleContainer]);
 
   const generateWordInventory = () => {
     const inventory = []; // Eventual inventory of the word cloud

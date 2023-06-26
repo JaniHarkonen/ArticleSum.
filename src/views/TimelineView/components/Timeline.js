@@ -48,8 +48,6 @@ export default function Timeline(props) {
 
     // Order articles according to their date
   useLayoutEffect(() => {
-    if( articles.length <= 0 )
-    return;
 
       // Sort articles
     const sortedArticles = articles
@@ -62,7 +60,6 @@ export default function Timeline(props) {
     let dateArticles = [];        // Articles sharing the currently iterated date (current slot)
     let renditionStartIndex = -1;  // Index of the first visible slot in timeline
     let articleDatePrevious = null; // Date string of the previously iterated date
-
 
     let dateResolver = (article) => article[dateField]; // Resolves the date of an article according to date interval (default: day)
 
