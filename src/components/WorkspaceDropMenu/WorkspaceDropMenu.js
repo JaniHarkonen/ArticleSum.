@@ -5,12 +5,14 @@ import { useContext } from "react";
 import { FilesysDialogSettings, showOpenFile, showSaveFile } from "../../utils/dialog";
 import { GlobalContext } from "../../context/GlobalContext";
 
+const pathModule = window.require("path");
+
 
 export default function WorkspaceDropMenu() {
   const tDialog = "filesys-dialog.workspace.";
   const tWorkspaceChanger = "workspace-changer.";
 
-  const { languageManager: lm, workspaceManager: wm } = useContext(GlobalContext);
+  const { languageManager: lm, workspaceManager: wm, setActiveWorkspacePath } = useContext(GlobalContext);
 
 
   const createWorkspace = () => {
@@ -26,7 +28,8 @@ export default function WorkspaceDropMenu() {
       return;
 
       wm.closeWorkspace();
-      wm.createWorkspace(path);
+      wm.createWorkspace(path, pathModule.parse(path).name);
+      setActiveWorkspacePath(wm.getWorkspacePath());
     });
   };
 
@@ -46,6 +49,7 @@ export default function WorkspaceDropMenu() {
 
       wm.closeWorkspace();
       wm.openWorkspace(path);
+      setActiveWorkspacePath(wm.getWorkspacePath());
     });
   };
 

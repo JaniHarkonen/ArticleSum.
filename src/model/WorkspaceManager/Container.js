@@ -315,14 +315,6 @@ export default class Container {
   }
 
   /**
-   * @returns Returns the underlying JSON that the Container 
-   * provides interface to.
-   */
-  getItemArrayReference() {
-    return this.items;
-  }
-
-  /**
    * Iterates over the items in the Container and runs a 
    * function on each one. *Notice* that this method should 
    * not modify the attributes of the item that is passed in 
@@ -359,6 +351,29 @@ export default class Container {
   }
 
   /**
+   * Returns whether an item that satisfies a given condition 
+   * exists within the container. The condition is given as a 
+   * function that should return true, if the condition is met, 
+   * and false, if the condition is not. The iteration will stop 
+   * once a satisfactory item is encontered.
+   * 
+   * @param {Function} condition The condition that is tested 
+   * with each item of the container, until a satisfactory item 
+   * is encountered.
+   * 
+   * @returns Whether an item satisfying the condition was found.
+   */
+  itemExists(condition) {
+    for( let item in this.items )
+    {
+      if( condition(this.items[item]) )
+      return true;
+    }
+
+    return false;
+  }
+
+  /**
    * Sets the function that will be used to retrieve a new, 
    * unique identifier for new items that are to be added to 
    * the Container. 
@@ -369,5 +384,13 @@ export default class Container {
    */
   setIdRetriever(retriever) {
     this.retrieveNewId = retriever;
+  }
+
+  /**
+   * @returns Returns the underlying JSON that the Container 
+   * provides interface to.
+   */
+  getItemArrayReference() {
+    return this.items;
   }
 }

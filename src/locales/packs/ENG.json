@@ -145,6 +145,9 @@
       "placeholders": {
         "title": "Title",
         "source": "Source address"
+      },
+      "hints": {
+        "remove-tags": "hold CTRL and click to remove a tag"
       }
     },
     "tag-form": {

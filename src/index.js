@@ -12,7 +12,7 @@ import "../node_modules/bootstrap/dist/css/bootstrap.css";
 
 const languageManager = new LanguageManager(Languages.ENG);
 const workspaceManager = new WorkspaceManager();
-workspaceManager.openWorkspace(process.cwd() + "\\testing\\ws.json");
+workspaceManager.openWorkspace(process.cwd() + "\\testing\\ws.asum");
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

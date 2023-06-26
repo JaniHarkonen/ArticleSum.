@@ -1,10 +1,8 @@
 import Modal from "react-bootstrap/Modal";
-import Col from "react-bootstrap/Col";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
+import Header from './components/Header/Header';
+
 import { useState } from 'react';
 
-import Header from './components/Header/Header';
 import Workspace from './components/Workspace/Workspace';
 
 import { GlobalContext } from './context/GlobalContext';
@@ -17,6 +15,7 @@ function App(props) {
   const { workspaceManager, languageManager } = props;
   const [activeLanguage, setLanguage] = useState(languageManager.getActiveLanguage());
   const [activeTheme, setTheme] = useState(null);
+  const [activeWorkspacePath, setActiveWorkspacePath] = useState(workspaceManager.getWorkspacePath());
   const { displayedModal, popupModal, closeModal, isModalOpen } = useModal();
 
     // Pass the language setter function to LanguageManager allowing
@@ -27,11 +26,12 @@ function App(props) {
   return (
     <GlobalContext.Provider
       value={{
-        languageManager: languageManager,
-        workspaceManager: workspaceManager,
+        languageManager,
+        workspaceManager,
         theme: { activeTheme: activeTheme, setTheme: setTheme },
-        popupModal: popupModal,
-        closeModal: closeModal
+        popupModal,
+        closeModal,
+        setActiveWorkspacePath
       }}
     >
       <div

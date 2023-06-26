@@ -45,11 +45,17 @@ const EditableTextPlaceholder = styled.span`
   color: #CCCCCC;
 `;
 
+const TagRemovalHint = styled.span`
+  color: #808080;
+  font-size: 14px;
+`;
+
 export const Styles = {
   ItemIdContainer,
   LinkContainer,
   LinkPopupButton,
   LinkPopupIcon,
   SourceContainer,
-  EditableTextPlaceholder
+  EditableTextPlaceholder,
+  TagRemovalHint
 };

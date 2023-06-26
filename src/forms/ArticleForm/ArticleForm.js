@@ -14,6 +14,7 @@ import { Styles } from "./ArticleForm.styles"
 import ASSETS from "../../assets/assets";
 import openLinkUsingHTTPS from "../../utils/openLinkUsingHTTPS";
 import { convertDateToDatetimestring } from "../../utils/dates";
+import TagInput from "../../components/TagInput/TagInput";
 
 
 export default function ArticleForm(props) {
@@ -43,6 +44,10 @@ export default function ArticleForm(props) {
     setReadDate("");
     else
     setReadDate(convertDateToDatetimestring(new Date()));
+  };
+
+  const checkTagValidity = (candidate) => {
+    return wm.getTagContainer().itemExists((item) => item.name === candidate);
   };
 
   return (
@@ -134,12 +139,20 @@ export default function ArticleForm(props) {
       </Form.Group>
       <Row className={itemClassName}>
         <Form.Group>
-          <Form.Label><b>{lm.translate(lpCategory + "tags")}: </b></Form.Label>
-          <TaggedFormControl
-            value={tags}
-            onChange={setTags}
-            availableTags={wm.getTagContainer().filterItems()}
-          />
+          <Row>
+            <Form.Label>
+              <b>{lm.translate(lpCategory + "tags")}: </b>
+              <Styles.TagRemovalHint>({lm.translate(lpCategory + "hints.remove-tags")})</Styles.TagRemovalHint>
+            </Form.Label>
+          </Row>
+          <Row>
+            <TagInput
+              value={tags}
+              onChange={setTags}
+              availableTags={wm.getTagContainer().filterItems()}
+              validityChecker={checkTagValidity}
+            />
+          </Row>
         </Form.Group>
       </Row>
       <Row className="mt-3">

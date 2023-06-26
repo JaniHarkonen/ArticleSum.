@@ -2,6 +2,6 @@ import FormControlDelete from "../../../components/FormControlButtons/json/FormC
 
 
 export default function applyDeleteButton(formPopup) {
-  formPopup.controls.buttons.delete = FormControlDelete("actionDelete")
+  formPopup.controls.buttons.delete = FormControlDelete("actionDelete");
   formPopup.controls.order.splice(0, 0, "delete");
 }

@@ -62,7 +62,6 @@ export default function useArticleForm(baseInstance) {
     });
 
     wm.getArticleContainer().postItem(postArticle);
-    closeModal();
   };
 
   const actions = {

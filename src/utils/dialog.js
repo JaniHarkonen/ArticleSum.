@@ -14,18 +14,6 @@ const ipcRenderer = window.require("electron").ipcRenderer;
  * @param {JSON} settings 
  * @param {Function} callback 
  */
-/*export const showOpenFolder = (settings, callback) => {
-  ipcRenderer.invoke("open-filesys-dialog", {
-      title: settings.title,
-      buttonLabel: settings.buttonLabel,
-      properties: ["openDirectory"]
-  })
-  .then((response) => {
-      callback(response);
-  });
-
-  console.log("money");
-}*/
 
 /**
  * Shows a file opening dialog window with the given settings that
@@ -42,21 +30,6 @@ const ipcRenderer = window.require("electron").ipcRenderer;
  * @param {JSON} settings 
  * @param {Function} callback 
  */
-/*export const showOpenFile = (settings, callback) => {
-  ipcRenderer.invoke("save-filesys-dialog", {
-      title: settings.title,
-      buttonLabel: settings.buttonLabel,
-      filters: settings.filters,
-      properties: ["openFile"].concat(settings.multiSelections && "multiSelections")
-  })
-  .then((response) => {
-      callback(response);
-  });
-}*/
-
-/*export const showOpenFile = (settings, callback) => {
-
-}*/
 
 const openDialog = (type, form, callback) => {
   ipcRenderer.invoke(type, form)

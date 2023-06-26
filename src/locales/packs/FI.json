@@ -144,6 +144,9 @@
       "placeholders": {
         "title": "Otsikko",
         "source": "Lähteen osoite"
+      },
+      "hints": {
+        "remove-tags": "pidä CTRL pohjassa ja klikkaa poistaaksesi tagi"
       }
     },
     "tag-form": {
