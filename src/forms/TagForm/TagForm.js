@@ -19,7 +19,7 @@ export default function TagForm(props) {
   };
 
   return (
-    <Form>
+    <Form onSubmit={(e) => e.preventDefault()}>
       <Row>
         <Col
           className="d-flex align-items-center"

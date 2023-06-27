@@ -46,7 +46,7 @@ export default function WordFilterForm(props) {
   };
 
   return (
-    <Form>
+    <Form onSubmit={(e) => e.preventDefault()}>
       <Form.Label>
         {lm.translate("word-filter-form.label")}:
       </Form.Label>

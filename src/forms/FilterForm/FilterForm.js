@@ -45,11 +45,7 @@ export default function FilterForm(props) {
                 </Col>
               </Row>
             </Col>
-            {/*<Col><Button>{lm.translate(localeCategory + "save")}</Button></Col>*/}
           </Row>
-          {/*{lm.translate(localeCategory + "applied-filters")}:
-          <br />
-  (x {lm.translate(localeCategory + "applied")})*/}
         </Accordion.Body>
       </Accordion.Item>
     </Form>

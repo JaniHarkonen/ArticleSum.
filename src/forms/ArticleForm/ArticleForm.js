@@ -1,20 +1,21 @@
+import Button from "react-bootstrap/Button";
+import Image from "react-bootstrap/Image";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 import { useContext } from "react";
 
+import TagInput from "../../components/TagInput/TagInput";
 import EditableText from "../../components/EditableText/EditableText";
 import Datepicker from "../../components/Datepicker/Datepicker";
-import TaggedFormControl from "../../components/TaggedFormControl/TaggedFormControl";
 
 import { GlobalContext } from "../../context/GlobalContext";
-import { Styles } from "./ArticleForm.styles"
+import { Styles } from "./ArticleForm.styles";
+import { convertDateToDatetimestring } from "../../utils/dates";
 
 import ASSETS from "../../assets/assets";
 import openLinkUsingHTTPS from "../../utils/openLinkUsingHTTPS";
-import { convertDateToDatetimestring } from "../../utils/dates";
-import TagInput from "../../components/TagInput/TagInput";
 
 
 export default function ArticleForm(props) {
@@ -50,8 +51,13 @@ export default function ArticleForm(props) {
     return wm.getTagContainer().itemExists((item) => item.name === candidate);
   };
 
+  const handleLinkOpen = (link) => {
+    if( !link && link !== "" )
+    openLinkUsingHTTPS(link);
+  };
+
   return (
-    <Form>
+    <Form onSubmit={(e) => {e.preventDefault(); e.stopPropagation()}}>
       <Row>
         <Styles.ItemIdContainer>#{id}</Styles.ItemIdContainer>
       </Row>
@@ -121,9 +127,17 @@ export default function ArticleForm(props) {
             className="d-flex p-0 m-0 justify-content-center align-items-center"
             xs="1"
           >
-            <Styles.LinkPopupButton onClick={() => openLinkUsingHTTPS(source)}>
-              <Styles.LinkPopupIcon src={ASSETS.black.icon.linkPopup} />
-            </Styles.LinkPopupButton>
+            <Button
+              className="d-flex justify-content-center align-items-center p-0 border-none"
+              onClick={() => handleLinkOpen(source)}
+              style={{ width: "24px", height: "24px" }}
+              variant="light-outline"
+            >
+              <Image
+                className="w-100 h-100 p-0 m-0"
+                src={ASSETS.black.icon.linkPopup}
+              />
+            </Button>
           </Col>
           <Col className="p-0 m-0">
             <div className="position-relative">
