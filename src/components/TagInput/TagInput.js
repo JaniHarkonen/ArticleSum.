@@ -29,7 +29,7 @@ export default function TagInput(props) {
     if( !validityChecker(tagNameInput) )
     return;
 
-    onChange(value + " " + tagNameInput);
+    onChange(value + ((value === "") ? "" : " ") + tagNameInput);
     setTagNameInput("");
   };
 
@@ -38,11 +38,11 @@ export default function TagInput(props) {
     return;
     
     const tags = value.split(" ");
-    let newValue = tags[0];
-    for( let i = 1; i < tags.length; i++ )
+    let newValue = "";
+    for( let i = 0; i < tags.length; i++ )
     {
       if( i !== tagIndex )
-      newValue += " " + tags[i];
+      newValue += ((newValue === "") ? "" : " ") + tags[i];
     }
 
     onChange(newValue);
@@ -78,14 +78,14 @@ export default function TagInput(props) {
       <div>
         {renderTagsFromString(value)}
         <div className="d-inline-block">
-          <div className="d-inline-block ms-2">
+          <div className={`d-inline-block ${(value === "") ? "" : "ms-2"}`}>
             <DropdownSearch
               value={tagNameInput}
               inventory={tagInventory}
               onChange={setTagNameInput}
             />
           </div>
-          <div className="d-inline-block ms-1 align-bottom">
+          <div className={`d-inline-block ms-1 align-bottom`}>
             <Button
               className="d-inline-block rounded-circle"
               onClick={handleAddition}
