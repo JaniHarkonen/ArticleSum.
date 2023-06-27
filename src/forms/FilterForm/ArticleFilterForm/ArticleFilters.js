@@ -1,12 +1,15 @@
-import { articleFields } from "../../../model/components/Article";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+
 import { useContext } from "react";
+
+import TagInput from "../../../components/TagInput/TagInput";
+
+import { articleFields } from "../../../model/components/Article";
 import { GlobalContext } from "../../../context/GlobalContext";
 import { mapElements } from "../../../utils/mapElements";
-import { capitalizeFirstLetter, kebabCaseToCamelCase } from "../../../utils/stringUtils";
-import TaggedFormControl from "../../../components/TaggedFormControl/TaggedFormControl";
+import { kebabCaseToCamelCase } from "../../../utils/stringUtils";
 
 
 export const articleFieldToLocaleField = (articleField) => {
@@ -34,10 +37,11 @@ export default function ArticleFilters(props) {
 
   const renderTagsInput = () => {
     return (
-      <TaggedFormControl
+      <TagInput
         value={data["tags"]}
         onChange={setters["setTags"]}
         availableTags={wm.getTagContainer().filterItems()}
+        validityChecker={() => true}
       />
     );
   };

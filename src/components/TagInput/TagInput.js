@@ -38,11 +38,11 @@ export default function TagInput(props) {
     return;
     
     const tags = value.split(" ");
-    let newValue = "";
-    for( let i = 0; i < tags.length; i++ )
+    let newValue = tags[0];
+    for( let i = 1; i < tags.length; i++ )
     {
       if( i !== tagIndex )
-      newValue += tags[i];
+      newValue += " " + tags[i];
     }
 
     onChange(newValue);
