@@ -3,9 +3,10 @@ import TagContainer from "./TagContainer";
 
 const fs = window.require("fs");
 
-export const Workspace = (counter, articles, tags) => {
+export const Workspace = (counter, name, articles, tags) => {
   return {
     "id-counter": counter,
+    "workspace-name": name,
     "articles": articles || {},
     "tags": tags || {}
   };
@@ -17,6 +18,7 @@ export default class WorkspaceManager {
     this.articles = null;
     this.tags = null;
     this.idCounter = 0;
+    this.workspaceName = "";
 
     this.workspacePath = "";
   }
@@ -27,15 +29,17 @@ export default class WorkspaceManager {
 
   saveWorkspace(path, workspace) {
     const replacer = (key, value) => value ?? undefined;
+    console.log(this.workspaceName);
     fs.writeFileSync(path, JSON.stringify(workspace, replacer, 2));
   }
 
-  createWorkspace(path) {
-    if( !path )
+  createWorkspace(path, name) {
+    if( !path || !name || name === "" )
     return;
 
     this.workspacePath = path;
-    this.saveWorkspace(this.workspacePath, Workspace(0));
+    this.workspaceName = name;
+    this.saveWorkspace(this.workspacePath, Workspace(0, this.workspaceName));
     this.openWorkspace(this.workspacePath);
   }
 
@@ -50,6 +54,7 @@ export default class WorkspaceManager {
     const idRetriever = this.getUniqueId.bind(this);
 
     this.idCounter = ws["id-counter"];
+    this.workspaceName = ws["workspace-name"];
     this.articles = new ArticleContainer(ws.articles, notify);
     this.articles.setIdRetriever(idRetriever);
     this.tags = new TagContainer(ws.tags, notify);
@@ -60,6 +65,7 @@ export default class WorkspaceManager {
     this.articles = null;
     this.tags = null;
     this.idCounter = -1;
+    this.workspaceName = "";
 
     this.workspacePath = "";
   }
@@ -68,7 +74,7 @@ export default class WorkspaceManager {
     if( changes.affectedItems.length <= 0 )
     return;
     
-    const ws = Workspace(this.idCounter, this.articles.getItemArrayReference(), this.tags.getItemArrayReference());
+    const ws = Workspace(this.idCounter, this.workspaceName, this.articles.getItemArrayReference(), this.tags.getItemArrayReference());
     this.saveWorkspace(this.workspacePath, ws);
   }
 
@@ -82,6 +88,10 @@ export default class WorkspaceManager {
 
   getWorkspacePath() {
     return this.workspacePath;
+  }
+
+  getWorkspaceName() {
+    return this.workspaceName;
   }
 
   getUniqueId() {

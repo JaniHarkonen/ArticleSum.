@@ -5,6 +5,24 @@ articles in useful ways.
 
 ## Development log
 
+### 27.6.2023
+The UI of ArticleSum. has now been finalized along with some bug fixes. `filters.js` was also 
+re-written to clarify the codebase as well as to provide a full support for complex queries, 
+including compound words, negation and ranged dates. With this update, the functionalities of the 
+application are finished.
+<br />
+<br />
+Though `GlobalContext` still has the capacity to provide components with theme-information, the 
+implementation of themes will be postponed for now, as it would be a potentially long undertaking.
+Another altered functionality was tag input. Initially, `ArticleForm` and `ArticleFilters` both 
+allowed the user to type out the desired tags in a row inside a Bootstrap `Form.Control`-element. 
+This, however, was very buggy, and a new implementation where the user inputs a tag into a 
+control-element and then adds the tag to the inventory was created. Tags can now be removed by 
+left-clicking them while holding down CTRL-button.
+<br />
+<br />
+In the next update, the TODO-list will be cleared and remaining bugs will be fixed. Finally, the 
+first version – v.1.0.0 – will be released.
 
 ### 12.6.2023
 The functionalities for creating a new workspace as well as openining an existing one have now 

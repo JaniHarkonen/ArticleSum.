@@ -65,18 +65,30 @@
       }
     }
   },
+  "article-list": {
+    "warning": "Artikkelin tiedot ovat puutteelliset"
+  },
   "selection-controls": {
     "select": "Valitse kaikki",
     "deselect": "Tyhjennä valinnat",
     "delete": "Poista"
   },
   "article-sort-controls": {
-    "sort-by": "Järjestä"
+    "sort-by": "Järjestys"
   },
   "word-filter-form": {
-    "match-only": "Näytä vain osumat",
-    "match-filter": "Suodata osumat",
-    "filter": "Suodata"
+    "label": "Pikasuodatin",
+    "match-only": "Näytä vain sanat",
+    "match-filter": "Suodata sanat",
+    "filter": "Suodata",
+    "clear": "Tyhjennä"
+  },
+  "goto-panel": {
+    "caption": "Etsi päivämäärä",
+    "goto-button": "Etsi"
+  },
+  "word-cloud-view": {
+    "cloud-empty-message": "Sanoja ei löytynyt vuodelle"
   },
   "list-view": {
     "listings-caption": "Artikkelit",
@@ -89,7 +101,8 @@
   },
   "control-panels": {
     "controls": {
-      "add": "Lisää"
+      "add": "Lisää",
+      "delete": "Poista"
     },
     "article": {
       "description": "Lisää artikkeli"
@@ -111,8 +124,8 @@
     "article-filter-form": {
       "id": "Artikkelin ID",
       "title": "Otsikko",
-      "publish-date": "Julkaisupäivämäärä",
-      "read-date": "Lukupäivämäärä",
+      "publish-date": "Julkaistu",
+      "read-date": "Luettu",
       "source": "Lähde",
       "tag": "Tagi",
       "note": "Muistiinpanot"
@@ -127,7 +140,14 @@
       "read-date": "Luettu",
       "source": "Lähde",
       "tags": "Tagit",
-      "notes": "Muistiinpanot"
+      "notes": "Muistiinpanot",
+      "placeholders": {
+        "title": "Otsikko",
+        "source": "Lähteen osoite"
+      },
+      "hints": {
+        "remove-tags": "pidä CTRL pohjassa ja klikkaa poistaaksesi tagi"
+      }
     },
     "tag-form": {
       "name": "Tagi"

@@ -5,12 +5,14 @@ import { useContext } from "react";
 import { FilesysDialogSettings, showOpenFile, showSaveFile } from "../../utils/dialog";
 import { GlobalContext } from "../../context/GlobalContext";
 
+const pathModule = window.require("path");
+
 
 export default function WorkspaceDropMenu() {
   const tDialog = "filesys-dialog.workspace.";
   const tWorkspaceChanger = "workspace-changer.";
 
-  const { languageManager: lm, workspaceManager: wm } = useContext(GlobalContext);
+  const { languageManager: lm, workspaceManager: wm, setActiveWorkspacePath } = useContext(GlobalContext);
 
 
   const createWorkspace = () => {
@@ -20,13 +22,14 @@ export default function WorkspaceDropMenu() {
       ...FilesysDialogSettings(),
       title: lm.translate(tDialog + "create.title"),
       buttonLabel: lm.translate(tDialog + "create.button"),
-      filters: [{ name: tDialog + "create.filter", extensions: ["asum"] }]
+      filters: [{ name: tDialog + "filter", extensions: ["asum"] }]
     }, (path) => {
       if( !path || path === "" )
       return;
 
       wm.closeWorkspace();
-      wm.createWorkspace(path);
+      wm.createWorkspace(path, pathModule.parse(path).name);
+      setActiveWorkspacePath(wm.getWorkspacePath());
     });
   };
 
@@ -37,7 +40,7 @@ export default function WorkspaceDropMenu() {
       ...FilesysDialogSettings(),
       title: lm.translate(tDialog + "open.title"),
       buttonLabel: lm.translate(tDialog + "open.button"),
-      filters: [{ name: lm.translate(tDialog + "open.filter"), extensions: ["asum"] }]
+      filters: [{ name: lm.translate(tDialog + "filter"), extensions: ["asum"] }]
     }, (path) => {
       if( !path )
       return;
@@ -46,6 +49,7 @@ export default function WorkspaceDropMenu() {
 
       wm.closeWorkspace();
       wm.openWorkspace(path);
+      setActiveWorkspacePath(wm.getWorkspacePath());
     });
   };
 

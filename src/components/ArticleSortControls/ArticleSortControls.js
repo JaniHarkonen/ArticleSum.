@@ -24,7 +24,7 @@ export default function ArticleSortControls(props) {
 
 
   return (
-    <Dropdown onSelect={handleSelection}>
+    <Dropdown drop="down" onSelect={handleSelection}>
       <Dropdown.Toggle>
         {lm.translate("article-sort-controls.sort-by")} {" : "}
         {lowercaseFirstLetter(lm.translate("forms.article-filter-form." + sortCriteria))}

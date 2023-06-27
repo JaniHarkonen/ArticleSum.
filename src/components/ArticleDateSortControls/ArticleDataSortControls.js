@@ -27,7 +27,5 @@ export default function ArticleDataSortControls(props) {
     }
   };
 
-  return (
-    <ArticleSortControls onSelect={handleCriteriaSelection} />
-  );
+  return <ArticleSortControls onSelect={handleCriteriaSelection} />;
 }

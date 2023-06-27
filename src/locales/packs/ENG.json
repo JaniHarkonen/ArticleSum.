@@ -65,6 +65,10 @@
       }
     }
   },
+  "article-list": {
+    "warning": "Article has missing information"
+  }
+  ,
   "selection-controls": {
     "select": "Select all",
     "deselect": "De-select all",
@@ -74,9 +78,18 @@
     "sort-by": "Sort by"
   },
   "word-filter-form": {
+    "label": "Quick word filter",
     "match-only": "Only include matching",
     "match-filter": "Filter matching",
-    "filter": "Filter"
+    "filter": "Filter",
+    "clear": "Clear"
+  },
+  "goto-panel": {
+    "caption": "Goto date",
+    "goto-button": "Goto"
+  },
+  "word-cloud-view": {
+    "cloud-empty-message": "No words found for year"
   },
   "list-view": {
     "listings-caption": "Articles",
@@ -89,7 +102,8 @@
   },
   "control-panels": {
     "controls": {
-      "add": "Add"
+      "add": "Add",
+      "delete": "Delete"
     },
     "article": {
       "description": "Add an article"
@@ -127,7 +141,14 @@
       "read-date": "Read",
       "source": "Source",
       "tags": "Tags",
-      "notes": "Notes"
+      "notes": "Notes",
+      "placeholders": {
+        "title": "Title",
+        "source": "Source address"
+      },
+      "hints": {
+        "remove-tags": "hold CTRL and click to remove a tag"
+      }
     },
     "tag-form": {
       "name": "Tag"

@@ -1,16 +1,21 @@
-import './App.css';
-import Header from './components/Header/Header';
-import Workspace from './components/Workspace/Workspace';
-import { GlobalContext } from './context/GlobalContext';
-import { useState } from 'react';
 import Modal from "react-bootstrap/Modal";
+import Header from './components/Header/Header';
+
+import { useState } from 'react';
+
+import Workspace from './components/Workspace/Workspace';
+
+import { GlobalContext } from './context/GlobalContext';
 import useModal from './hooks/modal/useModal';
+
+import './App.css';
 
 
 function App(props) {
   const { workspaceManager, languageManager } = props;
   const [activeLanguage, setLanguage] = useState(languageManager.getActiveLanguage());
   const [activeTheme, setTheme] = useState(null);
+  const [activeWorkspacePath, setActiveWorkspacePath] = useState(workspaceManager.getWorkspacePath());
   const { displayedModal, popupModal, closeModal, isModalOpen } = useModal();
 
     // Pass the language setter function to LanguageManager allowing
@@ -21,14 +26,18 @@ function App(props) {
   return (
     <GlobalContext.Provider
       value={{
-        languageManager: languageManager,
-        workspaceManager: workspaceManager,
+        languageManager,
+        workspaceManager,
         theme: { activeTheme: activeTheme, setTheme: setTheme },
-        popupModal: popupModal,
-        closeModal: closeModal
+        popupModal,
+        closeModal,
+        setActiveWorkspacePath
       }}
     >
-      <div className="App">
+      <div
+        id="App"
+        className="App"
+      >
         <Header />
         <Modal
           size="lg"
@@ -39,7 +48,9 @@ function App(props) {
         >
           {displayedModal}
         </Modal>
-        <Workspace />
+        <div className="App-workspace-container">
+          <Workspace />
+        </div>
       </div>
     </GlobalContext.Provider>
   );

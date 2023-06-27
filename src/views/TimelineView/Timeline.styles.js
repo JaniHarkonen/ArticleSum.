@@ -5,20 +5,21 @@ const TimelineContainer = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  overflow-x: hidden;
   user-select: none;
 `;
 
 const SlotCarouselContainer = styled.div`
   position: relative;
-  width: 150%;
+  /* width found in Timeline.js */
   height: 100%;
 `;
 
 const SlotContainer = styled.div`
   position: relative;
   display: inline-block;
-  vertical-align: bottom;
+  vertical-align: top;
+  /* width found in Timeline.js */
   height: 100%;
 `;
 

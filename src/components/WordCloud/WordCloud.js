@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+import { Styles } from "./WordCloud.styles";
+
 export const DEFAULT_SETTINGS = {
   inventory: [],
   messages: {
@@ -66,8 +68,7 @@ export default function WordCloud(props) {
 
       return(
         <>
-          <span style={{ fontSize: fontSize + "px" }}
-          >
+          <span style={{fontSize: fontSize + "px" }}>
             {item.word}
           </span>
           {' '}
@@ -77,8 +78,10 @@ export default function WordCloud(props) {
   };
 
   return(
-    <div style={{ width: "350px", textAlign: "justify" }}>
-      {renderWordSpans(inventory)}
+    <div className="d-flex justify-content-center">
+      <div className="text-justify bg-light rounded-5 p-3">
+        {renderWordSpans(inventory)}
+      </div>
     </div>
   );
 }

@@ -16,7 +16,5 @@ export default function createTagPopup(baseTag = null) {
   applySimpleFormControls(popup);
   applyDeleteButton(popup);
 
-  console.log(popup);
-
   return popup;
 }

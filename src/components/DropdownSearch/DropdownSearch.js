@@ -1,9 +1,11 @@
 import Form from "react-bootstrap/Form";
-import useKeyListener from "../../hooks/keyboard/useKeyListener";
+
 import { useState } from "react";
-import callbackElementById from "../../utils/callbackElementById";
+
 import WordInventoryDropdown, { ID_PREFIXES } from "./WordInventoryDropdown";
 
+import useKeyListener from "../../hooks/keyboard/useKeyListener";
+import callbackElementById from "../../utils/callbackElementById";
 
 const checkInitials = (item, word) => {
   if( word.length > item.length )
@@ -26,19 +28,29 @@ const removeSpacesConditional = (string, condition) => {
   return string.replaceAll(" ", "");
 };
 
+export const DEFAULT_SETTINGS = {
+  inventory: [],
+  multiInput: false,
+  onChange: (changes) => {},
+  onBlur: () => {},
+  filterCriteria: checkInitials,
+  openDropdown: true
+};
+
+
 export default function DropdownSearch(props) {
   const idPrefix = "dropdown-search-";
   const idItem = ID_PREFIXES.idItem;
   const idControl = idPrefix + "control-";
 
-  const inventory = props.inventory || [];
-  const isMultiInput = props.multiInput || false;
+  const inventory = props.inventory || DEFAULT_SETTINGS.inventory;
+  const isMultiInput = props.multiInput || DEFAULT_SETTINGS.multiInput;
   const value = removeSpacesConditional(props.value, !isMultiInput);
-  const onChange = props.onChange || function() {};
-  const onBlur = props.onBlur || function() {};
-  const filterCriteria = props.filterCriteria || checkInitials;
-  const [isDropdownOpen, openDropdown] = useState(true);
+  const onChange = props.onChange || DEFAULT_SETTINGS.onChange;
+  const onBlur = props.onBlur || DEFAULT_SETTINGS.onBlur;
+  const filterCriteria = props.filterCriteria || DEFAULT_SETTINGS.filterCriteria;
 
+  const [isDropdownOpen, openDropdown] = useState(DEFAULT_SETTINGS.openDropdown);
 
   const switchFocusToDropdown = () => {
     callbackElementById(idItem + "0", (e) => {
@@ -84,7 +96,7 @@ export default function DropdownSearch(props) {
 
   const handleChange = (changes) => {
     onChange(removeSpacesConditional(changes, !isMultiInput));
-  }
+  };
 
   const renderInventoryDropdown = (inv) => {
     const wordSplit = value.split(" ");
@@ -101,7 +113,7 @@ export default function DropdownSearch(props) {
       // Determine potential matches
     const matches = inv.filter((item) => filterCriteria(item, lastWord));
 
-      // No
+      // No matches
     if( matches.length === 0 )
     return <></>;
 

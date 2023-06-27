@@ -6,5 +6,6 @@ export const GlobalContext = createContext({
   workspaceManager: null,
   theme: { activeTheme: null, setTheme: (theme) => {} },
   popupModal: () => {},
-  closeModal: () => {}
+  closeModal: () => {},
+  setActiveWorkspacePath: () => {}
 });

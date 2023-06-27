@@ -1,8 +1,11 @@
-import { useState } from "react";
 import Form from "react-bootstrap/Form";
+
+import { useState } from "react";
+
 import ArticleTag from "../ArticleTag/ArticleTag";
-import { Tag } from "../../model/components/Tag";
 import DropdownSearch from "../DropdownSearch/DropdownSearch";
+
+import { Tag } from "../../model/components/Tag";
 
 
 export default function TaggedFormControl(props) {

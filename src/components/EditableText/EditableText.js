@@ -1,12 +1,12 @@
 import { useState } from "react"
 import FormControl from "react-bootstrap/FormControl";
 import useKeyListener from "../../hooks/keyboard/useKeyListener";
-import { renderStringOrEmptyFiller } from "../../utils/stringUtils";
 import { Styles } from "./EditableText.styles";
 
 
 export default function EditableText(props) {
   const text = props.children;
+  const placeholder = props.placeholder || <>&nbsp;</>;
   const onChange = props.onChange || function(){};
   const [isEditing, setEditing] = useState(false);
   const [isMouseOver, setMouseOver] = useState(false);
@@ -28,9 +28,17 @@ export default function EditableText(props) {
     }
   };
 
+  const renderStringOrEmptyFiller = (string) => {
+    if( !string || string === "" )
+    return <>{placeholder}</>;
+
+    return <>{string}</>;
+  }
+
   return (
     isEditing ?
     <FormControl
+      className="w-100"
       autoFocus={true}
       value={text}
       onBlur={() => setEditing(false)}
@@ -38,6 +46,7 @@ export default function EditableText(props) {
     />
     :
     <div
+      className="w-100"
       onClick={handleDoubleClick}
       onMouseOver={() => setMouseOver(true)}
       onMouseLeave={() => setMouseOver(false)}

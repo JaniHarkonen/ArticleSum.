@@ -1,17 +1,18 @@
 import { useContext } from "react";
 
-import useArticleForm from "../../hooks/form/useArticleForm";
 import ArticleFilters from "../../forms/FilterForm/ArticleFilterForm/ArticleFilters";
 import FilterForm from "../../forms/FilterForm/FilterForm";
+
 import { GlobalContext } from "../../context/GlobalContext";
 import { Article } from "../../model/components/Article";
-import { filterArticle } from "../../forms/FilterForm/filters";
+import { filterArticle, parseFilter } from "../../forms/FilterForm/filters";
+import useArticleForm from "../../hooks/form/useArticleForm";
 
 
 export default function ArticleFilterForm(props) {
   const filterArticles = props.filterArticles;
   const { workspaceManager: wm } = useContext(GlobalContext);
-  const {data, setters} = useArticleForm(Article());
+  const { data, setters } = useArticleForm(Article());
 
   const handleApplyFilters = () => {
     const tagIds = wm.getTagContainer().mapItems((tag) => {
@@ -24,14 +25,19 @@ export default function ArticleFilterForm(props) {
       tags: tagIds
     };
 
-    filterArticles(wm.getArticleContainer().filterItems((article) => filterArticle(article, filters)));
+    const parsedFilters = parseFilter(filters);
+    filterArticles(wm.getArticleContainer().filterItems((article) => filterArticle(article, parsedFilters)));
+  };
+
+  const handleClearFilters = () => {
+    filterArticles(wm.getArticleContainer().filterItems());
   };
 
   return (
     <FilterForm
       actions={{
         apply: handleApplyFilters,
-
+        clear: handleClearFilters
       }}
     >
       <ArticleFilters

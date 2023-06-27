@@ -15,24 +15,15 @@ const dragBox = new DragBox(Point(0, 0), Point(Number.POSITIVE_INFINITY, Number.
 dragBox.setAnchorPoint(dividePoint(dragBox.getDimensions(), 2));
 
 export default function usePannableView(props) {
-  const defaultPosition = props?.position || DEFAULT_SETTINGS.defaultPosition;
   const defaultZoom = props?.defaultZoom || DEFAULT_SETTINGS.defaultZoom;
   const zoomIncrement = props?.zoomIncrement || DEFAULT_SETTINGS.zoomIncrement;
   const initialConstraints = props?.initialConstraints;
 
   const [constraints, setConstraints] = useState(initialConstraints);
-  const [viewPosition, setViewPosition] = useState(defaultPosition);
+  const [viewPosition, setViewPosition] = useState(Point(0, 0));
   const [zoomLevel, setZoomLevel] = useState(defaultZoom);
   dragBox.setConstraints(constraints);
   const [draggedItems] = useDraggables({ dragBoxes: [dragBox] });
-
-
-  useEffect(() => {
-    if( defaultPosition )
-    dragBox.setPosition(defaultPosition);
-    else
-    dragBox.setPosition(Point(0, 0));
-  }, []);
 
   useEffect(() => {
     dragBox.addListener(DragBox.EVENT_DRAG, "drag", onDrag);

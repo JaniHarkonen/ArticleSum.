@@ -1,26 +1,37 @@
-import { useContext, useState } from "react";
+import Row from "react-bootstrap/Row";
+
+import { useContext, useLayoutEffect, useState } from "react";
 
 import WordCloud from "../../components/WordCloud/WordCloud";
 import ArticleFilterForm from "../../components/ArticleFilterForm/ArticleFilterForm";
 import WordFilterForm from "../../components/WordFilterForm/WordFilterForm";
+
 import { GlobalContext } from "../../context/GlobalContext";
 import { FILTER_TYPES } from "../../components/WordFilterForm/WordFilterForm";
-import wrapAccordion from "../../components/wrappers/wrapAccordion";
 import { getYearFromDatetimeString } from "../../utils/dates";
+import wrapAccordion from "../../components/wrappers/wrapAccordion";
+
+export const DEFAULT_SETTINGS = {
+  wordFilter: null
+};
 
 
 export default function WordCloudView() {
-  const {workspaceManager: wm} = useContext(GlobalContext);
+  const { workspaceManager: wm, languageManager: lm } = useContext(GlobalContext);
   const articleContainer = wm.getArticleContainer();
 
-  const [articles, setArticles] = useState(articleContainer.filterItems());
-  const [wordFilter, setWordFilter] = useState({ filterType: FILTER_TYPES.FILTER_MATCHING, filteredWords: [] });
+  const [articles, setArticles] = useState([]);
+  const [wordFilter, setWordFilter] = useState(DEFAULT_SETTINGS.wordFilter);
   const [targetYear, setTargetYear] = useState("" + (new Date()).getFullYear());
 
+  useLayoutEffect(() => {
+    setArticles(articleContainer.filterItems());
+  }, [articleContainer]);
 
   const generateWordInventory = () => {
     const inventory = []; // Eventual inventory of the word cloud
     const inventoryEntries = {};  // Indices of inventory items coupled with their words
+    const reDisgardedPunctuation = /\.|,|:|;|-|'|"|_|\*|\+|\?/g; // These characters must be excluded to avoid double-takes
 
     for( let article of articles )
     {
@@ -28,7 +39,7 @@ export default function WordCloudView() {
       if( !targetYear || getYearFromDatetimeString(article["publish-date"]) !== targetYear )
       continue;
 
-      const articleWords = article.notes.split(" ");
+      const articleWords = article.notes.replaceAll(reDisgardedPunctuation, "").split(" ");
 
       for( let word of articleWords )
       {
@@ -53,6 +64,9 @@ export default function WordCloudView() {
   };
 
   const applyInventoryFilter = (inventory) => {
+    if( !wordFilter )
+    return inventory;
+
     if( wordFilter.filteredWords.length < 1 )
     return inventory;
 
@@ -60,24 +74,45 @@ export default function WordCloudView() {
     {
       case FILTER_TYPES.FILTER_MATCHING: return inventory.filter((item) => !wordFilter.filteredWords.includes(item.word));
       case FILTER_TYPES.INCLUDE_MATCHING: return inventory.filter((item) => wordFilter.filteredWords.includes(item.word));
+      default: return inventory;
     }
   };
 
   return (
     <>
-      {wrapAccordion(<ArticleFilterForm filterArticles={setArticles} />)}
-      <WordFilterForm onSubmit={(filter) => setWordFilter(filter)} />
-      <WordCloud
-        inventory={applyInventoryFilter(generateWordInventory())}
-        minFontSize={12}
-        maxFontSize={30}
-        messageEmpty={"No words found for year " + targetYear}
-      />
-      <input
-        type="number"
-        value={parseInt(targetYear)}
-        onChange={(e) => setTargetYear(e.target.value)}
-      />
+      <Row>
+        {wrapAccordion(<ArticleFilterForm filterArticles={setArticles} />)}
+      </Row>
+      <Row
+        className="mt-3"
+        sm="2"
+      >
+        <WordFilterForm
+          defaultFilter={wordFilter}
+          onSubmit={(filter) => setWordFilter(filter)}
+        />
+      </Row>
+      <Row className="d-flex justify-content-center mt-3">
+        <div className="position-relative w-auto">
+          <b className="me-2">{lm.translate("date.year")}: </b>
+          <input
+            type="number"
+            value={parseInt(targetYear)}
+            onChange={(e) => setTargetYear(e.target.value)}
+            style={{
+              width: "50%"
+            }}
+          />
+        </div>
+      </Row>
+      <Row className="mt-3">
+        <WordCloud
+          inventory={applyInventoryFilter(generateWordInventory())}
+          minFontSize={12}
+          maxFontSize={30}
+          messageEmpty={lm.translate("word-cloud-view.cloud-empty-message") + " " + targetYear}
+        />
+      </Row>
     </>
   );
 }
