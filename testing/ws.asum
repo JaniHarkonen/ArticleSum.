@@ -80,9 +80,7 @@
       "publish-date": "2002-09-11T00:00Z",
       "read-date": "2005-09-09T00:00Z",
       "source": "www.google.com",
-      "tags": [
-        "34"
-      ],
+      "tags": [],
       "notes": "he didn't DO IT xD"
     },
     "18": {
@@ -208,15 +206,6 @@
         "r": 0,
         "g": 138,
         "b": 9
-      }
-    },
-    "34": {
-      "tagId": "34",
-      "name": "REUTERS",
-      "color": {
-        "r": 238,
-        "g": 125,
-        "b": 23
       }
     }
   }

@@ -1,6 +1,6 @@
 import Row from "react-bootstrap/Row";
 
-import { useContext } from "react";
+import { useContext, useLayoutEffect, useState } from "react";
 
 import TagList from "../../components/TagList/TagList";
 import TagControlPanel from "../../components/TagControlPanel/TagControlPanel";
@@ -9,7 +9,13 @@ import { GlobalContext } from "../../context/GlobalContext";
 
 
 export default function TagsView() {
-  const { languageManager: lm } = useContext(GlobalContext);
+  const { languageManager: lm, workspaceManager: wm } = useContext(GlobalContext);
+  const tagContainer = wm.getTagContainer();
+  const [tags, setTags] = useState([]);
+
+  useLayoutEffect(() => {
+    setTags(tagContainer.filterItems());
+  }, [tagContainer]);
 
   return (
     <>
@@ -22,7 +28,7 @@ export default function TagsView() {
         </div>
       </Row>
       <Row className="mt-3">
-        <TagList />
+        <TagList tags={tags}/>
       </Row>
     </>
   );
