@@ -1,19 +1,19 @@
 import Accordion from "react-bootstrap/Accordion";
-import PageControlPanel from "../PageControlPanel/PageControlPanel";
 
 import { useContext, useEffect, useState } from "react";
-import useFormModal from "../../hooks/modal/useFormModal";
 
 import ArticleListing from "../ArticleListing/ArticleListing";
+import PageControlPanel from "../PageControlPanel/PageControlPanel";
 
 import { GlobalContext } from "../../context/GlobalContext";
-import createArticlePopup from "../../modals/create/article/createArticlePopup";
 import { checkArticleIssues } from "../../model/components/Article";
+import createArticlePopup from "../../modals/create/article/createArticlePopup";
+import useFormModal from "../../hooks/modal/useFormModal";
 
 
 export const DEFAULT_SETTINGS = {
   defaultActiveKey: "-1",
-  ListingWrapper: (Listing, item) => <>{Listing}</>,
+  ListingWrapper: (Listing, item) => Listing,
   pageSettings: {
     allowPages: false,
     pageCapacity: 1

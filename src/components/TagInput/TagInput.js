@@ -61,7 +61,10 @@ export default function TagInput(props) {
       return;
 
       return (
-        <div className="d-inline-block w-auto">
+        <div
+          key={"tag-input-tag-listing-" + tagWord}
+          className="d-inline-block w-auto"
+        >
           <ArticleTag
             key={"tag-input-tag-listing-" + tagWord}
             name={tag.name}

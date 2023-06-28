@@ -13,9 +13,8 @@ import Datepicker from "../../components/Datepicker/Datepicker";
 import { GlobalContext } from "../../context/GlobalContext";
 import { Styles } from "./ArticleForm.styles";
 import { convertDateToDatetimestring } from "../../utils/dates";
-
-import ASSETS from "../../assets/assets";
 import openLinkUsingHTTPS from "../../utils/openLinkUsingHTTPS";
+import ASSETS from "../../assets/assets";
 
 
 export default function ArticleForm(props) {
@@ -97,7 +96,7 @@ export default function ArticleForm(props) {
             <Col className="d-flex justify-content-end align-items-center p-0 m-0">
               <Form.Check
                 checked={!!readDate}
-                onClick={handleReadDateCheck}
+                onChange={handleReadDateCheck}
               />
             </Col>
           </Row>

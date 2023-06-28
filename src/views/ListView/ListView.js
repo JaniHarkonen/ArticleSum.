@@ -43,6 +43,7 @@ export default function ListView() {
 
     return (
       <SelectableElement
+        key={"list-view-selectable-article-" + articleId}
         checked={selectedArticles[articleId]}
         onChange={(isSelected) => handleSelect(articleId, isSelected)}
       >
