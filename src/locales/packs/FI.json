@@ -2,6 +2,9 @@
   "abbreviation": "FI",
   "language": "Suomi",
   "app-name": "ArticleSum.",
+  "workspace": {
+    "no-workspace": "Aloita avaamalla työtila"
+  },
   "navigation": {
     "timeline": "Aikajana",
     "word-cloud": "Sanapilvi",

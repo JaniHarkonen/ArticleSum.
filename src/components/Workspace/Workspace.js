@@ -12,7 +12,7 @@ import { mapElements } from "../../utils/mapElements";
 export default function Workspace() {
   const defaultTab = workspaceTabs[0];
   const [activeTab, setActiveTab] = useState(defaultTab);
-  const { languageManager: lm } = useContext(GlobalContext);
+  const { languageManager: lm, workspaceManager: wm } = useContext(GlobalContext);
 
 
   const renderTabs = (tabs) => {
@@ -45,13 +45,22 @@ export default function Workspace() {
   };
 
   return (
-    <Tabs
-      activeKey={activeTab}
-      defaultActiveKey={defaultTab}
-      onSelect={setActiveTab}
-      unmountOnExit={true}
-    >
-      {renderTabs(workspaceTabs)}
-    </Tabs>
+    <>
+      {
+        wm.checkWorkspaceOpen() ? 
+        <Tabs
+          activeKey={activeTab}
+          defaultActiveKey={defaultTab}
+          onSelect={setActiveTab}
+          unmountOnExit={true}
+        >
+          {renderTabs(workspaceTabs)}
+        </Tabs>
+        :
+        <div className="d-flex justify-content-center align-items-center h-100">
+          <h1 className="text-secondary">{lm.translate("workspace.no-workspace")}</h1>
+        </div>
+      }
+    </>
   );
 }

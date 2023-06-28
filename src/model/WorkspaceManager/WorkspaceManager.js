@@ -1,3 +1,4 @@
+import { editConfig } from "../../utils/config";
 import ArticleContainer from "./ArticleContainer";
 import TagContainer from "./TagContainer";
 
@@ -19,8 +20,8 @@ export default class WorkspaceManager {
     this.tags = null;
     this.idCounter = 0;
     this.workspaceName = "";
-
     this.workspacePath = "";
+    this.isWorkspaceOpen = false;
   }
 
   loadWorkspace(path) {
@@ -29,7 +30,6 @@ export default class WorkspaceManager {
 
   saveWorkspace(path, workspace) {
     const replacer = (key, value) => value ?? undefined;
-    console.log(this.workspaceName);
     fs.writeFileSync(path, JSON.stringify(workspace, replacer, 2));
   }
 
@@ -41,11 +41,14 @@ export default class WorkspaceManager {
     this.workspaceName = name;
     this.saveWorkspace(this.workspacePath, Workspace(0, this.workspaceName));
     this.openWorkspace(this.workspacePath);
+    //editConfig({ lastWorkspace: this.workspacePath });
   }
 
   openWorkspace(path) {
-    if( !path )
+    if( !path || !fs.existsSync(path) )
     return;
+
+    this.closeWorkspace();
 
     const ws = this.loadWorkspace(path);
     this.workspacePath = path;
@@ -59,15 +62,16 @@ export default class WorkspaceManager {
     this.articles.setIdRetriever(idRetriever);
     this.tags = new TagContainer(ws.tags, notify);
     this.tags.setIdRetriever(idRetriever);
+    this.isWorkspaceOpen = true;
   }
 
   closeWorkspace() {
     this.articles = null;
     this.tags = null;
-    this.idCounter = -1;
+    this.idCounter = 0;
     this.workspaceName = "";
-
     this.workspacePath = "";
+    this.isWorkspaceOpen = false;
   }
 
   workspaceModified(changes) {
@@ -92,6 +96,10 @@ export default class WorkspaceManager {
 
   getWorkspaceName() {
     return this.workspaceName;
+  }
+
+  checkWorkspaceOpen() {
+    return this.isWorkspaceOpen;
   }
 
   getUniqueId() {
