@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
-import DragBox from "../../model/components/DragBox";
-import addEventListenerTo from "../../utils/addEventListenerTo";
-import { Point, dividePoint } from "../../utils/geometry";
-import useDraggables from "./useDraggables";
 
+import DragBox from "../../model/components/DragBox";
+
+import { Point, dividePoint } from "../../utils/geometry";
+import addEventListenerTo from "../../utils/addEventListenerTo";
+import useDraggables from "./useDraggables";
 
 export const DEFAULT_SETTINGS = {
   defaultPosition: Point(),
   defaultZoom: 1,
   zoomIncrement: 1,
 };
+
 
 const dragBox = new DragBox(Point(0, 0), Point(Number.POSITIVE_INFINITY, Number.POSITIVE_INFINITY));
 dragBox.setAnchorPoint(dividePoint(dragBox.getDimensions(), 2));

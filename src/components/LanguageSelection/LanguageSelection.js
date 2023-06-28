@@ -1,8 +1,11 @@
-import { useContext } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
-import { GlobalContext } from "../../context/GlobalContext";
+
+import { useContext } from "react";
+
 import LanguageManager from "../../locales/LanguageManager";
+
+import { GlobalContext } from "../../context/GlobalContext";
 import { mapElements } from "../../utils/mapElements";
 
 

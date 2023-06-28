@@ -37,7 +37,6 @@ export default function Timeline(props) {
   const { viewPosition, setConstraints, moveView } = usePannableView();
   const { languageManager: lm } = useContext(GlobalContext);
 
-
     // Determine the max number of visible slots according to the parent container's dimensions
   useResizeEffect(() => {
     const timelineElement = document.getElementById(ELEMENT_ID.timelineContainer);

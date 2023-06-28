@@ -1,8 +1,10 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+
 import { useState, useContext } from "react";
 
 import Datepicker from "../../../../components/Datepicker/Datepicker";
+
 import { GlobalContext } from "../../../../context/GlobalContext";
 
 
@@ -12,7 +14,6 @@ export default function GotoPanel(props) {
 
   const [date, setDate] = useState(value);
   const { languageManager: lm } = useContext(GlobalContext);
-
 
   return (
     <Form>

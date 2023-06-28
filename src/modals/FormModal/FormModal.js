@@ -1,4 +1,5 @@
 import Modal from "react-bootstrap/Modal";
+
 import FormControlButtons from "../../components/FormControlButtons/FormControlButtons";
 
 export const DEFAULT_SETTINGS = {

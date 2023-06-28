@@ -3,7 +3,6 @@ import WordCloudView from "../../views/WordCloudView/WordCloudView";
 import ListView from "../../views/ListView/ListView";
 import TagsView from "../../views/TagsView/TagsView";
 
-
 const Tab = (id, jsx) => {
   return {
     id: id,

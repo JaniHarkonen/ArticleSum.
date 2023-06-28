@@ -1,7 +1,8 @@
 import Form from "react-bootstrap/Form";
 
-import { Article } from "../../model/components/Article";
 import { useContext } from "react";
+
+import { Article } from "../../model/components/Article";
 import { GlobalContext } from "../../context/GlobalContext";
 import useFormPopup from "../../hooks/modal/useFormModal";
 import createArticlePopup from "../../modals/create/article/createArticlePopup";
@@ -13,7 +14,6 @@ export default function ArticleControlPanel(props) {
   const selection = props.selection || [];
   const { popup } = useFormPopup();
   const { languageManager: lm, workspaceManager: wm } = useContext(GlobalContext);
-
   
   const handleArticleAdd = () => {
     popup(applyArticleAdd(createArticlePopup(Article())));

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import addEventListenerTo from "../../utils/addEventListenerTo";
+
 import { Point } from "../../utils/geometry";
+import addEventListenerTo from "../../utils/addEventListenerTo";
 
 
 export default function useMouseTracker() {

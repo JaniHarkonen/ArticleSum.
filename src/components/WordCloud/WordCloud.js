@@ -46,7 +46,6 @@ export default function WordCloud(props) {
     });
   }, [inventory]);
 
-
   const renderWordSpans = (items) => {
     const {
       highestOccurrences,

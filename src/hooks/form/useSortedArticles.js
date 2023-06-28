@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react";
+
 import { GlobalContext } from "../../context/GlobalContext";
 import { compareDateStrings } from "../../utils/sortComparisons";
 
@@ -19,7 +20,6 @@ export default function useSortedArticles(props) {
     setArticles(filteredArticles);
 
   }, []);
-
   
   const sort = (sortBy) => setArticles(articles.sort(sortBy));
   const sortByReadDate = () => sort((a1, a2) => compareDateStrings(a1.readDate, a2.readDate));

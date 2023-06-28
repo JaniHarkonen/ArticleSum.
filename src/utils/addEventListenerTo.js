@@ -16,7 +16,7 @@
  * determines the object, however, a different object may be 
  * assigned via this property).
  * @param {*} object Object to attach the event listener to.
- * @param {*} listeners Listener function(s) to be attached. Can 
+ * @param {Array} listeners Listener function(s) to be attached. Can 
  * be a JSON or an array of JSON in case of multiple listeners.
  * 
  * @returns A function that can be used to remove the event 

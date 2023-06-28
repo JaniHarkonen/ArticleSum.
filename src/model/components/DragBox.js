@@ -1,4 +1,5 @@
-import { addPoints, constrainPoint, Dimension, Point, subtractPoints } from "../../utils/geometry";
+import { addPoints, constrainPoint, Point, subtractPoints } from "../../utils/geometry";
+
 
 const combineJsons = (json1, json2) => {
   return { ...json1, ...json2 };

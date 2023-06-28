@@ -1,6 +1,7 @@
-import { editConfig } from "../../utils/config";
 import ArticleContainer from "./ArticleContainer";
 import TagContainer from "./TagContainer";
+
+import { editConfig } from "../../utils/config";
 
 const fs = window.require("fs");
 

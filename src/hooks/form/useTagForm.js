@@ -1,7 +1,9 @@
 import { useContext, useState } from "react";
+
+import Container, { Result } from "../../model/WorkspaceManager/Container";
+
 import { GlobalContext } from "../../context/GlobalContext";
 import { Tag } from "../../model/components/Tag";
-import Container, { Result } from "../../model/WorkspaceManager/Container";
 
 
 export default function useTagForm(baseInstance) {

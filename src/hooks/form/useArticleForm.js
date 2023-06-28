@@ -1,4 +1,5 @@
 import { useContext, useLayoutEffect, useState } from "react";
+
 import { GlobalContext } from "../../context/GlobalContext";
 import { Article } from "../../model/components/Article";
 import { tagsToString } from "../../model/components/Tag";
@@ -13,7 +14,6 @@ export default function useArticleForm(baseInstance) {
   const [source, setSource] = useState(baseInstance.source);
   const [tags, setTags] = useState("");   // Tags are in string format by default; must be converted into tag IDs
   const [notes, setNotes] = useState(baseInstance.notes);
-
 
     // Resolve tag names given their IDs
   useLayoutEffect(() => {

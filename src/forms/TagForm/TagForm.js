@@ -4,8 +4,8 @@ import Row from "react-bootstrap/Row";
 
 import { useContext } from "react";
 
-import { hexToRGB, rgbToHex } from "../../utils/colors";
 import { GlobalContext } from "../../context/GlobalContext";
+import { hexToRGB, rgbToHex } from "../../utils/colors";
 
 
 export default function TagForm(props) {

@@ -23,7 +23,6 @@ export default function IntervalPicker(props) {
     DATE_INTERVAL_TYPES.year
   ];
 
-
   return CONTROLS.map((type) => {
     return (
       <Button

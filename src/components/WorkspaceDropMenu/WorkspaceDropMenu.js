@@ -1,5 +1,6 @@
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
+
 import { useContext } from "react";
 
 import { FilesysDialogSettings, showOpenFile, showSaveFile } from "../../utils/dialog";
@@ -11,9 +12,7 @@ const pathModule = window.require("path");
 export default function WorkspaceDropMenu() {
   const tDialog = "filesys-dialog.workspace.";
   const tWorkspaceChanger = "workspace-changer.";
-
   const { languageManager: lm, workspaceManager: wm, setActiveWorkspacePath } = useContext(GlobalContext);
-
 
   const createWorkspace = () => {
 

@@ -40,28 +40,6 @@ export const checkArticleIssues = (article) => {
 };
 
 export const isArticleIncomplete = (article) => {
-  /*const {
-    id,
-    title,
-    source,
-    tags, 
-    notes
-  } = article;
-
-  const publishDate = article["publish-date"];
-  const readDate = article["read-date"];
-
-  const isValidString = (target) => (target && typeof target === "string" && target !== "");
-
-  return (
-    isValidString(id) &&
-    isValidString(title) &&
-    isDatetimeStringValid(publishDate) &&
-    isDatetimeStringValid(readDate) &&
-    isValidString(source) &&
-    tags.length > 0 &&
-    isValidString(notes)
-  );*/
   return checkArticleIssues(article).hasIssues;
 };
 

@@ -14,7 +14,6 @@ export default function Workspace() {
   const [activeTab, setActiveTab] = useState(defaultTab);
   const { languageManager: lm, workspaceManager: wm } = useContext(GlobalContext);
 
-
   const renderTabs = (tabs) => {
     return mapElements(
       tabs,

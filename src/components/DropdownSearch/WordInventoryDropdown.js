@@ -1,6 +1,5 @@
 import Dropdown from "react-bootstrap/Dropdown";
 
-
 const idPrefix = "word-inventory-dropdown-";
 const idItem = idPrefix + "item-";
 
@@ -8,6 +7,7 @@ export const ID_PREFIXES = {
   idPrefix,
   idItem
 };
+
 
 export default function WordInventoryDropdown(props) {
   const inventory = props.inventory || [];

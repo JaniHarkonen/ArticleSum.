@@ -1,15 +1,3 @@
-/*export const Color = (r, g, b) => {
-  return {
-    r: r || 0,
-    g: g || 0,
-    b: b || 0
-  };
-};
-
-export const copyColor = (color) => {
-  return Color(color.r, color.g, color.b);
-}
-*/
 export const bit8ToHex = (bit8) => {
   const hex = bit8.toString(16);  // Use base16
 

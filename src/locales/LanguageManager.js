@@ -1,7 +1,7 @@
 import Languages from "./Languages";
 
-import getValueByFieldString from "../utils/getValueByFieldString";
 import { editConfig } from "../utils/config";
+import getValueByFieldString from "../utils/getValueByFieldString";
 
 
 /**

@@ -1,5 +1,6 @@
-import { compareDateStrings } from "../../utils/sortComparisons";
 import ArticleSortControls, { ARTICLE_SORT_CRITERIAS } from "../ArticleSortControls/ArticleSortControls";
+
+import { compareDateStrings } from "../../utils/sortComparisons";
 
 export const SORT_CRITERIAS = {
   publish: "publish",
@@ -10,7 +11,6 @@ export const SORT_CRITERIAS = {
 export default function ArticleDataSortControls(props) {
   const articles = props.articles;
   const setArticles = props.setArticles || function(ars) {};
-
 
   const handleCriteriaSelection = (criteriaKey) => {
     switch( criteriaKey )

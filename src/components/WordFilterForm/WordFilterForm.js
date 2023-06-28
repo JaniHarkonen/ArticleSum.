@@ -1,8 +1,9 @@
 import Form from "react-bootstrap/Form";
+
 import { useContext, useState } from "react";
 
-import createEnum from "../../utils/createEnum";
 import { GlobalContext } from "../../context/GlobalContext";
+import createEnum from "../../utils/createEnum";
 import createButtons from "../../utils/createButtons";
 
 export const FILTER_TYPES = createEnum([

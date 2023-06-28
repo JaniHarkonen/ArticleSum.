@@ -12,7 +12,6 @@ export default function SelectableElement(props) {
   const children = props.children;
   const checked = props.checked || DEFAULT_SETTINGS.checked;
   const onChange = props.onChange || DEFAULT_SETTINGS.onChange;
-
   
   return (
     <Form.Group

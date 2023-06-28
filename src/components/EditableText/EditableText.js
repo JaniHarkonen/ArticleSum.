@@ -1,6 +1,8 @@
-import { useState } from "react"
 import FormControl from "react-bootstrap/FormControl";
+import { useState } from "react"
+
 import useKeyListener from "../../hooks/keyboard/useKeyListener";
+
 import { Styles } from "./EditableText.styles";
 
 

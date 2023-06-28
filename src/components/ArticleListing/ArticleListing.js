@@ -1,5 +1,6 @@
 import Accordion from "react-bootstrap/Accordion";
 import Button from "react-bootstrap/Button";
+
 import { useContext } from "react";
 
 import { GlobalContext } from "../../context/GlobalContext";
