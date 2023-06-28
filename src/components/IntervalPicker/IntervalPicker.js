@@ -1,7 +1,6 @@
-import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 
-import { useContext, useState } from "react";
+import { useContext } from "react";
 
 import { GlobalContext } from "../../context/GlobalContext";
 
@@ -29,6 +28,7 @@ export default function IntervalPicker(props) {
     return (
       <Button
         className="me-1 mt-1"
+        key={"interval-picker-button-"+type}
         variant={(value === type) ? "primary" : "secondary"}
         onClick={() => onChange(type)}
       >
