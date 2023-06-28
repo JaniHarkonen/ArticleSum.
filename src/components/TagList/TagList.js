@@ -8,7 +8,7 @@ export const ELEMENT_ID = {
 
 export const DEFAULT_SETTINGS = {
   tags: [],
-  ListingWrapper: (Listing, item) => <>{Listing}</>
+  ListingWrapper: (Listing, item) => Listing
 };
 
 
@@ -34,7 +34,6 @@ export default function TagList(props) {
               color={tag.color}
               onClick={() => handleTagEdit(tag)}
             />
-            <br />
           </div>,
           tag
         )
