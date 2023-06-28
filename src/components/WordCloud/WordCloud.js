@@ -1,6 +1,4 @@
-import { useEffect, useState } from "react";
-
-import { Styles } from "./WordCloud.styles";
+import { useEffect, useState, Fragment } from "react";
 
 export const DEFAULT_SETTINGS = {
   inventory: [],
@@ -63,16 +61,16 @@ export default function WordCloud(props) {
     return messageEmpty;
 
       // Generate word cloud, if there are words
-    return items.map((item) => {
+    return items.map((item, index) => {
       const fontSize = minFontSize + (item.occurrences - lowestOccurrences) / occurrenceDelta * fontSizeDelta;
 
       return(
-        <>
+        <Fragment key={"word-cloud-word-span-" + index}>
           <span style={{fontSize: fontSize + "px" }}>
             {item.word}
           </span>
           {' '}
-        </>
+        </Fragment>
       )
     });
   };

@@ -51,7 +51,7 @@ export default function ArticleFilters(props) {
     (key, filter) => {  
       let controlElement = (
         <Form.Control
-          value={data[filter]}
+          value={data[filter] || ""}
           onChange={(e) => setters[kebabCaseToCamelCase("set-" + filter)](e.target.value)}
         />
       );

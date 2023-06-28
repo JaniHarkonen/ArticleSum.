@@ -67,8 +67,8 @@ export default function WordFilterForm(props) {
         onChange={() => setFilterType(FILTER_TYPES.FILTER_MATCHING)}
       />
       {createButtons([
-        { className: "me-1 mt-1", onClick: handleClear, caption: lm.translate("word-filter-form.clear") },
-        { className: "mt-1", onClick: handleSubmit, caption: lm.translate("word-filter-form.filter") }
+        { key: "word-filter-form-button-clear", className: "me-1 mt-1", onClick: handleClear, caption: lm.translate("word-filter-form.clear") },
+        { key: "word-filter-form-button-filter", className: "mt-1", onClick: handleSubmit, caption: lm.translate("word-filter-form.filter") }
       ])}
     </Form>
   );
