@@ -8,12 +8,40 @@ import { GlobalContext } from "../../context/GlobalContext";
 
 const pathModule = window.require("path");
 
-
+/**
+ * A simple drop menu containing the functionalities for workspaces.
+ * The following functionalities are provided:
+ * - creation of a new workspace
+ * - opening of an existing workspace
+ * 
+ * The drop menu is created using Bootstrap's `Dropdown`-component
+ * where the options are listed as `Dropdown.Item`-components upon 
+ * expansion.
+ * 
+ * The `dialog`-utility module is also used to display file system
+ * prompts for opening and saving files. 
+ */
 export default function WorkspaceDropMenu() {
+  /**
+   * Prefix for the translation keys used by the file system dialog 
+   * components.
+   */
   const tDialog = "filesys-dialog.workspace.";
+
+  /**
+   * Prefix for the translation keys used by the UI-elements of this 
+   * component.
+   */
   const tWorkspaceChanger = "workspace-changer.";
+
   const { languageManager: lm, workspaceManager: wm, setActiveWorkspacePath } = useContext(GlobalContext);
 
+  /**
+   * Opens the "save file" file system dialog window using the default 
+   * ArticleSum. workspace file settings. Once a valid filename is 
+   * entered, the current workspace will close and a new one will 
+   * be created and opened.
+   */
   const createWorkspace = () => {
 
       // Select a workspace file and create the workspace if valid
@@ -32,6 +60,12 @@ export default function WorkspaceDropMenu() {
     });
   };
 
+  /**
+   * Opens the "open file" file system dialog window using the default 
+   * ArticleSum. workspace file settings. Once a valid filename is 
+   * entered, the current workspace will close and the chosen one will 
+   * be opened.
+   */
   const openWorkspace = () => {
 
       // Select a workspace file and open it if valid

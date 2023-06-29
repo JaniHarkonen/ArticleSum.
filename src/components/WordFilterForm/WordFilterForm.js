@@ -6,6 +6,9 @@ import { GlobalContext } from "../../context/GlobalContext";
 import createEnum from "../../utils/createEnum";
 import createButtons from "../../utils/createButtons";
 
+/**
+ * An "enum" of filters available in the word filter form.
+ */
 export const FILTER_TYPES = createEnum([
   "NONE",
   "INCLUDE_MATCHING",
@@ -20,15 +23,39 @@ export const DEFAULT_SETTINGS = {
   wordString: ""
 };
 
-
+/**
+ * Provides a quick filter form mainly for the `WordCloudView` -major
+ * component. The quick filter has the following functionalities:
+ * - filteration of the words included in the filter
+ * - filteration of all the words NOT included in the filter
+ * 
+ * Unlike the `FilterForm`, which uses the `filters`-utilities, this 
+ * component is not capable of forming complex filters. Instead, filter 
+ * terms are simply separated via spaces.
+ */
 export default function WordFilterForm(props) {
+  /**
+   * Hook that updates the parent component when the input of the 
+   * quick filter field changes.
+   */
   const onSubmit = props.onSubmit;
+
+  /**
+   * Current filter type.
+   */
   const defaultFilter = props.defaultFilter || DEFAULT_SETTINGS.defaultFilter;
   
   const [filterType, setFilterType] = useState(defaultFilter.filterType || DEFAULT_SETTINGS.defaultFilter);
   const [wordString, setWordString] = useState(defaultFilter.filteredWords || DEFAULT_SETTINGS.wordString);
   const { languageManager: lm } = useContext(GlobalContext);
 
+  /**
+   * Updates the parent once the filter type of the component is 
+   * changed by passing the filter type along with the inventory 
+   * of words onto the parent component. The word inventory is 
+   * constructed by splitting the input string according to 
+   * spaces.
+   */
   const handleSubmit = () => {
     onSubmit({
       filterType: filterType,
@@ -36,6 +63,11 @@ export default function WordFilterForm(props) {
     });
   };
 
+  /**
+   * Clears the filters by resetting the filter type to "none" 
+   * and updates the parent component. The input will also be 
+   * reset.
+   */
   const handleClear = () => {
     onSubmit({
       filterType: FILTER_TYPES.NONE,
