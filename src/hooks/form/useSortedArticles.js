@@ -3,10 +3,16 @@ import { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../../context/GlobalContext";
 import { compareDateStrings } from "../../utils/sortComparisons";
 
+export const DEFAULT_SETTINGS = {
+  initialSort: () => false
+};
 
+/**
+ * UNUSED?? 
+ */
 export default function useSortedArticles(props) {
   const filterCriteria = props.filterCriteria;
-  const initialSort = props.initialSort || function() { return false; }
+  const initialSort = props.initialSort || DEFAULT_SETTINGS.initialSort;
   
   const {workspaceManager: wm} = useContext(GlobalContext);
   const [articles, setArticles] = useState([]);

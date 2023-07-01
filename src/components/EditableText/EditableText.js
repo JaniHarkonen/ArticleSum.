@@ -83,7 +83,7 @@ export default function EditableText(props) {
       onMouseOver={() => setMouseOver(true)}
       onMouseLeave={() => setMouseOver(false)}
     >
-      {(!text || text === "") ? <>placeholder</> : <>string</>}
+      {(!text || text === "") ? <>{placeholder}</> : <>{text}</>}
       {isMouseOver && <Styles.Highlight />}
     </div>
   );
