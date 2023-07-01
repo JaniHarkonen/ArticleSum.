@@ -16,11 +16,30 @@ import { convertDateToDatetimestring } from "../../utils/dates";
 import openLinkUsingHTTPS from "../../utils/openLinkUsingHTTPS";
 import ASSETS from "../../assets/assets";
 
-
+/**
+ * Provides the form for article information input. The user can input 
+ * the title, publish date, read date, source link, tags and notes of 
+ * the article. Most of the fields are basic Bootstrap `Form.Control`-
+ * components, however, some have additional features; dates can also 
+ * be input via the calendar icon. The tag input is done using the 
+ * `TagInput`-component where the user searches a tag using the input 
+ * field and then adds the tag to the article by clicking the plus-sign.
+ * 
+ * The information of the form is provided via the `data`-prop and can 
+ * be manipulated via the hooks found in `setters`-prop.
+ */
 export default function ArticleForm(props) {
+  /**
+   * Translation key prefix for the UI-elements of this component.
+   */
   const lpCategory = "forms.article-form.";
+
+  /**
+   * Default Bootstrap-style class name for the rows of the form.
+   */
   const itemClassName = "mt-1";
   const { languageManager: lm, workspaceManager: wm } = useContext(GlobalContext);
+
   const {
     id,
     title,
@@ -39,6 +58,11 @@ export default function ArticleForm(props) {
     setNotes
   } = props.setters;
 
+  /**
+   * Handles the toggling of the read date when the user clicks the 
+   * check box. If the read date is empty, it is set to the current 
+   * date. If the date is already input, it is reset to empty.
+   */
   const handleReadDateCheck = () => {
     if( readDate && readDate !== "" )
     setReadDate("");
@@ -46,10 +70,25 @@ export default function ArticleForm(props) {
     setReadDate(convertDateToDatetimestring(new Date()));
   };
 
+  /**
+   * Returns whether a given tag exists in the tag container of the 
+   * `WorkspaceManager`.
+   * 
+   * @param {String} candidate Name of the tag candidate that is to 
+   * be searched.
+   * 
+   * @returns Whether a tag with the given `candidate` name was found.
+   */
   const checkTagValidity = (candidate) => {
     return wm.getTagContainer().itemExists((item) => item.name === candidate);
   };
 
+  /**
+   * Opens a given link in a browser using the `HTTPS`-protocol when the 
+   * user clicks the source link icon.
+   * 
+   * @param {String} link Link to open.
+   */
   const handleLinkOpen = (link) => {
     if( !link && link !== "" )
     openLinkUsingHTTPS(link);
