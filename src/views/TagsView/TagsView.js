@@ -7,7 +7,15 @@ import TagControlPanel from "../../components/TagControlPanel/TagControlPanel";
 
 import { GlobalContext } from "../../context/GlobalContext";
 
-
+/**
+ * Major view component that renders the tag inventory used 
+ * by the workspace.
+ * 
+ * The user can add new tags by clicking the "add"-button or 
+ * edit existing tags by clicking the tag badges. When a tag 
+ * is being edited, it is diplayed in a form modal popup 
+ * window.
+ */
 export default function TagsView() {
   const { languageManager: lm, workspaceManager: wm } = useContext(GlobalContext);
   const tagContainer = wm.getTagContainer();

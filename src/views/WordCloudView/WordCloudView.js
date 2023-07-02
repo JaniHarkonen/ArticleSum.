@@ -15,9 +15,20 @@ export const DEFAULT_SETTINGS = {
   wordFilter: null
 };
 
-
+/**
+ * Major view component that provides the application with a word 
+ * cloud that can be used to visualize the notes of a given year.
+ * 
+ * In this view, the user can select the year for which the word 
+ * cloud is to be generated. A quick filter can be used to filter 
+ * out or only allow certain words to be represented by the cloud.
+ */
 export default function WordCloudView() {
   const { workspaceManager: wm, languageManager: lm } = useContext(GlobalContext);
+
+  /**
+   * Reference to the article container of the `WorkspaceManager`.
+   */
   const articleContainer = wm.getArticleContainer();
 
   const [articles, setArticles] = useState([]);
@@ -28,6 +39,14 @@ export default function WordCloudView() {
     setArticles(articleContainer.filterItems());
   }, [articleContainer]);
 
+  /**
+   * Generates the word inventory for the `WordCloud`-component.
+   * The inventory consists of JSONs containing the word as well
+   * as the number of occurrences in the notes.
+   * 
+   * @returns Array containing the inventory of words accepted by
+   * the `WordCloud`.
+   */
   const generateWordInventory = () => {
     const inventory = []; // Eventual inventory of the word cloud
     const inventoryEntries = {};  // Indices of inventory items coupled with their words
@@ -63,6 +82,15 @@ export default function WordCloudView() {
     return inventory;
   };
 
+  /**
+   * Applies the quick filter to the inventory of words as provided
+   * by the `WordFilterForm`-component.
+   * 
+   * @param {Array} inventory Word inventory that is to be filtered
+   * according to the quick filter.
+   * 
+   * @returns A new array representing the filtered word inventory.
+   */
   const applyInventoryFilter = (inventory) => {
     if( !wordFilter )
     return inventory;

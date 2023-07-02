@@ -20,7 +20,21 @@ export const DEFAULT_SETTINGS = {
   }
 };
 
-
+/**
+ * Major view component that renders the article inventory 
+ * used by the workspace.
+ * 
+ * The user can sort article according to either their publish
+ * date or by their read date. The articles can be selected 
+ * individually or by using the control buttons on the left side
+ * of the view. Selected articles can be deleted via the "delete"-
+ * button or new ones can be created via the "add"-button.
+ * 
+ * The articles will be arranged in a list in the order determined 
+ * by their sorting settings. This component declares the listing 
+ * wrapper that will be used by the `ArticleList`-component to 
+ * create the selection checkboxes for articles.
+ */
 export default function ListView() {
   const { languageManager: lm, workspaceManager: wm } = useContext(GlobalContext);
   const articleContainer = wm.getArticleContainer();
@@ -38,6 +52,20 @@ export default function ListView() {
     setArticles(wm.getArticleContainer().filterItems());
   }, [articleContainer]);
 
+  /**
+   * `ArticleList`-wrapper element that will be placed around 
+   * the article listings. This wrapper provides the selection
+   * check box that can be found on the left side of the 
+   * article listing.
+   * 
+   * @param {JSX} Listing The JSX-element of the article listing
+   * that is to be wrapped.
+   * @param {JSON} article The JSON of the article represented
+   * by this article listing.
+   * 
+   * @returns An article list item wrapped inside `SelectableElement`-
+   * component.
+   */
   const ListingSelectionWrapper = (Listing, article) => {
     const articleId = article.id;
 

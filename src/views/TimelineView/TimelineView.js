@@ -12,7 +12,23 @@ import ArticleSortControls, { ARTICLE_SORT_CRITERIAS } from "../../components/Ar
 import { GlobalContext } from "../../context/GlobalContext";
 import wrapAccordion from "../../components/wrappers/wrapAccordion";
 
-
+/**
+ * Major view component that renders a timeline view where the 
+ * articles of the workspace are displayed in the chronological 
+ * order either by their publish date or by read date.
+ * 
+ * The user can pan the timeline using the left mouse button to
+ * scroll forwards or backwards in time. The articles will be 
+ * placed into containers know as "date slots" according to the 
+ * desired interval. By default, the articles are sorted by year
+ * meaning each date slot contains the articles for a specific 
+ * year. The articles can also be arranged by day or by month.
+ * 
+ * The timeline can be ordered by ther publish date or the read
+ * date of the article. The user can also go to a specific date 
+ * in the timeline by inputting the date inside the date picker 
+ * found in the top-left corner of the view.
+ */
 export default function TimelineView() {
   const { workspaceManager: wm } = useContext(GlobalContext);
   const articleContainer = wm.getArticleContainer();
