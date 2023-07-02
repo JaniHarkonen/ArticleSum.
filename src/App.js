@@ -10,7 +10,10 @@ import useModal from './hooks/modal/useModal';
 
 import './App.css';
 
-
+/**
+ * Fundamental React-component that contains the entire UI of 
+ * the application.
+ */
 function App(props) {
   const { workspaceManager, languageManager } = props;
   const [activeLanguage, setLanguage] = useState(languageManager.getActiveLanguage());
