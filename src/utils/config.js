@@ -63,5 +63,10 @@ export const editConfig = (changes) => {
  * @returns The configuration JSON.
  */
 export const getConfig = () => {
+
+    // If the config file cannot be found, create a new default one
+  if( !fs.existsSync(CONFIG_PATH) )
+  editConfig({});
+
   return JSON.parse(fs.readFileSync(CONFIG_PATH));
 };

@@ -15,7 +15,7 @@ import "../node_modules/bootstrap/dist/css/bootstrap.css";
 const config = getConfig();
 const languageManager = new LanguageManager((config.language === "") ? Languages.ENG : (Languages[config.language] || Languages.ENG));
 const workspaceManager = new WorkspaceManager();
-workspaceManager.openWorkspace(/*config.lastWorkspace*/process.cwd() + "\\testing\\ws.asum");
+workspaceManager.openWorkspace(config.lastWorkspace/*process.cwd() + "\\testing\\ws.asum"*/);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

@@ -144,7 +144,7 @@ export default class WorkspaceManager {
     this.workspaceName = name;
     this.saveWorkspace(this.workspacePath, Workspace(0, this.workspaceName));
     this.openWorkspace(this.workspacePath);
-    //editConfig({ lastWorkspace: this.workspacePath });
+    editConfig({ lastWorkspace: this.workspacePath });
   }
 
   /**

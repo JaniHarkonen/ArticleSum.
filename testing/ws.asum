@@ -1,5 +1,5 @@
 {
-  "id-counter": 35,
+  "id-counter": 37,
   "workspace-name": "BIG SHIT",
   "articles": {
     "1": {
@@ -160,6 +160,15 @@
       "source": "",
       "tags": [],
       "notes": ""
+    },
+    "35": {
+      "id": "35",
+      "title": "Perussuomalaisten kansanedustaja Juha Mäenpää poistettiin Provinssista",
+      "publish-date": "2023-07-02T00:00Z",
+      "read-date": "2023-07-02T00:00Z",
+      "source": "https://www.iltalehti.fi/politiikka/a/a885e464-6f4e-44ea-a2b8-2650872241fe",
+      "tags": [],
+      "notes": "- hahahaah hyvä artikkeli :)"
     }
   },
   "tags": {
@@ -206,6 +215,15 @@
         "r": 0,
         "g": 138,
         "b": 9
+      }
+    },
+    "36": {
+      "tagId": "36",
+      "name": "PERSU",
+      "color": {
+        "r": 238,
+        "g": 255,
+        "b": 0
       }
     }
   }

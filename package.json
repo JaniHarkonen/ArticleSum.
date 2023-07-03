@@ -1,6 +1,6 @@
 {
   "name": "article-sum",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "author": "Jani Härkönen",
   "description": "ArticleSum. is a summarization and visualization tool for news articles",
