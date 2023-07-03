@@ -55,7 +55,8 @@ export default function ArticleForm(props) {
     setReadDate,
     setSource,
     setTags,
-    setNotes
+    setNotes,
+    setContentChanged
   } = props.setters;
 
   /**
@@ -94,6 +95,19 @@ export default function ArticleForm(props) {
     openLinkUsingHTTPS(link);
   };
 
+  /**
+   * Handles a change by updating the parent component as well as 
+   * notifiying it of the changed content. This way, when the content
+   * changes, the control buttons that may be reacting to changes 
+   * will also be updated.
+   * 
+   * @param {Function} change The change itself as a function.
+   */
+  const handleChange = (change) => {
+    change();
+    setContentChanged(true);
+  };
+
   return (
     <Form onSubmit={(e) => {e.preventDefault(); e.stopPropagation()}}>
       <Row>
@@ -102,7 +116,7 @@ export default function ArticleForm(props) {
       <Row className="position-relative">
         <h2><b>
           <EditableText
-            onChange={setTitle}
+            onChange={(newTitle) => handleChange(() => setTitle(newTitle))}
             placeholder={<Styles.EditableTextPlaceholder>{lm.translate(lpCategory + "placeholders.title")}</Styles.EditableTextPlaceholder>}
           >
             {title}
@@ -119,7 +133,7 @@ export default function ArticleForm(props) {
         <Col>
           <Datepicker
             value={publishDate}
-            onChange={(value) => setPublishDate(value + "T00:00Z")}
+            onChange={(value) => handleChange(() => setPublishDate(value + "T00:00Z"))}
           />
         </Col>
       </Form.Group>
@@ -135,7 +149,7 @@ export default function ArticleForm(props) {
             <Col className="d-flex justify-content-end align-items-center p-0 m-0">
               <Form.Check
                 checked={!!readDate}
-                onChange={handleReadDateCheck}
+                onChange={() => handleChange(() => handleReadDateCheck())}
               />
             </Col>
           </Row>
@@ -143,7 +157,7 @@ export default function ArticleForm(props) {
         <Col>
           <Datepicker
             value={readDate}
-            onChange={(value) => setReadDate(value + "T00:00Z")}
+            onChange={(value) => handleChange(() => setReadDate(value + "T00:00Z"))}
           />
         </Col>
       </Form.Group>
@@ -180,7 +194,7 @@ export default function ArticleForm(props) {
           <Col className="p-0 m-0">
             <div className="position-relative">
               <EditableText
-                onChange={setSource}
+                onChange={(value) => handleChange(() => setSource(value))}
                 placeholder={<Styles.EditableTextPlaceholder>{lm.translate(lpCategory + "placeholders.source")}</Styles.EditableTextPlaceholder>}
               >
                 {source}
@@ -200,7 +214,7 @@ export default function ArticleForm(props) {
           <Row>
             <TagInput
               value={tags}
-              onChange={setTags}
+              onChange={(value) => handleChange(() => setTags(value))}
               availableTags={wm.getTagContainer().filterItems()}
               validityChecker={checkTagValidity}
             />
@@ -214,7 +228,7 @@ export default function ArticleForm(props) {
             as="textarea"
             value={notes}
             rows="10"
-            onChange={(e) => setNotes(e.target.value)}
+            onChange={(e) => handleChange(() => setNotes(e.target.value))}
             style={{
               fontFamily: "courier",
               fontSize: "15px"

@@ -69,7 +69,7 @@ export default function ArticleControlPanel(props) {
         {
           key: "article-control-panel-button-delete",
           className: "mt-1 me-1",
-          onCLick: handleArticleDelete,
+          onClick: handleArticleDelete,
           caption: lm.translate("control-panels.controls.delete")
         }
       ])}

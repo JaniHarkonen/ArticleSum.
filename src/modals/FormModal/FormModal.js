@@ -1,5 +1,7 @@
 import Modal from "react-bootstrap/Modal";
 
+import { useState } from "react";
+
 import FormControlButtons from "../../components/FormControlButtons/FormControlButtons";
 
 export const DEFAULT_SETTINGS = {
@@ -62,6 +64,7 @@ export default function FormModal(props) {
    */
   const baseInstance = props.baseInstance;
   
+  const [hasContentChanged, setContentChanged] = useState(false); // Whether the content of the form has changed
   const {data, setters, actions} = useForm(baseInstance);
 
   return (
@@ -74,13 +77,18 @@ export default function FormModal(props) {
       <Modal.Body>
         <FormElement
           data={data}
-          setters={setters}
+          setters={{
+            ...setters,
+            setContentChanged
+          }}
         />
       </Modal.Body>
       <Modal.Footer>
         <FormControlButtons
           controls={controls}
           actions={actions}
+          hasContentChanged={hasContentChanged}
+          resetContentChangeFlag={() => setContentChanged(false)}
         />
       </Modal.Footer>
     </>

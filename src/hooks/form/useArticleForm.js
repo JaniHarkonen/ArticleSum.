@@ -39,7 +39,7 @@ import { tagsToString } from "../../model/components/Tag";
  * - `actionCancel` which simply closes the modal
  */
 export default function useArticleForm(baseInstance) {
-  const {workspaceManager: wm, closeModal} = useContext(GlobalContext);
+  const { workspaceManager: wm, closeModal } = useContext(GlobalContext);
   const [id, setId] = useState(baseInstance.id ? "" + baseInstance.id: null);
   const [title, setTitle] = useState(baseInstance.title);
   const [publishDate, setPublishDate] = useState(baseInstance["publish-date"]);
@@ -87,7 +87,7 @@ export default function useArticleForm(baseInstance) {
    * workspace via the `WorkspaceManager`. Before the article is posted, its
    * tags are resolved by finding their identifiers based on their names.
    */
-  const actionSubmitChanges = () => {
+  const actionSubmitChanges = (hooks) => {
       
       // Resolve tag IDs given their names
     const tagNames = tags.split(" ");
@@ -107,6 +107,7 @@ export default function useArticleForm(baseInstance) {
     });
 
     wm.getArticleContainer().postItem(postArticle);
+    hooks.resetContentChangeFlag();
   };
 
   /**

@@ -23,6 +23,12 @@ export default function createArticlePopup(baseArticle = null) {
   });
 
   applySimpleFormControls(popup);
+  popup.controls.buttons.submit.reactToContentChange = (props) => {
+    return {
+      ...props,
+      variant: "primary"
+    }
+  };
 
   return popup;
 }

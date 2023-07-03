@@ -6,6 +6,7 @@ import TagList from "../../components/TagList/TagList";
 import TagControlPanel from "../../components/TagControlPanel/TagControlPanel";
 
 import { GlobalContext } from "../../context/GlobalContext";
+import useRefresh from "../../hooks/useRefresh";
 
 /**
  * Major view component that renders the tag inventory used 
@@ -20,10 +21,14 @@ export default function TagsView() {
   const { languageManager: lm, workspaceManager: wm } = useContext(GlobalContext);
   const tagContainer = wm.getTagContainer();
   const [tags, setTags] = useState([]);
+  const { refreshValue, refresh } = useRefresh();
 
   useLayoutEffect(() => {
+    tagContainer.addModificationListener("tags-view", () => {console.log("yeet");refresh();});
     setTags(tagContainer.filterItems());
-  }, [tagContainer]);
+
+    return () => tagContainer.removeModificationListener("tags-view");
+  }, [tagContainer, refreshValue]);
 
   return (
     <>

@@ -71,7 +71,6 @@ export default class LanguageManager {
 
     this.activeLanguage = newLanguage;
     this.setLanguage(newLanguage);
-    console.log(this.activeLanguage);
     editConfig({ language: this.activeLanguage.abbreviation })
   }
 

@@ -13,6 +13,7 @@ import { GlobalContext } from "../../context/GlobalContext";
 import wrapAccordion from "../../components/wrappers/wrapAccordion";
 import useSelectables from "../../hooks/form/useSelectables";
 import createButtons from "../../utils/createButtons";
+import useRefresh from "../../hooks/useRefresh";
 
 export const DEFAULT_SETTINGS = {
   articleList: {
@@ -47,10 +48,15 @@ export default function ListView() {
     handleDeselectAll
 
   } = useSelectables({ items: articles, idField: "id" });
+  
+  const { refreshValue, refresh } = useRefresh();
 
   useLayoutEffect(() => {
+    wm.getArticleContainer().addModificationListener("list-view", () => refresh());
     setArticles(wm.getArticleContainer().filterItems());
-  }, [articleContainer]);
+
+    return () => wm.getArticleContainer().removeModificationListener("list-view");
+  }, [articleContainer, refreshValue]);
 
   /**
    * `ArticleList`-wrapper element that will be placed around 

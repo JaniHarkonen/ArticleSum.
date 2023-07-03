@@ -27,16 +27,35 @@ export default function FormControlButtons(props) {
    * A JSON of actions that can be executed by the control buttons upon click.
    */
   const actions = props.actions;
+
+  /**
+   * Whether the content of the form has changed (this is useful when the 
+   * control buttons should react to changes in the form, for example, when
+   * determining if the "save" button should be highlighted in the article
+   * form).
+   */
+  const hasContentChanged = props.hasContentChanged;
+
+  /**
+   * Hook that resets the flag tracking whether the content of the form has 
+   * changed (for example, after saving).
+   */
+  const resetContentChangeFlag = props.resetContentChangeFlag;
+
   const { languageManager: lm } = useContext(GlobalContext);
 
   return controls.order.map((controlKey) => {
     const control = controls.buttons[controlKey];
+    let controlProps = control.props;
+
+    if( hasContentChanged && control.reactToContentChange )
+    controlProps = control.reactToContentChange(controlProps);
 
     return (
       <Button
         key={"form-control-buttons-button-" + controlKey}
-        onClick={actions[control.onClick]}
-        {...control.props}
+        onClick={() => actions[control.onClick]({ resetContentChangeFlag })}
+        {...controlProps}
       >
         {lm.translate(control.titleKey)}
       </Button>

@@ -171,9 +171,11 @@ export default class WorkspaceManager {
 
     this.idCounter = ws["id-counter"];
     this.workspaceName = ws["workspace-name"];
-    this.articles = new ArticleContainer(ws.articles, notify);
+    this.articles = new ArticleContainer(ws.articles);
+    this.articles.addModificationListener("workspace-manager", notify);
     this.articles.setIdRetriever(idRetriever);
-    this.tags = new TagContainer(ws.tags, notify);
+    this.tags = new TagContainer(ws.tags);
+    this.tags.addModificationListener("workspace-manager", notify);
     this.tags.setIdRetriever(idRetriever);
     this.isWorkspaceOpen = true;
   }

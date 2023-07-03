@@ -1,5 +1,5 @@
 {
-  "id-counter": 37,
+  "id-counter": 38,
   "workspace-name": "BIG SHIT",
   "articles": {
     "1": {
@@ -37,51 +37,6 @@
         "news"
       ],
       "notes": "he didn't do it xD"
-    },
-    "4": {
-      "id": "4",
-      "title": "jaaaaaaaauuuuuuu",
-      "publish-date": "2002-09-11T00:00Z",
-      "read-date": "1998-09-09T00:00Z",
-      "source": "www.google.com",
-      "tags": [],
-      "notes": "he didn't DO IT xD"
-    },
-    "5": {
-      "id": "5",
-      "title": "changes brb",
-      "publish-date": "",
-      "read-date": "",
-      "source": "",
-      "tags": [],
-      "notes": "lololollolo trolololo"
-    },
-    "6": {
-      "id": "6",
-      "title": "yet another art dw",
-      "publish-date": "",
-      "read-date": "",
-      "source": "",
-      "tags": [],
-      "notes": "dwdwdwdwdw"
-    },
-    "9": {
-      "id": "9",
-      "title": "tested again",
-      "publish-date": "2023-02-19T00:00Z",
-      "read-date": "2023-02-19T00:00Z",
-      "source": "",
-      "tags": [],
-      "notes": "test artic"
-    },
-    "17": {
-      "id": "17",
-      "title": "du du duu du du",
-      "publish-date": "2002-09-11T00:00Z",
-      "read-date": "2005-09-09T00:00Z",
-      "source": "www.google.com",
-      "tags": [],
-      "notes": "he didn't DO IT xD"
     },
     "18": {
       "id": "18",
@@ -125,50 +80,14 @@
       "tags": [],
       "notes": ""
     },
-    "29": {
-      "id": "29",
-      "title": "dsasdsaasd",
+    "37": {
+      "id": "37",
+      "title": "NEW THING",
       "publish-date": "",
       "read-date": "",
       "source": "",
       "tags": [],
       "notes": ""
-    },
-    "30": {
-      "id": "30",
-      "title": "wwwww",
-      "publish-date": "2023-06-23T00:00Z",
-      "read-date": "2023-06-23T00:00Z",
-      "source": "",
-      "tags": [],
-      "notes": ""
-    },
-    "31": {
-      "id": "31",
-      "title": "dddsads",
-      "publish-date": "2024-06-09T00:00Z",
-      "read-date": "2024-06-09T00:00Z",
-      "source": "",
-      "tags": [],
-      "notes": ""
-    },
-    "32": {
-      "id": "32",
-      "title": "QQQQQ",
-      "publish-date": "",
-      "read-date": "",
-      "source": "",
-      "tags": [],
-      "notes": ""
-    },
-    "35": {
-      "id": "35",
-      "title": "Perussuomalaisten kansanedustaja Juha Mäenpää poistettiin Provinssista",
-      "publish-date": "2023-07-02T00:00Z",
-      "read-date": "2023-07-02T00:00Z",
-      "source": "https://www.iltalehti.fi/politiikka/a/a885e464-6f4e-44ea-a2b8-2650872241fe",
-      "tags": [],
-      "notes": "- hahahaah hyvä artikkeli :)"
     }
   },
   "tags": {
