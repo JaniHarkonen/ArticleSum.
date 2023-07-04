@@ -26,5 +26,12 @@ export default function createTagPopup(baseTag = null) {
   applySimpleFormControls(popup);
   applyDeleteButton(popup);
 
+  popup.controls.buttons.submit.reactToContentChange = (props) => {
+    return {
+      ...props,
+      variant: "primary"
+    }
+  };
+
   return popup;
 }

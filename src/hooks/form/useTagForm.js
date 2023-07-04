@@ -67,14 +67,18 @@ export default function useTagForm(baseInstance) {
    * when the user clicks "add" or "save". The tag is then posted to the 
    * workspace via the `WorkspaceManager`.
    */
-  const actionSubmitChanges = () => {
+  const actionSubmitChanges = (hooks) => {
     const postTag = Tag({
       tagId: tagId,
       name: tagName,
       color: tagColor
     });
 
+    if( !tagName || tagName === "" )
+    return;
+
     wm.getTagContainer().postItem(postTag);
+    hooks.resetContentChangeFlag();
     closeModal();
   };
 

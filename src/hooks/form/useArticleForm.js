@@ -108,6 +108,9 @@ export default function useArticleForm(baseInstance) {
 
     wm.getArticleContainer().postItem(postArticle);
     hooks.resetContentChangeFlag();
+
+    if( id == null )
+    closeModal();
   };
 
   /**

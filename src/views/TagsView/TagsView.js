@@ -24,7 +24,7 @@ export default function TagsView() {
   const { refreshValue, refresh } = useRefresh();
 
   useLayoutEffect(() => {
-    tagContainer.addModificationListener("tags-view", () => {console.log("yeet");refresh();});
+    tagContainer.addModificationListener("tags-view", () => refresh());
     setTags(tagContainer.filterItems());
 
     return () => tagContainer.removeModificationListener("tags-view");

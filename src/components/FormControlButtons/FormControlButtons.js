@@ -12,7 +12,7 @@ import { GlobalContext } from "../../context/GlobalContext";
  * The control buttons are represented by ordered JSONs. This means that the 
  * the JSON not only contains the controls themselves but also the order in 
  * which the controls are to be rendered (see `createOrderedJson`-utility for 
- * more information). 
+ * more information).
  */
 export default function FormControlButtons(props) {
   /**

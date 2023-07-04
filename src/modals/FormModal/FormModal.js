@@ -65,7 +65,7 @@ export default function FormModal(props) {
   const baseInstance = props.baseInstance;
   
   const [hasContentChanged, setContentChanged] = useState(false); // Whether the content of the form has changed
-  const {data, setters, actions} = useForm(baseInstance);
+  const { data, setters, actions } = useForm(baseInstance);
 
   return (
     <>
@@ -81,6 +81,8 @@ export default function FormModal(props) {
             ...setters,
             setContentChanged
           }}
+          actions={actions}
+          resetContentChangeFlag={() => setContentChanged(false)}
         />
       </Modal.Body>
       <Modal.Footer>

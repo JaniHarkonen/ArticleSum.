@@ -1,5 +1,5 @@
 {
-  "id-counter": 38,
+  "id-counter": 40,
   "workspace-name": "BIG SHIT",
   "articles": {
     "1": {
@@ -143,6 +143,24 @@
         "r": 238,
         "g": 255,
         "b": 0
+      }
+    },
+    "38": {
+      "tagId": "38",
+      "name": "",
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0
+      }
+    },
+    "39": {
+      "tagId": "39",
+      "name": "LOL?",
+      "color": {
+        "r": 177,
+        "g": 62,
+        "b": 62
       }
     }
   }
