@@ -1,30 +1,65 @@
 import Accordion from "react-bootstrap/Accordion";
-import PageControlPanel from "../PageControlPanel/PageControlPanel";
 
 import { useContext, useEffect, useState } from "react";
-import useFormModal from "../../hooks/modal/useFormModal";
 
 import ArticleListing from "../ArticleListing/ArticleListing";
+import PageControlPanel from "../PageControlPanel/PageControlPanel";
 
 import { GlobalContext } from "../../context/GlobalContext";
-import createArticlePopup from "../../modals/create/article/createArticlePopup";
 import { checkArticleIssues } from "../../model/components/Article";
-
+import createArticlePopup from "../../modals/create/article/createArticlePopup";
+import useFormModal from "../../hooks/modal/useFormModal";
 
 export const DEFAULT_SETTINGS = {
   defaultActiveKey: "-1",
-  ListingWrapper: (Listing, item) => <>{Listing}</>,
+  ListingWrapper: (Listing, item) => Listing,
   pageSettings: {
     allowPages: false,
     pageCapacity: 1
   }
 };
 
-
+/**
+ * Provides a versatile, general purpose, list of articles that are 
+ * rendered as expandable accordions. The articles will be listed 
+ * vertically, and once expanded, they can be opened in a popup modal.
+ * 
+ * A `ListingWrapper` can be provided to the component that will then 
+ * wrap the `ArticleListings` to provide additional functionality to 
+ * the list (`SelectableElement`-wrapper, for example).
+ * 
+ * Additionally, page settings can also be provided to (dis)allow the 
+ * arrangement of the articles onto pages. Page settings can be used 
+ * to also determine the capacity (number of articles) of a page.
+ * 
+ * `useEffect` is used to arrange the articles into a arrays depending 
+ * on the page that they are found on. The arrays are later used to 
+ * determine which articles will be rendered. This arrangement is 
+ * skipped, however, if no pages are allowed.
+ */
 export default function ArticleList(props) {
+  /**
+   * Accordion key of the article that is to be expanded by default or 
+   * -1 for no default expansion.
+   */
   const defaultActiveKey = props.defaultActiveKey || DEFAULT_SETTINGS.defaultActiveKey;
+
+  /**
+   * Array of articles that can be listed.
+   */
   const allArticles = props.articles;
+
+  /**
+   * Wrapper element that can be used to wrap the listings and provide 
+   * additional functionality or graphics to them. By default, 
+   * no wrapper is applied.
+   */
   const ListingWrapper = props.ListingWrapper || DEFAULT_SETTINGS.ListingWrapper;
+
+  /**
+   * Settings that determine whether pages are allowed as well as the 
+   * capacity of a page.
+   */
   const pageSettings = props.pageSettings || DEFAULT_SETTINGS.pageSettings;
 
   const [currentPage, setCurrentPage] = useState(0);
@@ -68,6 +103,17 @@ export default function ArticleList(props) {
     );
   };
 
+  /**
+   * Constructs an array of listing elements based on the articles 
+   * provided to the component. Only the articles visible on the 
+   * current page will be shown, unless pages are disabled, in 
+   * which case all available articles will be rendered.
+   * 
+   * If a `ListingWrapper` was provided, the listings will be 
+   * wrapped inside them.
+   * 
+   * @returns An array of the listing elements.
+   */
   const renderArticleListings = () => {
     const articleGroup = articles[currentPage] || [];
 

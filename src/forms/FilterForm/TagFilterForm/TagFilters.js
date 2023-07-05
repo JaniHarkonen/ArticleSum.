@@ -1,7 +1,9 @@
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+
 import { useContext } from "react";
+
 import { GlobalContext } from "../../../context/GlobalContext";
 import { mapElements } from "../../../utils/mapElements";
 import { tagFields } from "../../../model/components/Tag";

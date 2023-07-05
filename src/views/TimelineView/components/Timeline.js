@@ -24,19 +24,43 @@ export const ELEMENT_ID = {
   timelineContainer: "timeline-container"
 };
 
-
+/**
+ * Renders a timeline view of given articles where each article is 
+ * arranged into a `DateSlot` according to the date interval provided 
+ * by the parent component.
+ */
 export default function Timeline(props) {
-  const originDate = props.origin || new Date();  // Date of the first visible article
-  const articles = props.articles || DEFAULT_SETTINGS.articles; // Articles available for display
-  const slotWidth = props.slotWidth || DEFAULT_SETTINGS.slotWidth; // Article slot width (in pixels)
-  const dateField = props.dateField || DEFAULT_SETTINGS.dateField; // Field in the article JSON containing the date according to which the timeline is assembled
-  const dateInterval = props.dateInterval || DEFAULT_SETTINGS.dateInterval; // The interval type according to which the articles will be grouped (day, month, year)
+  /**
+   * Date of the first visible article.
+   */
+  const originDate = props.origin || new Date();
+
+  /**
+   * Articles available for display.
+   */
+  const articles = props.articles || DEFAULT_SETTINGS.articles;
+
+  /**
+   * Article slot width (in pixels).
+   */
+  const slotWidth = props.slotWidth || DEFAULT_SETTINGS.slotWidth;
+
+  /**
+   * Field in the article JSON containing the date according to which 
+   * the timeline is assembled.
+   */
+  const dateField = props.dateField || DEFAULT_SETTINGS.dateField;
+
+  /**
+   * The interval type according to which the articles will be 
+   * grouped (day, month, year).
+   */
+  const dateInterval = props.dateInterval || DEFAULT_SETTINGS.dateInterval;
 
   const [orderedArticles, setOrderedArticles] = useState(DEFAULT_SETTINGS.orderedArticles); // Article slots to be displayed
   const [numberOfSlots, setNumberOfSlots] = useState(0);  // Number of currently visible slots
   const { viewPosition, setConstraints, moveView } = usePannableView();
   const { languageManager: lm } = useContext(GlobalContext);
-
 
     // Determine the max number of visible slots according to the parent container's dimensions
   useResizeEffect(() => {
@@ -128,6 +152,21 @@ export default function Timeline(props) {
     dateInterval
   ]);
 
+  /**
+   * Renders the date slots according to the `orederedArticles`-
+   * array where the slots are represented by arrays. This function
+   * first determines the range of date slots that can be seen by 
+   * the user and only renders that subset.
+   * 
+   * The date field must be passed in as it will be used to determine
+   * the caption of the date slot.
+   * 
+   * @param {String} dateField The date field of the article that the 
+   * articles are being ordered by.
+   * 
+   * @returns An array of `DateSlot`-elements containing the articles 
+   * that fall within its interval.
+   */
   const renderArticleSlots = (dateField) => {
     let slots = [];   // Contains all the SlotContainer elements (result)
     const startSlot = Math.max(0, orderedArticles.length - Math.floor(viewPosition.x / slotWidth) - 1); // Index of first visible slot

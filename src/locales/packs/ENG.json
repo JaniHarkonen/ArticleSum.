@@ -2,6 +2,9 @@
   "abbreviation": "ENG",
   "language": "English",
   "app-name": "ArticleSum.",
+  "workspace": {
+    "no-workspace": "Start by opening a workspace"
+  },
   "navigation": {
     "timeline": "Timeline",
     "word-cloud": "Word cloud",

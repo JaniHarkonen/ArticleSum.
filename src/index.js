@@ -6,13 +6,16 @@ import LanguageManager from "./locales/LanguageManager";
 import Languages from './locales/Languages';
 import WorkspaceManager from './model/WorkspaceManager/WorkspaceManager';
 
+import { getConfig } from './utils/config';
+
 import './index.css';
 import "../node_modules/bootstrap/dist/css/bootstrap.css";
 
 
-const languageManager = new LanguageManager(Languages.ENG);
+const config = getConfig();
+const languageManager = new LanguageManager((config.language === "") ? Languages.ENG : (Languages[config.language] || Languages.ENG));
 const workspaceManager = new WorkspaceManager();
-workspaceManager.openWorkspace(process.cwd() + "\\testing\\ws.asum");
+workspaceManager.openWorkspace(config.lastWorkspace/*process.cwd() + "\\testing\\ws.asum"*/);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

@@ -1,3 +1,30 @@
+/**
+ * This utility module provides two main functions: parsing and 
+ * testing of filters on an article.
+ * 
+ * When complex filters are needed they can be parsed from a 
+ * JSON of strings using the `parseFilter`-function. The strings 
+ * are parsed down to series of functions that either return 
+ * `true` or `false` depending on whether an article passed into
+ * them passes the filter.
+ * 
+ * An article can be passed through to a filter using the 
+ * `filterArticle`-function. It takes in a parsed filter and an 
+ * article and checks each field of the article JSON using the 
+ * functions found in the parsed filter. Articles that pass 
+ * the filter test return `true` while others return `false`.
+ * 
+ * Complex filters support the following settings:
+ * - negation of terms with exclamation point ! (example: !inflation)
+ * - compounding of terms with quotes "" (example: "inflation rose")
+ * - date ranges using dashes - (example: 1.1.2000-1.1.2010)
+ * - open ended open date (example: -1.1.2020)
+ * - open ended end date (example: 1.1.2020-)
+ * - month-only dates (example: 1.2005)
+ * - year-only dates (example: 2008)
+ * - force data to be empty with a single dash -
+ */
+
 import { convertDefaultDateToDatetimeString, getMonthFromDatetimeString, getYearFromDatetimeString } from "../../utils/dates";
 import { numberOfCharOccurrences } from "../../utils/stringUtils";
 
@@ -85,6 +112,22 @@ const testDateRange = (target, startDate, endDate) => {
   return target >= startDate && target <= endDate;
 };
 
+/**
+ * Parser functions return a result JSON that contains the following 
+ * information:
+ * - whether the parsing was successful
+ * - an array of all the parsed filters (functions)
+ * 
+ * This is a component function that returns a JSON with the given 
+ * settings or default settings if none are provided.
+ * 
+ * @param {Boolean} failed Whether the parsing was successful (default:
+ * `false`).
+ * @param {Array} filters Array of filters (functions) that were parsed
+ * (default: emtpy array []).
+ * 
+ * @returns A parser result-type JSON.
+ */
 const Result = (failed = false, filters = []) => {
   return {
     failed,
@@ -92,12 +135,38 @@ const Result = (failed = false, filters = []) => {
   };
 };
 
-  // Returns a failure JSON
+/**
+ * Helper function that sets the failure-state of a given parser 
+ * result JSON to `true` and returns the result. This function is 
+ * to be used when the parser fails.
+ * 
+ * @param {JSON} result Parser result JSON that will be returned 
+ * by the parser that failed.
+ * 
+ * @returns Parser result with `failed`-field set to `true`.
+ */
 const fail = (result) => {
   result.failed = true;
   return result;
 };
 
+/**
+ * Takes a keyword string and parses it according to the complex 
+ * filter rules. The result is a parser result -type JSON that 
+ * indicates whether the parsing was successful and includes all
+ * the parsed filters (functions) in an array.
+ * 
+ * The keywords must be separated using spaces unless a compound 
+ * word is formed using double quotes (""). Keywords, including 
+ * compound words, may be negated by adding an exclamation point
+ * (!) immediately to the left of the keyword.
+ * 
+ * @param {String} filterString String from which to parse the complex
+ * filter.
+ * 
+ * @returns Parser result JSON (see `Result`-function component 
+ * for more information).
+ */
 const parseKeywordFilter = (filterString) => {
 
     // Spaces are used to separate different filters
@@ -188,6 +257,30 @@ const parseKeywordFilter = (filterString) => {
   return result;
 };
 
+/**
+ * A date JSON that is returned only by the `parseDate`-function.
+ * Because date filter strings allow ambiguous dates (such as 1.2005
+ * or 2008), the parsing of a single date filter may yield date ranges.
+ * This function component will produce a JSON where the date range is 
+ * provided to the `parseDateFilter`.
+ * 
+ * If the filter being parsed only contains a single date, the 
+ * `startDate` and the `endDate` will be the same.
+ * 
+ * If the date is negated using an exclamation point (!), the 
+ * `negate`-flag is set to `true`.
+ * 
+ * If the filter is ambiguous, the `startDate` and the `endDate` will be
+ * calculated and differ in the final result.
+ * 
+ * @param {Number} startDate Date (in MS) from which the date range
+ * starts.
+ * @param {Boolean} negate Whether the date range is negated.
+ * @param {Number} endDate Date (in MS) where the date range ends.
+ * 
+ * @returns A date JSON containing the start and end dates as well as 
+ * whether the range is inverted (negated).
+ */
 const jDate = (startDate, negate = false, endDate = NaN) => {
   return {
     startDate,
@@ -196,6 +289,18 @@ const jDate = (startDate, negate = false, endDate = NaN) => {
   };
 };
 
+/**
+ * Helper function for `parseDateFilter`. Determines the date indicated 
+ * by a string that only contains a single date. Because dates can be 
+ * ambiguous, this function returns a date JSON that contains the 
+ * starting and the ending of the date. The result also contains whether 
+ * the range is inverted (negated).
+ * 
+ * @param {String} dateString String that only contains a single date. 
+ * Can contain negation and/or an ambiguous date.
+ * 
+ * @returns A date JSON (see `jDate` for more information).
+ */
 const parseDate = (dateString) => {
   let cDateString = dateString;
   let negation = (cDateString[0] === "!");
@@ -241,6 +346,30 @@ const parseDate = (dateString) => {
   return jDate(startDate, negation, endDate);
 };
 
+/**
+ * Takes a default date string (form: `dd.mm.yyyy`) and parses it
+ * according to the complex filter rules. The result is a parser result
+ * -type JSON that indicates whether the parsing was successful and
+ * includes all the parsed filters (functions) in an array.
+ * 
+ * The dates must be separated using spaces, however, they may be 
+ * negated by adding an exclamation point (!) immediately to the left of 
+ * the date. Date ranges can be constructed using a dash (-). When a 
+ * dash is placed on the left side of a date, it indicates a range ending 
+ * at the date. When placed on the right side of a date, it indicates a 
+ * range starting from the date. A dash between two dates indicates a 
+ * range starting at the left-side date and ending at the right-side date.
+ * 
+ * Dates are considered ambiguous when they are not entered in their full 
+ * form (for example `1.2000` or `2008`). These dates will be parsed into 
+ * date ranges representing the month or the year entered.
+ * 
+ * @param {String} dateString String from which to parse the complex
+ * filter.
+ * 
+ * @returns Parser result JSON (see `Result`-function component 
+ * for more information).
+ */
 const parseDateFilter = (dateString) => {
 
     // Spaces are used to separate date filters
@@ -306,6 +435,18 @@ const parseDateFilter = (dateString) => {
   return result;
 };
 
+/**
+ * Takes an array of strings representing tag names and generates a 
+ * filter that checks whether a given target array contains any of 
+ * the tags. The complex filter rules are not applied here, as the 
+ * tag input doesn't allow it as of yet.
+ * 
+ * @param {String} tags Array of tags that are to be tested by the 
+ * filter.
+ * 
+ * @returns Parser result JSON (see `Result`-function component 
+ * for more information).
+ */
 const parseTagFilter = (tags) => {
   const result = Result();
   result.filters.push((target) => {
@@ -324,6 +465,13 @@ const parseTagFilter = (tags) => {
   return result;
 };
 
+/**
+ * Creates a filter that always lets an item passed onto it through.
+ * This filter is used as a non-filter when a filter string that is 
+ * to be parsed is empty or `null`.
+ * 
+ * @returns A "skipped filter" that accepts all items.
+ */
 const createSkippedFilter = () => {
   const result = Result();
   result.filters.push((target) => true);
@@ -331,6 +479,31 @@ const createSkippedFilter = () => {
   return result;
 };
 
+/**
+ * Takes a JSON that consists of filter strings that are to 
+ * be parsed into an article filter. It is recommended that 
+ * a filter is parsed before it is tested on the articles as 
+ * parsing the filter each time it is tested would be very 
+ * inefficient.
+ * 
+ * The filters are parsed using the appropriate parsers 
+ * depending on the type of the article field that the filter 
+ * tests; title filter will be parsed as a keyword whereas the
+ * publish date filter will be parsed as a date.
+ * 
+ * The result is a JSON containing the parsed filters for 
+ * each article field (`id`, `title`, `publishDate`, `readDate`,
+ * `source`, `tags`, `notes`). If any filter field is missing 
+ * or is empty, a "skipped filter" will be created for that 
+ * field, meaning, it is not considered during filteration 
+ * (see `createSkippedFilter`).
+ * 
+ * @param {String} filterStrings JSON consisting of filter 
+ * strings coupled with each field of the article.
+ * 
+ * @returns A JSON that represents an article filter, which
+ * can be passed onto `filterArticle`-function.
+ */
 export const parseFilter = (filterStrings) => {
 
   const parseOrCreateSkipper = (filterString, parse) => {
@@ -351,6 +524,17 @@ export const parseFilter = (filterStrings) => {
   };
 };
 
+/**
+ * A utility function used by `filterArticle` to test a parsed filter function
+ * on a `target` article. If the parsed filter failed to parse previously, the
+ * test will yield `false`. Otherwise the test will yield either `true` or 
+ * `false` depending on whether the `target` article passed the filter.
+ * 
+ * @param {*} target Article that is to be tested by the filter.
+ * @param {JSON} parsedFilter Filter that is to be used to test the article.
+ * 
+ * @returns Whether the article passed the filter test.
+ */
 const testFilter = (target, parsedFilter) => {
   if( parsedFilter.failed === false )
   {
@@ -364,6 +548,24 @@ const testFilter = (target, parsedFilter) => {
   return false;
 };
 
+/**
+ * Tests given article filters represented by a JSON on an article, and 
+ * returns whether the article passed the filters provided. The following 
+ * fields of the `parsedFilter` are tested agains the corresponding fields 
+ * of the article: 
+ * - `id`
+ * - `title`
+ * - `publishDate` (`publish-date` in article)
+ * - `readDate` (`read-date` in article)
+ * - `source`
+ * - `tags`
+ * - `notes`
+ * 
+ * @param {JSON} article The article that is to be filtered.
+ * @param {JSON} parsedFilter Filter that is to be used.
+ * 
+ * @returns Whether the article satisfied the filters.
+ */
 export const filterArticle = (article, parsedFilter) => {
   return (
     testFilter(article.id, parsedFilter.id) &&

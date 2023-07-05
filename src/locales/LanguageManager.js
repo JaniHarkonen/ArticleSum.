@@ -1,4 +1,6 @@
 import Languages from "./Languages";
+
+import { editConfig } from "../utils/config";
 import getValueByFieldString from "../utils/getValueByFieldString";
 
 
@@ -69,6 +71,7 @@ export default class LanguageManager {
 
     this.activeLanguage = newLanguage;
     this.setLanguage(newLanguage);
+    editConfig({ language: this.activeLanguage.abbreviation })
   }
 
   /**

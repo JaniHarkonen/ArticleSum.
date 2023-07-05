@@ -61,7 +61,7 @@ export default class Container {
    * @param {Function} modificationNotifier Lambda-function that the 
    * Container will call each time changes are made to the items.
    */
-  constructor(wrappedItems = {}, modificationNotifier = (result) => {}) {
+  constructor(wrappedItems = {}/*, modificationNotifier = (result) => {}*/) {
     /**
      * The underlying JSON that the Container provides interface to.
      */
@@ -71,7 +71,15 @@ export default class Container {
      * Function that is triggered each time a change is made to the 
      * underlying JSON.
      */
-    this.modificationNotifier = modificationNotifier;
+    //this.modificationNotifier = modificationNotifier;
+
+    /**
+     * JSON that contains the listeners that will be alerted when a 
+     * modification is made to the contents of the container. Each
+     * listener is coupled with a unique identifier that can be used 
+     * later to remove the listener.
+     */
+    this.modificationListeners = {};
 
     /**
      * Function that is used to retrieve a new, unique identifier 
@@ -371,6 +379,41 @@ export default class Container {
     }
 
     return false;
+  }
+
+  /**
+   * Notifies all the modification listeners of changes that 
+   * were made to the content of the container.
+   * 
+   * @param {JSON} changes Result of the changes (see Result()
+   * for more information).
+   */
+  modificationNotifier(changes) {
+    for( let listener in this.modificationListeners )
+    this.modificationListeners[listener](changes);
+  }
+
+  /**
+   * Adds a listener that will be triggered when changes are made
+   * to the container's content. Each listener must have their 
+   * unique identifier.
+   * 
+   * @param {String} id Unique identifier of the listener.
+   * @param {Function} listener Listener function that will be 
+   * triggered upon change.
+   */
+  addModificationListener(id, listener) {
+    this.modificationListeners[id] = listener;
+  }
+
+  /**
+   * Removes a given modification listener.
+   * 
+   * @param {String} id Unique identifier of the listener to be
+   * removed.
+   */
+  removeModificationListener(id) {
+    delete this.modificationListeners[id];
   }
 
   /**

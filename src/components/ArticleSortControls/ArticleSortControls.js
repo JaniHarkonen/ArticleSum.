@@ -1,4 +1,5 @@
 import Dropdown from "react-bootstrap/Dropdown";
+
 import { useContext, useState } from "react";
 
 import { GlobalContext } from "../../context/GlobalContext";
@@ -15,13 +16,11 @@ export default function ArticleSortControls(props) {
   const defaultCriteria = props.defaultCriteria;
   const [sortCriteria, setSortCriteria] = useState(defaultCriteria || ARTICLE_SORT_CRITERIAS["publish-date"]);
   const { languageManager: lm } = useContext(GlobalContext);
-
   
   const handleSelection = (key) => {
     onSelect(key);
     setSortCriteria(key);
   };
-
 
   return (
     <Dropdown drop="down" onSelect={handleSelection}>

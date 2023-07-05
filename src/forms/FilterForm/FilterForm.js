@@ -8,13 +8,39 @@ import { useContext } from "react";
 
 import { GlobalContext } from "../../context/GlobalContext";
 
-
+/**
+ * Provides a generic form for filters. The actual filter input fields
+ * themselves are to be passed onto this component as its `children`.
+ * 
+ * This component renders the caption and the filteration controls. 
+ * All the elements are wrapped inside a Bootstrap `Form`- and 
+ * `Accordion.Item`-components. This is because the filter form is 
+ * typically contained in an expandable Bootstrap `Accordion`-component.
+ * 
+ * The filter form also takes in `actions` which provide the `apply`-
+ * and `clear`-hooks that are triggered as the user clicks on their 
+ * respective buttons.
+ */
 export default function FilterForm(props) {
+  /**
+   * The elements that constitute the actual body of the form.
+   */
   const children = props.children;
+
+  /**
+   * Contains the functions that will be executed by the user input.
+   * Following functions are to be included:
+   * - `apply` which is triggered when the user applies the filters
+   * - `clear` which is triggered when the user clears the filters
+   */
   const controlActions = props.actions;
 
-  const { languageManager: lm } = useContext(GlobalContext);
+  /**
+   * Translation key prefix used by the UI-elements of this component.
+   */
   const localeCategory = "forms.filter-form.";
+
+  const { languageManager: lm } = useContext(GlobalContext);
 
   return (
     <Form>
@@ -45,11 +71,7 @@ export default function FilterForm(props) {
                 </Col>
               </Row>
             </Col>
-            {/*<Col><Button>{lm.translate(localeCategory + "save")}</Button></Col>*/}
           </Row>
-          {/*{lm.translate(localeCategory + "applied-filters")}:
-          <br />
-  (x {lm.translate(localeCategory + "applied")})*/}
         </Accordion.Body>
       </Accordion.Item>
     </Form>

@@ -1,8 +1,6 @@
 const { app, BrowserWindow, ipcMain, dialog } = require("electron");
 const path = require("path");
 const url = require("url");
-//const { default: openFileSystemDialog } = require("../src/ipc/filesys/openFileSystemDialog");
-//const { default: saveFileSystemDialog } = require("../src/ipc/filesys/saveFileSystemDialog");
 
   // Create Electron-window
 function createWindow() {
@@ -10,9 +8,7 @@ function createWindow() {
     width: 800,
     height: 600,
     webPreferences: {
-      //preload: path.join(__dirname, "preload.js"),
       nodeIntegration: true,
-      //enableRemoteModule: true,
       contextIsolation: false,
     }
   });
@@ -25,6 +21,7 @@ function createWindow() {
       })
     : "http://localhost:3000";
 
+  mainWindow.removeMenu();
   mainWindow.loadURL(appURL);
 }
 
