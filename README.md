@@ -5,6 +5,45 @@ articles in useful ways.
 
 ## Development log
 
+### 5.7.2023
+The development of ArticleSum. v.1.0.0 has finally come to an end despite a three-month break
+earlier. All the functionalities have been completed and the graphical representation has been
+finalized. All known bugs were fixed and some last-minute improvements were made (including the 
+ability to save a form using `CTRL+S` and the ability to use `TAB` in the article form). The 
+result is the best looking Electron application so far (mainly thanks to `Bootstrap.js`).
+<br />
+<br />
+I'm happy with most of the codebase for this project, and I think that I have finally begun to 
+fully take advantage of the component-based nature of React by breaking functionalities further 
+down into reusable components than in any other project. However, there are still many weird and
+perhaps suboptimal aspects to the architecture of the app. One aspect that comes to mind is the 
+dynamic usage of hooks in the `FormModal`-component. Looking back, it seems that a better way to 
+handle a generic form component would've been to simply wrap the generic component within a more 
+specialized wrapper (just like with other components). This would've made the code base much 
+clearer as now the dynamic hook is passed into the props of the `ArticleForm` that is created via
+the creator function called in the component that is supposed to bring up the modal.
+<br />
+<br />
+Another aspect that makes the code more confusing to read is found in the creator-functions of 
+the modal popups. The idea behind these creators was to have a set place in the code base where 
+all modal creation functions would be declared and configured to make the code easier to follow.
+However, many of the modals use "ordered JSONs" which is a basically a JSON that also contains 
+the order in which the fields are to be read. The big issue is that dealing with these JSONs is 
+very confusing and even the `createOrderedJson`-utility function is difficult to read, thus 
+decreasing code readability.
+<br />
+<br />
+Yet another issue was faced in the development of the tag input field that is used in the article
+form as well as the article filteration form. Initially, the idea was to have a single input field 
+where the user can enter tag names, choose one from the suggestion drop menu, and have the tag be
+added to the input field. The tags were supposed to be displayed as Bootstrap `Badge`-components.
+This turned out to be surprisingly difficult as HTML-elements cannot be displayed within input
+fields. This meant that the tag input field would have to be changed from an `input` to a `div`
+when the focus is off and vice versa when the focus is on the component. Tag badges also couldn't
+be displayed as the user was entering the tags making the result glitchy and slightly confusing.
+A decision was made to instead have an input field where the user would pick a tag similarly as 
+before only the tag would have to be added to the input by clicking a green plus-sign button.
+
 ### 27.6.2023
 The UI of ArticleSum. has now been finalized along with some bug fixes. `filters.js` was also 
 re-written to clarify the codebase as well as to provide a full support for complex queries, 
@@ -38,7 +77,6 @@ the HTML-elements which is also the subject of the next update.
 The development of this project is coming to a close, and so, few functionalities will be added 
 after this update. Next, the grahpical representation of ArticleSum. will be (almost) finalized 
 and the ability to switch themes will be added (unless it is too time consuming).
-
 
 ### 10.6.2023
 Created the Word cloud -view with full functionalities. Also some bugfixes were made to other 
