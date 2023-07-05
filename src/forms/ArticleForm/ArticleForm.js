@@ -9,6 +9,7 @@ import { useContext, useEffect } from "react";
 import TagInput from "../../components/TagInput/TagInput";
 import EditableText from "../../components/EditableText/EditableText";
 import Datepicker from "../../components/Datepicker/Datepicker";
+import FormControlWithTab from "../../components/FormControlWithTab/FormControlWithTab";
 
 import { GlobalContext } from "../../context/GlobalContext";
 import { Styles } from "./ArticleForm.styles";
@@ -146,10 +147,10 @@ export default function ArticleForm(props) {
         case "s": actionSubmitChanges({ resetContentChangeFlag }); break;
       }
     }
-    else if( e.key === "Tab" )
+    /*else if( e.key === "Tab" )
     {
       e.preventDefault();
-    }
+    }*/
   };
 
   return (
@@ -268,11 +269,12 @@ export default function ArticleForm(props) {
       <Row className="mt-3">
         <Form.Group>
           <Form.Label><b>{lm.translate(lpCategory + "notes")}</b></Form.Label>
-          <Form.Control
+          <FormControlWithTab
+            element={Form.Control}
             as="textarea"
             value={notes}
             rows="10"
-            onChange={(e) => handleChange(() => setNotes(e.target.value))}
+            onChange={(e) => handleChange(() => setNotes(e.value))}
             style={{
               fontFamily: "courier",
               fontSize: "15px"
