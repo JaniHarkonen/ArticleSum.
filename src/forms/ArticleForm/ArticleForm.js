@@ -113,7 +113,7 @@ export default function ArticleForm(props) {
    * @param {String} link Link to open.
    */
   const handleLinkOpen = (link) => {
-    if( !link && link !== "" )
+    if( link && link !== "" )
     openLinkUsingHTTPS(link);
   };
 
