@@ -137,7 +137,7 @@ export default function WordCloudView() {
         <WordCloud
           inventory={applyInventoryFilter(generateWordInventory())}
           minFontSize={12}
-          maxFontSize={30}
+          maxFontSize={64}
           messageEmpty={lm.translate("word-cloud-view.cloud-empty-message") + " " + targetYear}
         />
       </Row>

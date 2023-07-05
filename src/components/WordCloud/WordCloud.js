@@ -92,17 +92,21 @@ export default function WordCloud(props) {
 
     const occurrenceDelta = highestOccurrences - lowestOccurrences;
     const fontSizeDelta = (maxFontSize - minFontSize);
+    const timeNow = Date.now(); // Used to generate React-keys
 
       // No words
     if( items.length <= 0 )
     return messageEmpty;
 
       // Generate word cloud, if there are words
-    return items.map((item, index) => {
+    return items.map((item) => {
+      if( !item.word || item.word === "" )
+      return;
+
       const fontSize = minFontSize + (item.occurrences - lowestOccurrences) / occurrenceDelta * fontSizeDelta;
 
       return(
-        <Fragment key={"word-cloud-word-span-" + index}>
+        <Fragment key={"word-cloud-word-span-" + timeNow + "-" + item.word}>
           <span style={{fontSize: fontSize + "px" }}>
             {item.word}
           </span>

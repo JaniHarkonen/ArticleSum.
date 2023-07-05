@@ -21,7 +21,7 @@ function createWindow() {
       })
     : "http://localhost:3000";
 
-  //mainWindow.removeMenu();
+  mainWindow.removeMenu();
   mainWindow.loadURL(appURL);
 }
 
