@@ -106,8 +106,10 @@ const testEndDate = (target, endDate) => {
  * dates. False is returned also if the target is emtpy (NaN).
  */
 const testDateRange = (target, startDate, endDate) => {
-  if( target === NaN )
+  if( !target || target === "" )
   return false;
+
+  target = (new Date(target)).getTime();
 
   return target >= startDate && target <= endDate;
 };

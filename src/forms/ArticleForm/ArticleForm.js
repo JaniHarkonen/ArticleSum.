@@ -147,10 +147,6 @@ export default function ArticleForm(props) {
         case "s": actionSubmitChanges({ resetContentChangeFlag }); break;
       }
     }
-    /*else if( e.key === "Tab" )
-    {
-      e.preventDefault();
-    }*/
   };
 
   return (
