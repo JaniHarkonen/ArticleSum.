@@ -6,7 +6,7 @@ articles in useful ways.
 ## Updates
 
 ### 8.7.2023
-This version fixes some minor bugs as well as a major one where article date filters could not 
+Version v.1.0.1 fixes some minor bugs as well as a major one where article date filters could not 
 be entered into the article filteration form. Some minor improvements were also added.
 
 Changes:
