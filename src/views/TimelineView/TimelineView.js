@@ -36,7 +36,7 @@ export default function TimelineView() {
   const [articles, setArticles] = useState([]);
   const [displayCriteria, setDisplayCriteria] = useState(ARTICLE_SORT_CRITERIAS["publish-date"]);
   const [timelineOriginDate, setTimelineOriginDate] = useState(new Date());
-  const [dateInterval, setDateInterval] = useState(DATE_INTERVAL_TYPES.year);
+  const [dateInterval, setDateInterval] = useState(DATE_INTERVAL_TYPES.day);
 
   useLayoutEffect(() => {
     setArticles(articleContainer.filterItems());
@@ -64,7 +64,10 @@ export default function TimelineView() {
           />
         </Col>
         <Col className="d-flex justify-content-end align-items-end mt-1">
-          <ArticleSortControls onSelect={setDisplayCriteria} />
+          <ArticleSortControls
+            onSelect={setDisplayCriteria}
+            defaultCriteria={ARTICLE_SORT_CRITERIAS["publish-date"]}
+          />
         </Col>
       </Row>
       <Row>
