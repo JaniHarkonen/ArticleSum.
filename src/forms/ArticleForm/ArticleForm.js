@@ -202,12 +202,6 @@ export default function ArticleForm(props) {
           />
         </Col>
       </Form.Group>
-      {/*<embed 
-        src="https://investors.finnair.com/~/media/Files/F/Finnair-IR/documents/fi/reports-and-presentation/2022/finnair-report-half-year-1-jan-30-sept-2022-fi.pdf"
-        type="application/pdf"
-        width="100%"
-        height="100%"
-  />*/}
       <Form.Group
         className={itemClassName}
         as={Row}

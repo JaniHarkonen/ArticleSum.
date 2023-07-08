@@ -126,7 +126,7 @@ export default function FormControlWithTab (props) {
    * @param {JSON} e Event-object from the "keydown"-event.
    */
   const handleTab = (e) => {
-    if( e.key !== "Tab" )
+    if( document.activeElement !== inputRef || e.key !== "Tab" )
     return;
 
     e.preventDefault();
