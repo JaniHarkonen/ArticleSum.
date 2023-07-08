@@ -18,13 +18,13 @@ placement more consistent
 excessive scrolling
 
 - bug fixes:
-	-- **MAJOR**: date filters on the article filteration form did not work in v.1.0.0 because the 
-	use couldn't input a date; this was fixed along with a fatal bug in date filteration functions
-	-- MINOR: the overflowing, partially hidden, vertical scroll bar of the timeline has now been
-	fixed
-	-- MINOR: fixed the overflowing article listings by `break-wording` the links
-	-- MINOR: tab-key presses are no longer registered in the article information form unless the 
-	focus is specifically on the "Notes"-section
+    -- **MAJOR**: date filters on the article filteration form did not work in v.1.0.0 because the 
+    use couldn't input a date; this was fixed along with a fatal bug in date filteration functions
+    -- MINOR: the overflowing, partially hidden, vertical scroll bar of the timeline has now been
+    fixed
+    -- MINOR: fixed the overflowing article listings by `break-wording` the links
+    -- MINOR: tab-key presses are no longer registered in the article information form unless the 
+    focus is specifically on the "Notes"-section
 
 ## Development log
 
