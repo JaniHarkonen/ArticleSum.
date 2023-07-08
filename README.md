@@ -3,6 +3,29 @@
 ArticleSum. is a note-taking and data visualization tool designed to summarize and visualize news 
 articles in useful ways.
 
+## Updates
+
+### 8.7.2023
+This version fixes some minor bugs as well as a major one where article date filters could not 
+be entered into the article filteration form. Some minor improvements were also added.
+
+Changes:
+- source links displayed on article listings are now clickable and open up in the browser
+- the "Open"-button of article listings was moved to the left side of the link to make the 
+placement more consistent
+- the "Sort by"-button now displays the default setting which is "none"
+- the maximum page size of the "Articles"-tab was changed from 25 to 15 in order to avoid 
+excessive scrolling
+
+- bug fixes:
+	-- **MAJOR**: date filters on the article filteration form did not work in v.1.0.0 because the 
+	use couldn't input a date; this was fixed along with a fatal bug in date filteration functions
+	-- MINOR: the overflowing, partially hidden, vertical scroll bar of the timeline has now been
+	fixed
+	-- MINOR: fixed the overflowing article listings by `break-wording` the links
+	-- MINOR: tab-key presses are no longer registered in the article information form unless the 
+	focus is specifically on the "Notes"-section
+
 ## Development log
 
 ### 5.7.2023
