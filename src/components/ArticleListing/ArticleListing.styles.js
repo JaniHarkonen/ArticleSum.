@@ -7,6 +7,7 @@ const WarningIcon = styled.img`
 const ArticleSourceSpan = styled.span`
   color: #0366DE;
   text-decoration: underline;
+  overflow-wrap: break-word;
 
   &:hover {
     cursor: pointer;
