@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const TimelineContainer = styled.div`
   position: absolute;
-  width: 100%;
+  width: calc(100% - 16px);
   height: 100%;
   overflow-x: hidden;
   user-select: none;
