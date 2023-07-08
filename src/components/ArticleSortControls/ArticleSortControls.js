@@ -7,14 +7,15 @@ import { lowercaseFirstLetter } from "../../utils/stringUtils";
 
 export const ARTICLE_SORT_CRITERIAS = {
   "publish-date": "publish-date",
-  "read-date": "read-date"
+  "read-date": "read-date",
+  "none": "none"
 };
 
 
 export default function ArticleSortControls(props) {
   const onSelect = props.onSelect;
   const defaultCriteria = props.defaultCriteria;
-  const [sortCriteria, setSortCriteria] = useState(defaultCriteria || ARTICLE_SORT_CRITERIAS["publish-date"]);
+  const [sortCriteria, setSortCriteria] = useState(defaultCriteria || ARTICLE_SORT_CRITERIAS["none"]);
   const { languageManager: lm } = useContext(GlobalContext);
   
   const handleSelection = (key) => {

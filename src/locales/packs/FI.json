@@ -131,7 +131,8 @@
       "read-date": "Luettu",
       "source": "Lähde",
       "tag": "Tagi",
-      "note": "Muistiinpanot"
+      "note": "Muistiinpanot",
+      "none": "ei ole"
     },
     "tag-filter-form": {
       "tag-id": "Tagin ID",

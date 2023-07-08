@@ -132,7 +132,8 @@
       "read-date": "Read date",
       "source": "Source",
       "tag": "Tag",
-      "note": "Note"
+      "note": "Note",
+      "none": "none"
     },
     "tag-filter-form": {
       "tag-id": "Tag ID",
