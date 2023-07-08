@@ -17,7 +17,7 @@ import useRefresh from "../../hooks/useRefresh";
 
 export const DEFAULT_SETTINGS = {
   articleList: {
-    pageCapacity: 25
+    pageCapacity: 15
   }
 };
 

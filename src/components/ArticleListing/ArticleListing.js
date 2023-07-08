@@ -6,6 +6,7 @@ import { useContext } from "react";
 import { GlobalContext } from "../../context/GlobalContext";
 import { Styles } from "./ArticleListing.styles";
 import ASSETS from "../../assets/assets";
+import openLinkUsingHTTPS from "../../utils/openLinkUsingHTTPS";
 
 
 /**
@@ -66,13 +67,15 @@ export default function ArticleListing(props) {
         {articleTitle}
       </Accordion.Header>
       <Accordion.Body>
-        {articleSource}
         <Button
-          className="ms-2"
+          className="me-2"
           onClick={() => actions.onEdit()}
         >
           {lm.translate("list-view.listing.open")}
         </Button>
+        <Styles.ArticleSourceSpan onClick={() => openLinkUsingHTTPS(articleSource)}>
+          {articleSource}
+        </Styles.ArticleSourceSpan>
       </Accordion.Body>
     </Accordion.Item>
   );
