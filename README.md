@@ -6,6 +6,20 @@
 ArticleSum. is a note-taking and data visualization tool designed to summarize and visualize news 
 articles in useful ways.
 
+## Motivation and features
+Because investing is one of my hobbies, I often find myself reading through many news articles on 
+the economy but I've never had a neat way of organizing what I've read. As a result, I decided to
+build ArticleSum. which allows me to assemble news articles into a list and provide a short (as of 
+now, manually written) summary of the articles, as well as to attach tags and other additional 
+information on the news event. ArticleSum. also has two other modules for displaying news articles
+in a timeline-view and a word cloud -view. The architecture of the app has been written in a way 
+that allows for an easy implementation of new visualization modules. Currently, a JSON-file is being
+used to store the workspace state (i.e. the news articles and their metadata) which is loaded into
+memory when the workspace is opened. While this is not ideal, the app was mainly designed for my
+personal, limited use. Should the need to store and process larger amounts of data arise, the 
+architecture of the app also allows for an easy implementation of alternate storage methods due to 
+its modularity.
+
 ## Updates
 
 ### 8.7.2023
