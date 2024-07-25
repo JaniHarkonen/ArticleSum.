@@ -1,7 +1,6 @@
 # ArticleSum.
 
-![Screenshot](https://github.com/JaniHarkonen/ArticleSum./blob/main/screenshot.png)
-![Another screenshot](https://github.com/JaniHarkonen/ArticleSum./blob/main/screenshot2.png)
+[![ArticleSum. video presentation](https://github.com/JaniHarkonen/ArticleSum./blob/main/video_thumbnail.png)](https://www.youtube.com/watch?v=cY_kpwwPkeU)
 
 ArticleSum. is a note-taking and data visualization tool designed to summarize and visualize news 
 articles in useful ways.
